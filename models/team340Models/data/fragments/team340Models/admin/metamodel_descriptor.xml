@@ -1,5 +1,1901 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metamodel format="1" MetamodelDescriptor.format="1">
+  <fragment name="Analyst" version="2.0.00" provider="Unknown" providerVersion="2.0.00" fake="true">
+    <dependencies>
+      <metamodel_fragment name="modelio.kernel" version="1.0.00"/>
+    </dependencies>
+    <metaclasses>
+      <metaclass name="AnalystContainer" version="0.0.00" fake="true">
+        <parent fragment="Analyst" name="AnalystItem"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="AnalystElement" version="0.0.00" fake="true">
+        <parent fragment="Analyst" name="AnalystItem"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Version" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="AnalystItem" version="0.0.00" fake="true">
+        <parent fragment="Infrastructure" name="ModelElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Definition" type="java.lang.String"></attribute>
+        <dependency name="AnalystProperties" min="1" max="1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="AnalystPropertyTable"/>
+          <opposite name="AnalystOwner"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="AnalystProject" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Infrastructure" name="AbstractProject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="GoalRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GoalContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="BusinessRuleRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRuleContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="DictionaryRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Dictionary"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="RequirementRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="RequirementContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="GenericRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="RiskRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="RiskContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="TestRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="TestContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="AnalystPropertyTable" version="0.0.00" fake="true">
+        <parent fragment="Infrastructure" name="TypedPropertyTable"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="AnalystOwner" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystItem"/>
+          <opposite name="AnalystProperties"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="BusinessRule" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubRule" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="ParentRule"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="BusinessRuleContainer"/>
+          <opposite name="OwnedRule"/>
+        </dependency>
+        <dependency name="ParentRule" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="SubRule"/>
+        </dependency>
+        <dependency name="LastRuleVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="ArchivedRuleVersion"/>
+        </dependency>
+        <dependency name="ArchivedRuleVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="LastRuleVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="BusinessRuleContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedRule" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="BusinessRuleContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRuleContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="BusinessRuleRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Dictionary" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedDictionary" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Dictionary"/>
+          <opposite name="OwnerDictionary"/>
+        </dependency>
+        <dependency name="OwnerDictionary" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Dictionary"/>
+          <opposite name="OwnedDictionary"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="DictionaryRoot"/>
+        </dependency>
+        <dependency name="OwnedTerm" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Term"/>
+          <opposite name="OwnerDictionary"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="GenericAnalystContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedElement" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GenericAnalystContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="GenericRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="GenericAnalystElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubElement" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="ParentElement"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GenericAnalystContainer"/>
+          <opposite name="OwnedElement"/>
+        </dependency>
+        <dependency name="ParentElement" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="SubElement"/>
+        </dependency>
+        <dependency name="LastElementVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="ArchivedElementVersion"/>
+        </dependency>
+        <dependency name="ArchivedElementVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="LastElementVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Goal" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubGoal" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="ParentGoal"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GoalContainer"/>
+          <opposite name="OwnedGoal"/>
+        </dependency>
+        <dependency name="ParentGoal" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="SubGoal"/>
+        </dependency>
+        <dependency name="LastGoalVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="ArchivedGoalVersion"/>
+        </dependency>
+        <dependency name="ArchivedGoalVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="LastGoalVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="GoalContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedGoal" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GoalContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GoalContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="GoalRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Requirement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubRequirement" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="ParentRequirement"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="RequirementContainer"/>
+          <opposite name="OwnedRequirement"/>
+        </dependency>
+        <dependency name="ParentRequirement" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="SubRequirement"/>
+        </dependency>
+        <dependency name="ArchivedRequirementVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="LastRequirementVersion"/>
+        </dependency>
+        <dependency name="LastRequirementVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="ArchivedRequirementVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="RequirementContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedRequirement" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="RequirementContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="RequirementContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="RequirementRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Risk" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubRisk" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="ParentRisk"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="RiskContainer"/>
+          <opposite name="OwnedRisk"/>
+        </dependency>
+        <dependency name="ParentRisk" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="SubRisk"/>
+        </dependency>
+        <dependency name="ArchivedRiskVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="LastRiskVersion"/>
+        </dependency>
+        <dependency name="LastRiskVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="ArchivedRiskVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="RiskContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedRisk" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="RiskContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="RiskContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="RiskRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Term" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnerDictionary" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Dictionary"/>
+          <opposite name="OwnedTerm"/>
+        </dependency>
+        <dependency name="ArchivedTermVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Term"/>
+          <opposite name="LastTermVersion"/>
+        </dependency>
+        <dependency name="LastTermVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Term"/>
+          <opposite name="ArchivedTermVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Test" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubTest" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="ParentTest"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="TestContainer"/>
+          <opposite name="OwnedTest"/>
+        </dependency>
+        <dependency name="ParentTest" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="SubTest"/>
+        </dependency>
+        <dependency name="ArchivedTestVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="LastTestVersion"/>
+        </dependency>
+        <dependency name="LastTestVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="ArchivedTestVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="TestContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedTest" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="TestContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="TestContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="TestRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="AnalystContainer" version="0.0.00" fake="true">
+        <parent fragment="Analyst" name="AnalystItem"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="AnalystElement" version="0.0.00" fake="true">
+        <parent fragment="Analyst" name="AnalystItem"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Version" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="AnalystItem" version="0.0.00" fake="true">
+        <parent fragment="Infrastructure" name="ModelElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Definition" type="java.lang.String"></attribute>
+        <dependency name="AnalystProperties" min="1" max="1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="AnalystPropertyTable"/>
+          <opposite name="AnalystOwner"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="AnalystProject" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Infrastructure" name="AbstractProject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="GoalRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GoalContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="BusinessRuleRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRuleContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="DictionaryRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Dictionary"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="RequirementRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="RequirementContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="GenericRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="RiskRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="RiskContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+        <dependency name="TestRoot" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="TestContainer"/>
+          <opposite name="OwnerProject"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="AnalystPropertyTable" version="0.0.00" fake="true">
+        <parent fragment="Infrastructure" name="TypedPropertyTable"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="AnalystOwner" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystItem"/>
+          <opposite name="AnalystProperties"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="BusinessRule" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubRule" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="ParentRule"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="BusinessRuleContainer"/>
+          <opposite name="OwnedRule"/>
+        </dependency>
+        <dependency name="ParentRule" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="SubRule"/>
+        </dependency>
+        <dependency name="LastRuleVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="ArchivedRuleVersion"/>
+        </dependency>
+        <dependency name="ArchivedRuleVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="LastRuleVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="BusinessRuleContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedRule" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRule"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="BusinessRuleContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="BusinessRuleContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="BusinessRuleRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Dictionary" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedDictionary" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Dictionary"/>
+          <opposite name="OwnerDictionary"/>
+        </dependency>
+        <dependency name="OwnerDictionary" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Dictionary"/>
+          <opposite name="OwnedDictionary"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="DictionaryRoot"/>
+        </dependency>
+        <dependency name="OwnedTerm" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Term"/>
+          <opposite name="OwnerDictionary"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="GenericAnalystContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedElement" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GenericAnalystContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="GenericRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="GenericAnalystElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubElement" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="ParentElement"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GenericAnalystContainer"/>
+          <opposite name="OwnedElement"/>
+        </dependency>
+        <dependency name="ParentElement" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="SubElement"/>
+        </dependency>
+        <dependency name="LastElementVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="ArchivedElementVersion"/>
+        </dependency>
+        <dependency name="ArchivedElementVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GenericAnalystElement"/>
+          <opposite name="LastElementVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Goal" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubGoal" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="ParentGoal"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GoalContainer"/>
+          <opposite name="OwnedGoal"/>
+        </dependency>
+        <dependency name="ParentGoal" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="SubGoal"/>
+        </dependency>
+        <dependency name="LastGoalVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="ArchivedGoalVersion"/>
+        </dependency>
+        <dependency name="ArchivedGoalVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="LastGoalVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="GoalContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedGoal" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Goal"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="GoalContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="GoalContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="GoalRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Requirement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubRequirement" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="ParentRequirement"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="RequirementContainer"/>
+          <opposite name="OwnedRequirement"/>
+        </dependency>
+        <dependency name="ParentRequirement" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="SubRequirement"/>
+        </dependency>
+        <dependency name="ArchivedRequirementVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="LastRequirementVersion"/>
+        </dependency>
+        <dependency name="LastRequirementVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="ArchivedRequirementVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="RequirementContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedRequirement" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Requirement"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="RequirementContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="RequirementContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="RequirementRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Risk" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubRisk" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="ParentRisk"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="RiskContainer"/>
+          <opposite name="OwnedRisk"/>
+        </dependency>
+        <dependency name="ParentRisk" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="SubRisk"/>
+        </dependency>
+        <dependency name="ArchivedRiskVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="LastRiskVersion"/>
+        </dependency>
+        <dependency name="LastRiskVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="ArchivedRiskVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="RiskContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedRisk" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Risk"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="RiskContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="RiskContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="RiskRoot"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Term" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnerDictionary" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Dictionary"/>
+          <opposite name="OwnedTerm"/>
+        </dependency>
+        <dependency name="ArchivedTermVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Term"/>
+          <opposite name="LastTermVersion"/>
+        </dependency>
+        <dependency name="LastTermVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Term"/>
+          <opposite name="ArchivedTermVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Test" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="SubTest" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="ParentTest"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="TestContainer"/>
+          <opposite name="OwnedTest"/>
+        </dependency>
+        <dependency name="ParentTest" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="SubTest"/>
+        </dependency>
+        <dependency name="ArchivedTestVersion" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="LastTestVersion"/>
+        </dependency>
+        <dependency name="LastTestVersion" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="ArchivedTestVersion"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="TestContainer" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Analyst" name="AnalystContainer"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="OwnedTest" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="Test"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerContainer" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="TestContainer"/>
+          <opposite name="OwnedContainer"/>
+        </dependency>
+        <dependency name="OwnedContainer" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Analyst" name="TestContainer"/>
+          <opposite name="OwnerContainer"/>
+        </dependency>
+        <dependency name="OwnerProject" min="0" max="1" navigate="false">
+          <target fragment="Analyst" name="AnalystProject"/>
+          <opposite name="TestRoot"/>
+        </dependency>
+      </metaclass>
+    </metaclasses>
+    <enumerations></enumerations>
+  </fragment>
+  <fragment name="Archimate" version="1.0.03" provider="Unknown" providerVersion="1.0.03" fake="true">
+    <dependencies>
+      <metamodel_fragment name="modelio.kernel" version="1.0.00"/>
+    </dependencies>
+    <metaclasses>
+      <metaclass name="Access" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DependencyRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Mode" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ActiveStructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Aggregation" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructuralRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="AndJunction" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Junction"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationCollaboration" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ApplicationComponent"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationComponent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationEvent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Event"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="ApplicationFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="ApplicationFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="ApplicationFunction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ApplicationInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationInteraction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ApplicationInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationInterface" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationInternalBehaviorElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationProcess" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ApplicationInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationService" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ArchimateAbstractElement" version="0.0.00" fake="true">
+        <parent fragment="Infrastructure" name="ModelElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ArchimateProject" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Infrastructure" name="AbstractProject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="model" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="Model"/>
+          <opposite name="project"/>
+        </dependency>
+        <dependency name="viewPoints" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="ViewPoint"/>
+          <opposite name="project"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="ArchimateView" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Infrastructure" name="AbstractDiagram"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="context" min="0" max="1" navigate="true">
+          <target fragment="Archimate" name="Model"/>
+          <opposite name="referencedByView"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Artifact" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyObject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Assessment" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Assignment" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructuralRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Association" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="OtherRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BehaviorElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Element"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessActor" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessCollaboration" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessEvent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Event"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="BusinessFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="BusinessFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="BusinessFunction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessInteraction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessInterface" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessInternalActiveStructureElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessInternalBehaviorElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessObject" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessPassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessPassiveStructureElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessProcess" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessRole" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessService" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Capability" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="CommunicationNetwork" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="CompositeElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Element"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Composition" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructuralRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Concept" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="ArchimateAbstractElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="relatedFrom" min="0" max="-1" navigate="false" cascadeDelete="true">
+          <target fragment="Archimate" name="Relationship"/>
+          <opposite name="to"/>
+        </dependency>
+        <dependency name="relatedTo" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="Relationship"/>
+          <opposite name="from"/>
+        </dependency>
+        <dependency name="ownerFolder" min="1" max="1" navigate="false">
+          <target fragment="Archimate" name="Folder"/>
+          <opposite name="content"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Constraint" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Requirement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Contract" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessObject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="CourseOfAction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="DataObject" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Deliverable" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="DependencyRelationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Relationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Device" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="DistributionNetwork" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Driver" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="DynamicRelationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Relationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Element" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Concept"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Equipment" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Event" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Time" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ExternalActiveStructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="ActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ExternalBehaviorElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Facility" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Flow" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DynamicRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Folder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ArchimateAbstractElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="content" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="Concept"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+        <dependency name="owner" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="Model"/>
+          <opposite name="folder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Gap" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Goal" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="EquivalentRef" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Grouping" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="CompositeElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ImplementationEvent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Event"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ImplementationFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="ImplementationFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="ImplementationFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Influence" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DependencyRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Strength" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="InternalActiveStructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="ActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="InternalBehaviorElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Junction" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="RelationshipConnector"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Location" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="CompositeElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Material" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyObject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Meaning" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="EquivalentRef" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Model" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="project" min="1" max="1" navigate="false">
+          <target fragment="Archimate" name="ArchimateProject"/>
+          <opposite name="model"/>
+        </dependency>
+        <dependency name="referencedBy" min="0" max="-1" navigate="false">
+          <target fragment="Archimate" name="ViewPoint"/>
+          <opposite name="context"/>
+        </dependency>
+        <dependency name="referencedByView" min="0" max="-1" navigate="false">
+          <target fragment="Archimate" name="ArchimateView"/>
+          <opposite name="context"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="Folder"/>
+          <opposite name="owner"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="MotivationElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Element"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="MotivationFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="MotivationFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="MotivationFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Node" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="OrJunction" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Junction"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="OtherRelationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Relationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Outcome" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="PassiveStructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Path" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="PhysicalFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="PhysicalFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="PhysicalFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Plateau" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="CompositeElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Principle" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Product" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="CompositeElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Realization" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructuralRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Relationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Concept"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="to" min="0" max="1" navigate="true">
+          <target fragment="Archimate" name="Concept"/>
+          <opposite name="relatedFrom"/>
+        </dependency>
+        <dependency name="from" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="Concept"/>
+          <opposite name="relatedTo"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="RelationshipConnector" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Concept"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Representation" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessPassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Requirement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="EquivalentRef" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Resource" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="StructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Serving" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DependencyRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Specialization" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="OtherRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Stakeholder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="StrategyFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="StrategyFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="StrategyFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="StructuralRelationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Relationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="StructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Element"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="SystemSoftware" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyCollaboration" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyEvent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Event"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="TechnologyFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="TechnologyFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="TechnologyFunction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyInteraction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyInterface" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyInternalBehaviorElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="InternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyObject" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyProcess" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyService" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Triggering" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DynamicRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Value" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ViewPoint" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ArchimateAbstractElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="child" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="ViewPoint"/>
+          <opposite name="parent"/>
+        </dependency>
+        <dependency name="project" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="ArchimateProject"/>
+          <opposite name="viewPoints"/>
+        </dependency>
+        <dependency name="parent" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="ViewPoint"/>
+          <opposite name="child"/>
+        </dependency>
+        <dependency name="context" min="1" max="1" navigate="true">
+          <target fragment="Archimate" name="Model"/>
+          <opposite name="referencedBy"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="ViewPointDiagram" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Infrastructure" name="AbstractDiagram"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="WorkPackage" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Access" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DependencyRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Mode" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ActiveStructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Aggregation" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructuralRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="AndJunction" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Junction"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationCollaboration" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ApplicationComponent"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationComponent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationEvent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Event"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="ApplicationFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="ApplicationFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="ApplicationFunction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ApplicationInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationInteraction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ApplicationInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationInterface" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationInternalBehaviorElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationProcess" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ApplicationInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ApplicationService" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ArchimateAbstractElement" version="0.0.00" fake="true">
+        <parent fragment="Infrastructure" name="ModelElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ArchimateProject" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Infrastructure" name="AbstractProject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="model" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="Model"/>
+          <opposite name="project"/>
+        </dependency>
+        <dependency name="viewPoints" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="ViewPoint"/>
+          <opposite name="project"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="ArchimateView" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Infrastructure" name="AbstractDiagram"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="context" min="0" max="1" navigate="true">
+          <target fragment="Archimate" name="Model"/>
+          <opposite name="referencedByView"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Artifact" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyObject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Assessment" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Assignment" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructuralRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Association" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="OtherRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BehaviorElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Element"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessActor" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessCollaboration" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessEvent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Event"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="BusinessFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="BusinessFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="BusinessFunction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessInteraction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessInterface" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessInternalActiveStructureElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessInternalBehaviorElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessObject" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessPassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessPassiveStructureElement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessProcess" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessRole" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessInternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="BusinessService" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Capability" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="CommunicationNetwork" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="CompositeElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Element"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Composition" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructuralRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Concept" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="ArchimateAbstractElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="relatedFrom" min="0" max="-1" navigate="false" cascadeDelete="true">
+          <target fragment="Archimate" name="Relationship"/>
+          <opposite name="to"/>
+        </dependency>
+        <dependency name="relatedTo" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="Relationship"/>
+          <opposite name="from"/>
+        </dependency>
+        <dependency name="ownerFolder" min="1" max="1" navigate="false">
+          <target fragment="Archimate" name="Folder"/>
+          <opposite name="content"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Constraint" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Requirement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Contract" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessObject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="CourseOfAction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="DataObject" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Deliverable" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="DependencyRelationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Relationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Device" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="DistributionNetwork" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Driver" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="DynamicRelationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Relationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Element" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Concept"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Equipment" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Event" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Time" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ExternalActiveStructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="ActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ExternalBehaviorElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Facility" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Flow" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DynamicRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Folder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ArchimateAbstractElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="content" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="Concept"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+        <dependency name="owner" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="Model"/>
+          <opposite name="folder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Gap" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Goal" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="EquivalentRef" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Grouping" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="CompositeElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ImplementationEvent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Event"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ImplementationFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="ImplementationFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="ImplementationFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Influence" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DependencyRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="Strength" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="InternalActiveStructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="ActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="InternalBehaviorElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Junction" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="RelationshipConnector"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Location" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="CompositeElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Material" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyObject"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Meaning" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="EquivalentRef" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Model" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="project" min="1" max="1" navigate="false">
+          <target fragment="Archimate" name="ArchimateProject"/>
+          <opposite name="model"/>
+        </dependency>
+        <dependency name="referencedBy" min="0" max="-1" navigate="false">
+          <target fragment="Archimate" name="ViewPoint"/>
+          <opposite name="context"/>
+        </dependency>
+        <dependency name="referencedByView" min="0" max="-1" navigate="false">
+          <target fragment="Archimate" name="ArchimateView"/>
+          <opposite name="context"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="Folder"/>
+          <opposite name="owner"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="MotivationElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Element"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="MotivationFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="MotivationFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="MotivationFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Node" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="OrJunction" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Junction"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="OtherRelationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Relationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Outcome" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="PassiveStructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Path" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="InternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="PhysicalFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="PhysicalFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="PhysicalFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="Plateau" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="CompositeElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Principle" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Product" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="CompositeElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Realization" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="StructuralRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Relationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Concept"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="to" min="0" max="1" navigate="true">
+          <target fragment="Archimate" name="Concept"/>
+          <opposite name="relatedFrom"/>
+        </dependency>
+        <dependency name="from" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="Concept"/>
+          <opposite name="relatedTo"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="RelationshipConnector" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Concept"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Representation" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BusinessPassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Requirement" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <attribute name="EquivalentRef" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Resource" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="StructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Serving" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DependencyRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Specialization" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="OtherRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Stakeholder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="StrategyFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="StrategyFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="StrategyFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="StructuralRelationship" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Relationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="StructureElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="Element"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="SystemSoftware" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyCollaboration" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Node"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyEvent" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Event"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyFolder" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="Folder"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="ownerFolder" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="TechnologyFolder"/>
+          <opposite name="folder"/>
+        </dependency>
+        <dependency name="folder" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="TechnologyFolder"/>
+          <opposite name="ownerFolder"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="TechnologyFunction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyInteraction" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyInterface" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalActiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyInternalBehaviorElement" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="InternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyObject" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="PassiveStructureElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyProcess" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="TechnologyInternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="TechnologyService" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ExternalBehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Triggering" version="0.0.00" fake="true">
+        <parent fragment="Archimate" name="DynamicRelationship"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="Value" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="MotivationElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="ViewPoint" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="ArchimateAbstractElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+        <dependency name="child" min="0" max="-1" aggregation="Composition" navigate="true">
+          <target fragment="Archimate" name="ViewPoint"/>
+          <opposite name="parent"/>
+        </dependency>
+        <dependency name="project" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="ArchimateProject"/>
+          <opposite name="viewPoints"/>
+        </dependency>
+        <dependency name="parent" min="0" max="1" navigate="false">
+          <target fragment="Archimate" name="ViewPoint"/>
+          <opposite name="child"/>
+        </dependency>
+        <dependency name="context" min="1" max="1" navigate="true">
+          <target fragment="Archimate" name="Model"/>
+          <opposite name="referencedBy"/>
+        </dependency>
+      </metaclass>
+      <metaclass name="ViewPointDiagram" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Infrastructure" name="AbstractDiagram"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+      <metaclass name="WorkPackage" version="0.0.00" cmsNode="true" fake="true">
+        <parent fragment="Archimate" name="BehaviorElement"/>
+        <attribute name="Name" type="java.lang.String"></attribute>
+      </metaclass>
+    </metaclasses>
+    <enumerations></enumerations>
+  </fragment>
   <fragment name="Infrastructure" version="2.1.00" provider="Modeliosoft" providerVersion="3.7.00">
     <dependencies>
       <metamodel_fragment name="modelio.kernel" version="1.0.00"/>
