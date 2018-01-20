@@ -42,10 +42,11 @@
         <OBJECT>
           <ID name="Close Claw" mc="Standard.OpaqueAction" uid="3a2655d0-2f10-433b-b94a-8ac0db143cb1"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoids=close
+            <ATT name="Body"><![CDATA[setClawSolenoids=close
 setWheels=0
 elevatorPos=unknown
 bottomSwitch=unknown
+elevatorTilt=up
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
@@ -76,10 +77,11 @@ elevator=stationary]]></ATT>
         <OBJECT>
           <ID name="Go Above Position" mc="Standard.OpaqueAction" uid="3873cf4e-5de6-47b6-baee-c121413bdec2"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoids=close
+            <ATT name="Body"><![CDATA[setClawSolenoids=close
 setWheels=0
 elevatorPos=clearance
 bottomSwitch=unknown
+elevatorTilt=up
 elevator=raise
 Only If Not Above Travel]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>

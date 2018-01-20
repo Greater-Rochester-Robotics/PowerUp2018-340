@@ -42,10 +42,11 @@
         <OBJECT>
           <ID name="Open Claw" mc="Standard.OpaqueAction" uid="db529831-1e33-4f47-a826-d4b34d03c617"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoids=open
+            <ATT name="Body"><![CDATA[setClawSolenoids=open
 setWheels=0
 elevatorPos=unknown
 bottomSwitch=unknown
+elevatorTilt=up
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>

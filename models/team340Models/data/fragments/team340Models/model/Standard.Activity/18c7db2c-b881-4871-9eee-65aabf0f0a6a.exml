@@ -42,10 +42,11 @@
         <OBJECT>
           <ID name="Go Down" mc="Standard.OpaqueAction" uid="250b2f87-7849-4258-a632-4053aa5520b5"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoids=close
+            <ATT name="Body"><![CDATA[setClawSolenoids=close
 setWheels=0
 elevatorPos=unknown
 bottomSwitch=unknown
+elevatorTilt=up
 elevator=lower
 Tell Driver Position
 Only when the bottomSwitch not pressed]]></ATT>

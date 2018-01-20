@@ -46,6 +46,7 @@
 setWheels=0
 elevatorPos=unknown
 bottomSwitch=unknown
+elevatorTilt=up
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
