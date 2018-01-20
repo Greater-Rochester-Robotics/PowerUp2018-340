@@ -1,0 +1,42 @@
+package org.usfirst.frc.team340.robot.subsystems;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+/**
+ *
+ */
+public class Elevator extends Subsystem {
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void setPostion() {
+    	
+    }
+    
+    public void getPosition() {
+    	
+    }
+    
+    public void isAtBottom() {
+    	
+    }
+    
+    public void setTiltForward() {
+    	
+    }
+    
+    public void setTiltBackward() {
+    	
+    }
+    
+    public void goUp() {
+    	
+    }
+    
+    public void goDown() {
+    	
+    }
+}
+

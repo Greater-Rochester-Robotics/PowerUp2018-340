@@ -58,6 +58,24 @@
             <LINK relation="Called">
               <ID name="Travel" mc="Standard.Activity" uid="84040846-ec98-480a-a394-cccf8d517b39"/>
             </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="0d78b3df-33df-4b5d-9680-ce0bae8756ce"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Idle" mc="Standard.OpaqueAction" uid="991c0a90-e0bb-481b-8182-350f7b85ec0a"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
@@ -181,6 +199,22 @@
                       </DEPENDENCIES>
                     </OBJECT>
                   </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="3daef10e-e540-4737-b724-cf857ed525c0"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Hold Button Pressed]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Keep Cube" mc="Standard.CallBehaviorAction" uid="528dce4b-eba1-4de8-8d44-e7043aee390b"/>
+                    </REFOBJ>
+                  </LINK>
                 </DEPENDENCIES>
               </OBJECT>
             </COMP>
@@ -364,6 +398,24 @@
             <LINK relation="Called">
               <ID name="Stop Intake Wheel" mc="Standard.Activity" uid="79f597ae-cf45-4249-92a9-63c24f6e8624"/>
             </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="479faca3-557d-436e-abcb-dab6dee4b751"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Idle" mc="Standard.OpaqueAction" uid="991c0a90-e0bb-481b-8182-350f7b85ec0a"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
@@ -379,6 +431,24 @@
             <LINK relation="Called">
               <ID name="Keep Cube" mc="Standard.Activity" uid="bdfc07db-22d5-4e7f-a4aa-5e03c9116004"/>
             </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="592be9ea-4b9d-4b67-a4c5-a96d0c10636d"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Hold Button Released]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Stop Intake Wheel" mc="Standard.CallBehaviorAction" uid="428756ac-fcbe-4646-b629-64bdebfd4c58"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
