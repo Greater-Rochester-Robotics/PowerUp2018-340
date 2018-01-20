@@ -14,7 +14,16 @@
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedBehavior">
-        <COMPID name="Activity" mc="Standard.Activity" uid="cef8fb38-ca33-4fac-a925-9cbdf2c65a8b"/>
+        <COMPID name="AcquireCube" mc="Standard.Activity" uid="cef8fb38-ca33-4fac-a925-9cbdf2c65a8b"/>
+        <COMPID name="Master" mc="Standard.Activity" uid="73a4f7b4-9015-4016-a63b-443c0e9c38d7"/>
+        <COMPID name="Travel" mc="Standard.Activity" uid="84040846-ec98-480a-a394-cccf8d517b39"/>
+        <COMPID name="Go Up" mc="Standard.Activity" uid="f19cb383-3e15-4f0b-ba09-9ff43854a0bb"/>
+        <COMPID name="Stop Elevator" mc="Standard.Activity" uid="b6383cd8-ed21-453b-9436-3bf0140d2938"/>
+        <COMPID name="Go Down" mc="Standard.Activity" uid="18c7db2c-b881-4871-9eee-65aabf0f0a6a"/>
+        <COMPID name="Score (Drop)" mc="Standard.Activity" uid="3c32d4fa-d775-492b-accc-4fc11506909d"/>
+        <COMPID name="Score/Shoot (Eject)" mc="Standard.Activity" uid="6bf82a79-dd52-4a0f-864b-dffc429a65ff"/>
+        <COMPID name="Stop Intake Wheel" mc="Standard.Activity" uid="79f597ae-cf45-4249-92a9-63c24f6e8624"/>
+        <COMPID name="Keep Cube" mc="Standard.Activity" uid="bdfc07db-22d5-4e7f-a4aa-5e03c9116004"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Score/Shoot (Eject)" version="4">
+  <OBJECT>
+    <ID name="Score/Shoot (Eject)" mc="Standard.ActivityDiagram" uid="2e6ef053-3488-4203-a553-f9381b7a7b74"/>
+    <PID name="Score/Shoot (Eject)" mc="Standard.Activity" uid="6bf82a79-dd52-4a0f-864b-dffc429a65ff"/>
+    <ATTRIBUTES>
+      <ATT name="IsVertical">false</ATT>
+      <ATT name="UiDataVersion">18</ATT>
+      <ATT name="UiData"><![CDATA[eJztU1Fv2jAQ/itWnrYHHEroYFJKRQlCVdNSQTtpT9UFH9SdYyPbUPLvazfQFSaiTKrWlz3FOd/33X3n7+LzTS7IGrXhSp4FJ7QZkPNePM6ecGYJZy4UEFss8SxQekFzxVBwRRmHhYacIuNWaQozy9fcFhQF5iiteYvsEkd5fxtJykhAcnhS+uGtdDPoxbdaLVHbgkjIXUUBhVrZBCy4ux8gVrhtRa6ECMJeHO4Af0CnthAY7AlpVQkxPt/QmdJIS2yN/gZgZsCQ7YoNN3aC85pVbhzFFklwY5Ps0vX4evSH6xJJIro5EBqWkqrEaxRgkbleDuZ27UNk7SN+RCAZaEYPXoa08BvOm6dRI2p3u412qxk14NT9zr9H3ZOsA52s066evgBjr6R6lilkKA6amFrN5SLoTf0YwumjUpZ8GXpNX+PwNbFSmxJ4KQcqXyrDrXuZI+w1qAaPXDCNniHlxk90+zmKSLn8ZeqnXywSDc+unRQK1PtujCrXardGrMQbKjyD26I9wn+zQn+H+nTvcXbEEcmIpv2fw8nDRX9wNZqM72+SjzFJjY18/2y/DfTODu3/dvgsO9yNbz/aB0evXgD+FJUh]]></ATT>
+      <ATT name="Name"><![CDATA[Score/Shoot (Eject)]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Descriptor">
+        <OBJECT>
+          <ID name="" mc="Infrastructure.Note" uid="82ba40ec-ab8b-4c83-b7b2-572fc6feb705"/>
+          <ATTRIBUTES>
+            <ATT name="Content"></ATT>
+            <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Model">
+              <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

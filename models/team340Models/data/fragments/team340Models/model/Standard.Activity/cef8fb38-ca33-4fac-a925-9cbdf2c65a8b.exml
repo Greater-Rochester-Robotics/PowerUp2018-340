@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Activity" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="AcquireCube" version="4">
   <OBJECT>
-    <ID name="Activity" mc="Standard.Activity" uid="cef8fb38-ca33-4fac-a925-9cbdf2c65a8b"/>
+    <ID name="AcquireCube" mc="Standard.Activity" uid="cef8fb38-ca33-4fac-a925-9cbdf2c65a8b"/>
     <PID name="PowerUp2018" mc="Standard.Package" uid="00bc29a7-2b36-42de-b21c-a71d4804bb19"/>
     <ATTRIBUTES>
       <ATT name="IsSingleExecution">false</ATT>
       <ATT name="IsReadOnly">false</ATT>
       <ATT name="IsReentrant">false</ATT>
-      <ATT name="Name"><![CDATA[Activity]]></ATT>
+      <ATT name="Name"><![CDATA[AcquireCube]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
@@ -42,10 +42,10 @@
         <OBJECT>
           <ID name="Neutral Position" mc="Standard.OpaqueAction" uid="fcff961d-911a-4971-8908-9f605983c54e"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoid=open
+            <ATT name="Body"><![CDATA[setSolenoid=neutral
 setWheels=0
-elevatorPos=ground
-bottomSwitch=true
+elevatorPos=unknown
+bottomSwitch=unknown
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
@@ -78,8 +78,8 @@ elevator=stationary]]></ATT>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setSolenoid=neutral
 setWheels=-100%
-elevatorPos=ground
-bottomSwitch=true
+elevatorPos=unknown
+bottomSwitch=unknown
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
@@ -111,9 +111,9 @@ elevator=stationary]]></ATT>
           <ID name="Acquire Cube" mc="Standard.OpaqueAction" uid="72f46771-92ff-4cfe-9210-b07b42bc85a7"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setSolenoid=close
-setWheels=0
-elevatorPos=ground
-bottomSwitch=true
+setWheels=-50%
+elevatorPos=unknown
+bottomSwitch=unknown
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
@@ -146,8 +146,8 @@ elevator=stationary]]></ATT>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setSolenoid=close
 setWheels=-100%
-elevatorPos=ground
-bottomSwitch=true
+elevatorPos=unknown
+bottomSwitch=unknown
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
@@ -182,7 +182,8 @@ elevator=stationary]]></ATT>
 setWheels=0
 elevatorPos=clearance
 bottomSwitch=false
-elevator=raise]]></ATT>
+elevator=raise
+Only If Below Clearance]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Raise Claw]]></ATT>
@@ -234,7 +235,7 @@ elevator=raise]]></ATT>
         </OBJECT>
       </COMP>
       <COMP relation="Product">
-        <COMPID name="DiagramVersion1" mc="Standard.ActivityDiagram" uid="d3c970ec-b2a8-432c-a2d5-864049c74e0d"/>
+        <COMPID name="Acquiring Cube" mc="Standard.ActivityDiagram" uid="d3c970ec-b2a8-432c-a2d5-864049c74e0d"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

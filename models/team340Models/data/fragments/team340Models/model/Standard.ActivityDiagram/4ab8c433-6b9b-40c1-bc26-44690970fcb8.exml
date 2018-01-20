@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Stop Intake Wheels" version="4">
+  <OBJECT>
+    <ID name="Stop Intake Wheels" mc="Standard.ActivityDiagram" uid="4ab8c433-6b9b-40c1-bc26-44690970fcb8"/>
+    <PID name="Stop Intake Wheel" mc="Standard.Activity" uid="79f597ae-cf45-4249-92a9-63c24f6e8624"/>
+    <ATTRIBUTES>
+      <ATT name="IsVertical">false</ATT>
+      <ATT name="UiDataVersion">5</ATT>
+      <ATT name="UiData"><![CDATA[eJztU11PKjEQ/StN3ymrbLiSrBhkDSGuYuB+xCczux2x2m1JW5D997frglcwbNbE6Mt9anM6Z2bO9Ex0ts4lWaGxQqtTesQCSs760SR9xMwRwT1EiSsWeEq1mbNcc5RCMy5gbiBnyIXThkHmxEq4gqHEHJWzr8g2cJQPNkhcIZTk8KjN3WvpgPajG6MXaFxBFOS+ooRCL10MDvzbb5BL3LSillLSdj9qbwnvqDNXSKQ7Qo7rhNgy3rJMG2QVt0F/Q7AZcOTbYhdrN8X7hlWufYoNk+DaxenY9/hyLS9XFZN02HpPaLuSVCfeoASH3PeyN7erEiKrEilHBIqD4WzvZ0gI6UkWdjqtbtpLW2GQHbXS7LjbCsNuL+j9CO6z9KR++hKsu1T6WSWQotxrYuaMUHPanzm9IGPl4AnJnwdEaaP2S1ytNC1xrIY6X2grnP+YA8kbpBo+CMkNlhkSYcuBbo6DjESoJ9s8/HweG3j27SRQoNk1Y6d2q7ZbxCu+ZbLM4JdoJ+HXbNDHWN9uPcEPOCIesWRwezG9Ox8ML0fTya/r+HNM0mAh337bPwO9sUP43w7fZYefk5vP9sHBp781RpbM]]></ATT>
+      <ATT name="Name"><![CDATA[Stop Intake Wheels]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Descriptor">
+        <OBJECT>
+          <ID name="" mc="Infrastructure.Note" uid="9b129d13-3dd4-4112-96bc-2c74aa975e2e"/>
+          <ATTRIBUTES>
+            <ATT name="Content"></ATT>
+            <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Model">
+              <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

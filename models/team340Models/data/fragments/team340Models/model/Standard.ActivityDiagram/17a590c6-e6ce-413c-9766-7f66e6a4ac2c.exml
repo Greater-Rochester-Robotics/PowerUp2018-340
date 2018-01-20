@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Keep Cube" version="4">
+  <OBJECT>
+    <ID name="Keep Cube" mc="Standard.ActivityDiagram" uid="17a590c6-e6ce-413c-9766-7f66e6a4ac2c"/>
+    <PID name="Keep Cube" mc="Standard.Activity" uid="bdfc07db-22d5-4e7f-a4aa-5e03c9116004"/>
+    <ATTRIBUTES>
+      <ATT name="IsVertical">false</ATT>
+      <ATT name="UiDataVersion">3</ATT>
+      <ATT name="UiData"><![CDATA[eJztU1FPIjEQ/itN3ykg3BKTFYO7hhhWMehd4pMZ2pGr121JW5D999d1wRMubNbEnC/31GZmvplvZr6Jzze5Imu0Thp9RrusQ8n5MJ7On5F7IkUwUeKLJZ5RYxcsNwKVNExIWFjIGQrpjWXAvVxLXzBUmKP27s2yCxzno60lrSyU5PBs7ONb6Q4dxrfWLNH6gmjIQ0UFhVn5FDwE3w9QK9xS0SulaHsYt3eAv6B3vlBI9xo5qWvElfGOcWORVdgG/BJwHASKXbHLjZ/hU8MqNyHFFklw49P5VeD4+i0/1xWS9NjmoNF21VJd8xYVeBSBy8HcrksTWZeWckSgBVjBDjZDugP4dtrhUQsjjq1+t8dbp4Moag2eoggj6AM/4fXTV+D8RJsXncEc1QGJO2+lXtDhBHFJktUc4/aru7Yjo/BKJyZfGid92MeRnA1SJT+lEhbLDJl05Ry3z1FEJvUv1zz8YpFaeAl0MijQ7muwV3tMu+MRFd4xVWYIt7OX8N8czsdQX644KY4oIh2zbPRwOXu8GCWT8Wz6/Sb9HJE0uMP3a/sjoHdy6P+Xw1fJ4X56+9k6OOr6DRXplAA=]]></ATT>
+      <ATT name="Name"><![CDATA[Keep Cube]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Descriptor">
+        <OBJECT>
+          <ID name="" mc="Infrastructure.Note" uid="cfd9d75b-3378-437c-8637-233c3a7e66ee"/>
+          <ATTRIBUTES>
+            <ATT name="Content"></ATT>
+            <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Model">
+              <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
