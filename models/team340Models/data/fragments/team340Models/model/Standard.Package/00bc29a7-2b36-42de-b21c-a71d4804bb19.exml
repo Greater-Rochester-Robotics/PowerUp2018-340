@@ -24,6 +24,7 @@
         <COMPID name="Score/Shoot (Eject)" mc="Standard.Activity" uid="6bf82a79-dd52-4a0f-864b-dffc429a65ff"/>
         <COMPID name="Stop Intake Wheel" mc="Standard.Activity" uid="79f597ae-cf45-4249-92a9-63c24f6e8624"/>
         <COMPID name="Keep Cube" mc="Standard.Activity" uid="bdfc07db-22d5-4e7f-a4aa-5e03c9116004"/>
+        <COMPID name="Neutral Claw" mc="Standard.Activity" uid="fc080942-b4fe-4d28-bf05-3fda0f3907ac"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

@@ -5,12 +5,29 @@
     <PID name="Score (Drop)" mc="Standard.Activity" uid="3c32d4fa-d775-492b-accc-4fc11506909d"/>
     <ATTRIBUTES>
       <ATT name="IsVertical">false</ATT>
-      <ATT name="UiDataVersion">21</ATT>
-      <ATT name="UiData"><![CDATA[eJztU8FuGjEQ/RXLp/aAYYEWRdoQETZCUTYhgrZST9HseqBOvTayDWH/vnYW0kDFaitFzaUnW8/zZuaN38QX20KSDRortDqnEetQcjGMp9kj5o4I7iFKXLnCc6rNkhWaoxSacQFLAwVDLpw2DHInNsKVDCUWqJx9QfaBk2K0Q5IKoaSAR20eXkp36DC+N3qFxpVEQeErSij12iXgwL99A7nGXStqLSVtD+P2nvAHde5KifRASLdOiA3xluXaIKu4Dfobg82BI98Xu9q6GS4aVrnzKXZMgluXZNe+x+druNxWTNJj2yOh7UpSnXiDEhxy38vR3G4DRDYBCSMCxcFwdvQz5GwAi89RL2plgyxv9TPotDI+wFaPdxdn/W4UDT7l9dOXYN2N0k8qhQzlURNzZ4Ra0uE8jIF8SDz1Y9x+jqgVpSVeq7EuVtoK57/kRNoGqcY/hOQGQ4ZU2DDK3XGSkQr10zYPv1wmBp58OymUaA5t2Kvdp/3+8IpvmQwZ/PocJPw3u/N3rHc3neAnHJFMWDr6fjV7uByNbyaz6de75G1M0mAVX3/bbwO9skP/vx3eyw5fpvdv7YOTT78ABSKVMg==]]></ATT>
+      <ATT name="UiDataVersion">87</ATT>
+      <ATT name="UiData"><![CDATA[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]]></ATT>
       <ATT name="Name"><![CDATA[Score (Drop)]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
+      <LINK relation="Represented">
+        <REFOBJ>
+          <ID name="Initial Node" mc="Standard.InitialNode" uid="6a204069-5426-49b0-a164-70860c957c4f"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="Open Claw" mc="Standard.OpaqueAction" uid="db529831-1e33-4f47-a826-d4b34d03c617"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="ControlFlow" mc="Standard.ControlFlow" uid="e30a4c79-454e-4bec-a33c-5bf150e8f366"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="Activity Final Node" mc="Standard.ActivityFinalNode" uid="c543def7-5de6-4361-9ce9-451d8b5371d8"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="ControlFlow" mc="Standard.ControlFlow" uid="0a3bef27-94ee-4876-ac79-ef84e4e02315"/>
+        </REFOBJ>
+      </LINK>
       <COMP relation="Descriptor">
         <OBJECT>
           <ID name="" mc="Infrastructure.Note" uid="45f91623-2f78-47d8-86b6-a7e0494dca85"/>
