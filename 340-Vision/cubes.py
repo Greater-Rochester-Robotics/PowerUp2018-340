@@ -82,9 +82,12 @@ for image in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     for i in range(0, len(contours)):
          if cv2.contourArea(contours[i]) > 1500:
             x,y,w,h = cv2.boundingRect(contours[i])
-            cv2.drawContours(debug, contours, i, (0, 0, 255), 2)
-
-            cbb = cv2.contourArea(contours[i])/(w*h)
+            rRect = cv2.minAreaRect(contours[i])
+            rBox = cv2.boxPoints(rRect)
+            rBox = np.int0(rBox)
+            cv2.drawContours(debug, [rBox], 0, (0,255,0), 2)
+            cv2.drawContours(debug, contours, i, (0, 0, 255), 1)
+            cbb = cv2.contourArea(contours[i])/(rRect[1][0]*rRect[1][1])
             cv2.putText(debug, str(cbb)[:5], (x+w/2, y+h/2), font, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
             # closest to center ?
             if(abs(IMG_WIDTH/2 - (x + w/2)) < abs(IMG_WIDTH/2 - centerx)):
