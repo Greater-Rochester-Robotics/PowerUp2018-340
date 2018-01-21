@@ -1,0 +1,508 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Master" version="4">
+  <OBJECT>
+    <ID name="Master" mc="Standard.Activity" uid="73a4f7b4-9015-4016-a63b-443c0e9c38d7"/>
+    <PID name="PowerUp2018" mc="Standard.Package" uid="00bc29a7-2b36-42de-b21c-a71d4804bb19"/>
+    <ATTRIBUTES>
+      <ATT name="IsSingleExecution">false</ATT>
+      <ATT name="IsReadOnly">false</ATT>
+      <ATT name="IsReentrant">false</ATT>
+      <ATT name="Name"><![CDATA[Master]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedNode">
+        <OBJECT>
+          <ID name="AcquireCube" mc="Standard.CallBehaviorAction" uid="5566658f-d909-4136-9885-d7b9ed41fb0e"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[AcquireCube]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="AcquireCube" mc="Standard.Activity" uid="cef8fb38-ca33-4fac-a925-9cbdf2c65a8b"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="f3d7e4f8-b8f5-4b74-82c6-9b7792516caf"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Acquire Button Released]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Travel" mc="Standard.CallBehaviorAction" uid="c9b6d6b3-f2ef-4c5b-9c12-bf83c556266f"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Travel" mc="Standard.CallBehaviorAction" uid="c9b6d6b3-f2ef-4c5b-9c12-bf83c556266f"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Travel]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Travel" mc="Standard.Activity" uid="84040846-ec98-480a-a394-cccf8d517b39"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="0d78b3df-33df-4b5d-9680-ce0bae8756ce"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Idle" mc="Standard.OpaqueAction" uid="991c0a90-e0bb-481b-8182-350f7b85ec0a"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Idle" mc="Standard.OpaqueAction" uid="991c0a90-e0bb-481b-8182-350f7b85ec0a"/>
+          <ATTRIBUTES>
+            <ATT name="Body"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Idle]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="2c390334-338d-4946-9a1e-6fefee8b6e9a"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Acquire Button Pressed]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="AcquireCube" mc="Standard.CallBehaviorAction" uid="5566658f-d909-4136-9885-d7b9ed41fb0e"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="20245b2a-95a1-46f0-b396-79e01c88d72f"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Up Button Pressed]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Go Up" mc="Standard.CallBehaviorAction" uid="4219a90b-1564-4665-8bdb-fdb88ef8e218"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="8c52ac2e-3bdb-4c0d-9234-a8b498f13d24"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Down Button Pressed]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Go Down" mc="Standard.CallBehaviorAction" uid="24f355a5-12b7-46c6-9c78-946b5d611a33"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="83b0e103-a1fd-4f23-bb1f-17aaff42a9c5"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Drop Button Pressed]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Score (Drop)" mc="Standard.CallBehaviorAction" uid="01a57c69-b024-42de-82a1-49c9ea0d5ac9"/>
+                    </REFOBJ>
+                  </LINK>
+                  <COMP relation="Descriptor">
+                    <OBJECT>
+                      <ID name="" mc="Infrastructure.Note" uid="ac825e30-50b9-4dd5-94d8-1fbe478d5543"/>
+                      <ATTRIBUTES>
+                        <ATT name="Content"><![CDATA[<Enter note text here>]]></ATT>
+                        <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <LINK relation="Model">
+                          <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+                        </LINK>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="b6ae214c-1a73-4155-8d89-b8f2bd8de20b"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Eject Button Pressed]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Score/Shoot (Eject)" mc="Standard.CallBehaviorAction" uid="32a85d02-6abc-4333-826b-8bcf63e28f83"/>
+                    </REFOBJ>
+                  </LINK>
+                  <COMP relation="Descriptor">
+                    <OBJECT>
+                      <ID name="" mc="Infrastructure.Note" uid="594351b4-c8ca-4a0c-9643-dcb482175936"/>
+                      <ATTRIBUTES>
+                        <ATT name="Content"><![CDATA[<Enter note text here>]]></ATT>
+                        <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <LINK relation="Model">
+                          <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+                        </LINK>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="3daef10e-e540-4737-b724-cf857ed525c0"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Hold Button Pressed]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Keep Cube" mc="Standard.CallBehaviorAction" uid="528dce4b-eba1-4de8-8d44-e7043aee390b"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Go Up" mc="Standard.CallBehaviorAction" uid="4219a90b-1564-4665-8bdb-fdb88ef8e218"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Go Up]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Go Up" mc="Standard.Activity" uid="f19cb383-3e15-4f0b-ba09-9ff43854a0bb"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="59536bde-a865-4dea-aa3f-334cedbc177c"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Up Button Released]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Stop Elevator" mc="Standard.CallBehaviorAction" uid="d8e79ea9-3ab8-4cbf-8c14-6ce99e4ab8d3"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Stop Elevator" mc="Standard.CallBehaviorAction" uid="d8e79ea9-3ab8-4cbf-8c14-6ce99e4ab8d3"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Stop Elevator]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Stop Elevator" mc="Standard.Activity" uid="b6383cd8-ed21-453b-9436-3bf0140d2938"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="25808938-8854-4714-bfd5-96b4b18dbb1f"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Idle" mc="Standard.OpaqueAction" uid="991c0a90-e0bb-481b-8182-350f7b85ec0a"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Go Down" mc="Standard.CallBehaviorAction" uid="24f355a5-12b7-46c6-9c78-946b5d611a33"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Go Down]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Go Down" mc="Standard.Activity" uid="18c7db2c-b881-4871-9eee-65aabf0f0a6a"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="266bd90e-e156-476b-b9b1-33ba84c3d4a1"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Down Button Released]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Stop Elevator" mc="Standard.CallBehaviorAction" uid="d8e79ea9-3ab8-4cbf-8c14-6ce99e4ab8d3"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Score (Drop)" mc="Standard.CallBehaviorAction" uid="01a57c69-b024-42de-82a1-49c9ea0d5ac9"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Score (Drop)]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Score (Drop)" mc="Standard.Activity" uid="3c32d4fa-d775-492b-accc-4fc11506909d"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="82e452e4-75c5-4420-89e7-b80a659f7a66"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Drop Button Released]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Neutral Claw" mc="Standard.CallBehaviorAction" uid="732e1339-cfc5-4de8-a3ee-84214bb82ab0"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Score/Shoot (Eject)" mc="Standard.CallBehaviorAction" uid="32a85d02-6abc-4333-826b-8bcf63e28f83"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Score/Shoot (Eject)]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Score/Shoot (Eject)" mc="Standard.Activity" uid="6bf82a79-dd52-4a0f-864b-dffc429a65ff"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="6ac7f9fb-7fbe-4772-8830-2da9c4590226"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Eject Button Released]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Neutral Claw" mc="Standard.CallBehaviorAction" uid="732e1339-cfc5-4de8-a3ee-84214bb82ab0"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Stop Intake Wheel" mc="Standard.CallBehaviorAction" uid="428756ac-fcbe-4646-b629-64bdebfd4c58"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Stop Intake Wheel]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Stop Intake Wheel" mc="Standard.Activity" uid="79f597ae-cf45-4249-92a9-63c24f6e8624"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="479faca3-557d-436e-abcb-dab6dee4b751"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Idle" mc="Standard.OpaqueAction" uid="991c0a90-e0bb-481b-8182-350f7b85ec0a"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Keep Cube" mc="Standard.CallBehaviorAction" uid="528dce4b-eba1-4de8-8d44-e7043aee390b"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Keep Cube]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Keep Cube" mc="Standard.Activity" uid="bdfc07db-22d5-4e7f-a4aa-5e03c9116004"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="592be9ea-4b9d-4b67-a4c5-a96d0c10636d"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[Hold Button Released]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Stop Intake Wheel" mc="Standard.CallBehaviorAction" uid="428756ac-fcbe-4646-b629-64bdebfd4c58"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Neutral Claw" mc="Standard.CallBehaviorAction" uid="732e1339-cfc5-4de8-a3ee-84214bb82ab0"/>
+          <ATTRIBUTES>
+            <ATT name="IsSynchronous">true</ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Neutral Claw]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Called">
+              <ID name="Neutral Claw" mc="Standard.Activity" uid="fc080942-b4fe-4d28-bf05-3fda0f3907ac"/>
+            </LINK>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="9b58be2b-7e94-423d-9ed6-137a9e0ef85e"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Idle" mc="Standard.OpaqueAction" uid="991c0a90-e0bb-481b-8182-350f7b85ec0a"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="OwnedCollaboration">
+        <OBJECT>
+          <ID name="locals" mc="Standard.Collaboration" uid="7b14fbc4-6682-4232-b3b2-e6c7182be5a0"/>
+          <ATTRIBUTES>
+            <ATT name="IsConcurrent">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[locals]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Master" mc="Standard.ActivityDiagram" uid="6e2b5126-03c5-4024-ac97-94c590e49b74"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

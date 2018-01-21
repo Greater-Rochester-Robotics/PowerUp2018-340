@@ -11,6 +11,7 @@
     <DEPENDENCIES>
       <COMP relation="Model">
         <COMPID name="team340models" mc="Standard.Package" uid="e2e2325c-f330-42d9-8ce0-2994d1335cc4"/>
+        <COMPID name="PowerUp2018" mc="Standard.Package" uid="00bc29a7-2b36-42de-b21c-a71d4804bb19"/>
       </COMP>
       <COMP relation="DiagramRoot">
         <COMPID name="team340Models" mc="Infrastructure.DiagramSet" uid="ccf267f8-2028-46ed-a582-78812347dceb"/>

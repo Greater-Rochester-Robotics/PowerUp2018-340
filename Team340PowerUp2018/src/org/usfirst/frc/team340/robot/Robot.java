@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team340.robot.commands.ExampleCommand;
+import org.usfirst.frc.team340.robot.subsystems.Claw;
+import org.usfirst.frc.team340.robot.subsystems.Elevator;
 import org.usfirst.frc.team340.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -25,7 +27,9 @@ import org.usfirst.frc.team340.robot.subsystems.ExampleSubsystem;
 public class Robot extends TimedRobot {
 	public static final ExampleSubsystem kExampleSubsystem
 			= new ExampleSubsystem();
-	public static OI m_oi;
+	public static final Claw claw = new Claw();
+	public static final Elevator elevator = new Elevator();
+	public static OI oi;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -36,7 +40,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
+		oi = new OI();
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);

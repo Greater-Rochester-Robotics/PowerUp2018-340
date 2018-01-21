@@ -1,0 +1,9 @@
+1516478927385	Delete element
+1516481356450	Rename type 'ClawPrepareToAcquire'
+1516481563993	Rename field 'm_claw'
+1516481567567	Rename field 'm_elevator'
+1516481572606	Rename field 'm_oi'
+1516482523301	Rename type 'ClawRaiseCube'
+1516484037699	Move compilation unit
+1516484530174	Rename type 'ClawAquireCube'
+1516485287926	Delete element
