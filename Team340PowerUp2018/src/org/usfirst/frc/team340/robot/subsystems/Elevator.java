@@ -11,7 +11,7 @@ public class Elevator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void setPostion(int position) {
+    public void setPosition(int position) {
     	
     }
     
@@ -36,6 +36,10 @@ public class Elevator extends Subsystem {
     }
     
     public void goDown(double speed) {
+    	
+    }
+    
+    public void stop() {
     	
     }
 }
