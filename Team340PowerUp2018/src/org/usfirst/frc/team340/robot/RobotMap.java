@@ -15,6 +15,10 @@ package org.usfirst.frc.team340.robot;
  */
 public class RobotMap {
 	
+	//Claw Devices
+	public static final int CLAW_SOLENOID_CHANNEL = 1;
+	public static final int CLAW_WHEEL_CHANNEL = 2;
+	
 	//Claw Wheel Speeds
 	public static final double CLAW_WHEEL_FULLSPEED_VBUS = 1.0;
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
@@ -25,7 +29,7 @@ public class RobotMap {
 	public static final int DRIVE_TALONSR_LEFT_CHANNEL = 8;
 	
 	//Elevator Devices
-	public static final int ELEVATOR_BUMP_SWITCH_PORT =7;
+	public static final int ELEVATOR_BUMP_SWITCH_PORT = 7;
 	public static final int ELEVATOR_ENCODER_PORTA = 5;
 	public static final int ELEVATOR_ENCODER_PORTB = 6;
 	public static final int ELEVATOR_TALONSRX_A_ID = 11;

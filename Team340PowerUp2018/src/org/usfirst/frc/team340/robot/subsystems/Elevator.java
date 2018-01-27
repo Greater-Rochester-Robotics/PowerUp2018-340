@@ -3,6 +3,7 @@ package org.usfirst.frc.team340.robot.subsystems;
 import org.usfirst.frc.team340.robot.RobotMap;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -22,23 +23,23 @@ public class Elevator extends Subsystem {
 		talonB = new CANTalon(RobotMap.ELEVATOR_TALONSRX_B_ID);
 		bottomSwitch = new DigitalInput(RobotMap.ELEVATOR_BUMP_SWITCH_PORT);
 		encoder = new Encoder(RobotMap.ELEVATOR_ENCODER_PORTA, RobotMap.ELEVATOR_ENCODER_PORTB);
+		
+		talonB.setControlMode(TalonControlMode.Follower);
+		talonB.set(RobotMap.ELEVATOR_TALONSRX_A_ID);
 	}
 	
-	public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+	public void initDefaultCommand() {}
     
     public void setPosition(int position) {
-    	
+    	//A lot of PID here
     }
     
     public int getPosition() {
-    	return -1;
+    	return encoder.get();
     }
     
     public boolean isAtBottom() {
-    	return false;
+    	return bottomSwitch.get();
     }
     
     public void setTiltForward() {
@@ -50,15 +51,15 @@ public class Elevator extends Subsystem {
     }
     
     public void goUp(double speed) {
-    	
+    	talonA.set(Math.abs(speed));
     }
     
     public void goDown(double speed) {
-    	
+    	talonA.set(-Math.abs(speed));
     }
     
     public void stop() {
-    	
+    	talonA.set(0);
     }
 }
 

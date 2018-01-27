@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Keep Cube" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ReSecure Cube" version="4">
   <OBJECT>
-    <ID name="Keep Cube" mc="Standard.Activity" uid="bdfc07db-22d5-4e7f-a4aa-5e03c9116004"/>
+    <ID name="ReSecure Cube" mc="Standard.Activity" uid="bdfc07db-22d5-4e7f-a4aa-5e03c9116004"/>
     <PID name="PowerUp2018" mc="Standard.Package" uid="00bc29a7-2b36-42de-b21c-a71d4804bb19"/>
     <ATTRIBUTES>
       <ATT name="IsSingleExecution">false</ATT>
       <ATT name="IsReadOnly">false</ATT>
       <ATT name="IsReentrant">false</ATT>
-      <ATT name="Name"><![CDATA[Keep Cube]]></ATT>
+      <ATT name="Name"><![CDATA[ReSecure Cube]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
@@ -31,7 +31,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Holding" mc="Standard.OpaqueAction" uid="ca133f6a-00f5-4091-b2cf-d39de7d49013"/>
+                      <ID name="ReSecure Cube" mc="Standard.OpaqueAction" uid="ca133f6a-00f5-4091-b2cf-d39de7d49013"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -40,17 +40,18 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="Holding" mc="Standard.OpaqueAction" uid="ca133f6a-00f5-4091-b2cf-d39de7d49013"/>
+          <ID name="ReSecure Cube" mc="Standard.OpaqueAction" uid="ca133f6a-00f5-4091-b2cf-d39de7d49013"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setClawSolenoids=close
 setWheels=-50%
 elevatorPos=unknown
 bottomSwitch=unknown
 elevatorTilt=up
-elevator=lower]]></ATT>
+elevator=unknown
+The Elevator Should Be Stationary, But Not Required]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[Holding]]></ATT>
+            <ATT name="Name"><![CDATA[ReSecure Cube]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -99,7 +100,7 @@ elevator=lower]]></ATT>
         </OBJECT>
       </COMP>
       <COMP relation="Product">
-        <COMPID name="Keep Cube" mc="Standard.ActivityDiagram" uid="17a590c6-e6ce-413c-9766-7f66e6a4ac2c"/>
+        <COMPID name="ReSecure Cube" mc="Standard.ActivityDiagram" uid="17a590c6-e6ce-413c-9766-7f66e6a4ac2c"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

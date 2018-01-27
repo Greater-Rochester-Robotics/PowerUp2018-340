@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClawShoot extends Command {
+public class ClawShootScore extends Command {
 
-    public ClawShoot() {
+    public ClawShootScore() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.claw);
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time

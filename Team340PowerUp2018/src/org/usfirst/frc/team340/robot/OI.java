@@ -7,6 +7,14 @@
 
 package org.usfirst.frc.team340.robot;
 
+import org.usfirst.frc.team340.robot.commands.ClawReSecureCube;
+import org.usfirst.frc.team340.robot.commands.groups.AcquireCube;
+import org.usfirst.frc.team340.robot.commands.groups.Travel;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -39,4 +47,46 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	//I copied this from last year since we will need it soon anyways
+	
+	//DRIVER
+		private Joystick driver = new Joystick(0);
+		private Button driverA = new JoystickButton(driver, 1);
+		private Button driverB = new JoystickButton(driver, 2);
+		/*private Button driverX = new JoystickButton(driver, 3);
+		private Button driverY = new JoystickButton(driver, 4);
+		private Button driverLB = new JoystickButton(driver, 5);
+		private Button driverRB = new JoystickButton(driver, 6);
+		private Button driverBack = new JoystickButton(driver, 7);
+		private Button driverStart = new JoystickButton(driver, 8);
+		private Button driverLS = new JoystickButton(driver, 9);
+		private Button driverRS = new JoystickButton(driver, 10);
+		private Button driverDPadUp = new DPad(driver, Direction.up);
+		private Button driverDPadDown = new DPad(driver, Direction.down);
+		private Button driverDPadRight = new DPad(driver, Direction.right);
+		private Button driverDPadLeft = new DPad(driver, Direction.left);
+		private Button driverRT = new JoyTrigger(driver, Axis.RIGHT_TRIGGER.getAxis(), .2);*/
+		
+		//CO-DRIVER
+		/*private Joystick coDriver = new Joystick(1);
+		private Button coDriverA = new JoystickButton(coDriver, 1);
+		private Button coDriverB = new JoystickButton(coDriver, 2);
+		private Button coDriverX = new JoystickButton(coDriver, 3);
+		private Button coDriverY = new JoystickButton(coDriver, 4);
+		private Button coDriverLB = new JoystickButton(coDriver, 5);
+		private Button coDriverRB = new JoystickButton(coDriver, 6);
+		private Button coDriverBack = new JoystickButton(coDriver, 7);
+		private Button coDriverStart = new JoystickButton(coDriver, 8);
+		private Button coDriverLS = new JoystickButton(coDriver, 9);
+		private Button coDriverRS = new JoystickButton(coDriver, 10);*/
+		
+public OI () {
+		
+		//Buttons
+		driverA.whenPressed(new AcquireCube());
+		driverA.whenReleased(new Travel());
+		driverB.whenPressed(new ClawReSecureCube());
+		driverB.whenReleased(new Travel());
+	}
 }

@@ -15,7 +15,6 @@ public class ClawAlignCube extends Command {
         // eg. requires(chassis);
     	requires(Robot.claw);
     	requires(Robot.elevator);
-    	
     }
 
     // Called just before this Command runs the first time
