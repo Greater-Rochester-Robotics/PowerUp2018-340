@@ -14,14 +14,18 @@ package org.usfirst.frc.team340.robot;
  * floating around.
  */
 public class RobotMap {
-	public static final int RIGHT_DRIVE_ENCODER_A = 3;
-	public static final int RIGHT_DRIVE_ENCODER_B = 2;
-	public static final int ELEVATOR_BUMP = 4;
 	
-	//Claw wheel speeds
+	//Claw Wheel Speeds
 	public static final double CLAW_WHEEL_FULLSPEED_VBUS = 1.0;
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
+	
+	//Elevator Devices
+	public static final int ELEVATOR_BUMP_SWITCH_PORT =7;
+	public static final int ELEVATOR_ENCODER_PORTA = 5;
+	public static final int ELEVATOR_ENCODER_PORTB = 6;
+	public static final int ELEVATOR_TALONSRX_A_ID = 11;
+	public static final int ELEVATOR_TALONSRX_B_ID = 13;
 	
 	//Elevator Positions
 	public static final int ELEVATOR_TRAVEL_POSTION_TICKS = 10;
