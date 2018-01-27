@@ -1,25 +1,27 @@
 package org.usfirst.frc.team340.robot.commands;
 
 import org.usfirst.frc.team340.robot.Robot;
+import org.usfirst.frc.team340.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ClawHolding extends Command {
+public class ClawReSecureCube extends Command {
 
-    public ClawHolding() {
+    public ClawReSecureCube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.claw);
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_HOLDSPEED_VBUS);
     	Robot.claw.close();
-    	Robot.claw.spinWheelsIn(-.5);
     	Robot.elevator.setTiltForward();
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run

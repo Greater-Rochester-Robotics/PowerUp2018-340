@@ -117,7 +117,8 @@ setWheels=-50%
 elevatorPos=unknown
 bottomSwitch=unknown
 elevatorTilt=up
-elevator=stationary]]></ATT>
+elevator=stationary
+It Is Necessary For The Elevator To Be Stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Secure Cube]]></ATT>

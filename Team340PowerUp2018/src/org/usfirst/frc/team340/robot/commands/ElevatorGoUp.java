@@ -12,6 +12,8 @@ public class ElevatorGoUp extends Command {
     public ElevatorGoUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.claw);
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time

@@ -32,7 +32,7 @@ public class ClawSecureCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.claw.isCubePresent();
+        return Robot.claw.isCubePresent(); //To be determined
     }	
 
     // Called once after isFinished returns true
