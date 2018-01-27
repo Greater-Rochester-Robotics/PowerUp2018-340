@@ -20,6 +20,10 @@ public class RobotMap {
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
 	
+	//Drive Devices
+	public static final int DRIVE_TALONSR_RIGHT_CHANNEL = 4;
+	public static final int DRIVE_TALONSR_LEFT_CHANNEL = 8;
+	
 	//Elevator Devices
 	public static final int ELEVATOR_BUMP_SWITCH_PORT =7;
 	public static final int ELEVATOR_ENCODER_PORTA = 5;
