@@ -21,4 +21,8 @@ public class RobotMap {
 	//Claw wheel speeds
 	public static final double CLAW_WHEEL_FULLSPEED_VBUS = 1.0;
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
+	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
+	
+	//Elevator Positions
+	public static final int ELEVATOR_TRAVEL_POSTION_TICKS = 10;
 }

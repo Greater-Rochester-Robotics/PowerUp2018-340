@@ -66,7 +66,7 @@ elevator=stationary]]></ATT>
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Prepare To Acquire" mc="Standard.OpaqueAction" uid="ccdde075-777f-4e71-91eb-ee076faf353b"/>
+                      <ID name="Acquire Cube" mc="Standard.OpaqueAction" uid="ccdde075-777f-4e71-91eb-ee076faf353b"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -75,7 +75,7 @@ elevator=stationary]]></ATT>
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="Prepare To Acquire" mc="Standard.OpaqueAction" uid="ccdde075-777f-4e71-91eb-ee076faf353b"/>
+          <ID name="Acquire Cube" mc="Standard.OpaqueAction" uid="ccdde075-777f-4e71-91eb-ee076faf353b"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setSolenoid=neutral
 setWheels=-100%
@@ -85,7 +85,7 @@ elevatorTilt=up
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[Prepare To Acquire]]></ATT>
+            <ATT name="Name"><![CDATA[Acquire Cube]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -101,7 +101,7 @@ elevator=stationary]]></ATT>
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Check Cube" mc="Standard.OpaqueAction" uid="3ed6c148-5512-4ad5-b675-79551752bda5"/>
+                      <ID name="Align Cube" mc="Standard.OpaqueAction" uid="3ed6c148-5512-4ad5-b675-79551752bda5"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -110,7 +110,7 @@ elevator=stationary]]></ATT>
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="Acquire Cube" mc="Standard.OpaqueAction" uid="72f46771-92ff-4cfe-9210-b07b42bc85a7"/>
+          <ID name="Secure Cube" mc="Standard.OpaqueAction" uid="72f46771-92ff-4cfe-9210-b07b42bc85a7"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setSolenoid=close
 setWheels=-50%
@@ -120,15 +120,15 @@ elevatorTilt=up
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[Acquire Cube]]></ATT>
+            <ATT name="Name"><![CDATA[Secure Cube]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <COMP relation="Outgoing">
               <OBJECT>
-                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="fcb4f444-6775-4dd2-b5ec-390568833c4d"/>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="0d5d4e2f-2be6-4cb0-b76c-eb5f0fb9c935"/>
                 <ATTRIBUTES>
-                  <ATT name="Guard"></ATT>
+                  <ATT name="Guard"><![CDATA[Sensors Are Pressed]]></ATT>
                   <ATT name="Weight"><![CDATA[1]]></ATT>
                   <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -136,7 +136,7 @@ elevator=stationary]]></ATT>
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Raise Claw" mc="Standard.OpaqueAction" uid="2527e002-b4ca-4856-8ec3-2a52fc868d76"/>
+                      <ID name="Activity Final Node" mc="Standard.ActivityFinalNode" uid="a25df6c0-7fec-41f0-9479-efad1811195d"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -145,7 +145,7 @@ elevator=stationary]]></ATT>
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="Check Cube" mc="Standard.OpaqueAction" uid="3ed6c148-5512-4ad5-b675-79551752bda5"/>
+          <ID name="Align Cube" mc="Standard.OpaqueAction" uid="3ed6c148-5512-4ad5-b675-79551752bda5"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setSolenoid=close
 setWheels=-100%
@@ -155,7 +155,7 @@ elevatorTilt=up
 elevator=stationary]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[Check Cube]]></ATT>
+            <ATT name="Name"><![CDATA[Align Cube]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -171,43 +171,7 @@ elevator=stationary]]></ATT>
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Acquire Cube" mc="Standard.OpaqueAction" uid="72f46771-92ff-4cfe-9210-b07b42bc85a7"/>
-                    </REFOBJ>
-                  </LINK>
-                </DEPENDENCIES>
-              </OBJECT>
-            </COMP>
-          </DEPENDENCIES>
-        </OBJECT>
-        <OBJECT>
-          <ID name="Raise Claw" mc="Standard.OpaqueAction" uid="2527e002-b4ca-4856-8ec3-2a52fc868d76"/>
-          <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoid=close
-setWheels=0
-elevatorPos=clearance
-bottomSwitch=false
-elevatorTilt=up
-elevator=raise
-Only If Below Clearance]]></ATT>
-            <ATT name="IsMultipleInstance">false</ATT>
-            <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[Raise Claw]]></ATT>
-            <ATT name="status">1970354901745664</ATT>
-          </ATTRIBUTES>
-          <DEPENDENCIES>
-            <COMP relation="Outgoing">
-              <OBJECT>
-                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="e66df0ca-85de-436e-8907-94ac4a65158c"/>
-                <ATTRIBUTES>
-                  <ATT name="Guard"></ATT>
-                  <ATT name="Weight"><![CDATA[1]]></ATT>
-                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
-                  <ATT name="status">1970354901745664</ATT>
-                </ATTRIBUTES>
-                <DEPENDENCIES>
-                  <LINK relation="Target">
-                    <REFOBJ>
-                      <ID name="Activity Final Node" mc="Standard.ActivityFinalNode" uid="a25df6c0-7fec-41f0-9479-efad1811195d"/>
+                      <ID name="Secure Cube" mc="Standard.OpaqueAction" uid="72f46771-92ff-4cfe-9210-b07b42bc85a7"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>

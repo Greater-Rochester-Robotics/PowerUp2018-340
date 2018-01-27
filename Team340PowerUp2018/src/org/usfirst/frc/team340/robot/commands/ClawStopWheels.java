@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CloseClaw extends Command {
+public class ClawStopWheels extends Command {
 
-    public CloseClaw() {
+    public ClawStopWheels() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.close();
     	Robot.claw.stopWheels();
     	
     }

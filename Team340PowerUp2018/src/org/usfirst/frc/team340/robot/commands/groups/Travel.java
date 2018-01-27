@@ -8,7 +8,7 @@ import org.usfirst.frc.team340.robot.commands.*;
 public class Travel extends CommandGroup {
 
     public Travel() {
-    	addSequential(new CloseClaw());
-    	addSequential(new ClawGoAbovePosition());
+    	addSequential(new ClawStopWheels());
+    	addSequential(new ElevatorGoAbovePosition());
     }
 }

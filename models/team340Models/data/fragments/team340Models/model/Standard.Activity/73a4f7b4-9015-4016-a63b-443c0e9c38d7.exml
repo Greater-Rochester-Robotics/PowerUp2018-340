@@ -116,7 +116,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Go Up" mc="Standard.CallBehaviorAction" uid="4219a90b-1564-4665-8bdb-fdb88ef8e218"/>
+                      <ID name="Elevator Go Up" mc="Standard.CallBehaviorAction" uid="4219a90b-1564-4665-8bdb-fdb88ef8e218"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -132,7 +132,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Go Down" mc="Standard.CallBehaviorAction" uid="24f355a5-12b7-46c6-9c78-946b5d611a33"/>
+                      <ID name="Elevator Go Down" mc="Standard.CallBehaviorAction" uid="24f355a5-12b7-46c6-9c78-946b5d611a33"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -221,17 +221,17 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="Go Up" mc="Standard.CallBehaviorAction" uid="4219a90b-1564-4665-8bdb-fdb88ef8e218"/>
+          <ID name="Elevator Go Up" mc="Standard.CallBehaviorAction" uid="4219a90b-1564-4665-8bdb-fdb88ef8e218"/>
           <ATTRIBUTES>
             <ATT name="IsSynchronous">true</ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[Go Up]]></ATT>
+            <ATT name="Name"><![CDATA[Elevator Go Up]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Called">
-              <ID name="Go Up" mc="Standard.Activity" uid="f19cb383-3e15-4f0b-ba09-9ff43854a0bb"/>
+              <ID name="Elevator Go Up" mc="Standard.Activity" uid="f19cb383-3e15-4f0b-ba09-9ff43854a0bb"/>
             </LINK>
             <COMP relation="Outgoing">
               <OBJECT>
@@ -287,17 +287,17 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="Go Down" mc="Standard.CallBehaviorAction" uid="24f355a5-12b7-46c6-9c78-946b5d611a33"/>
+          <ID name="Elevator Go Down" mc="Standard.CallBehaviorAction" uid="24f355a5-12b7-46c6-9c78-946b5d611a33"/>
           <ATTRIBUTES>
             <ATT name="IsSynchronous">true</ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[Go Down]]></ATT>
+            <ATT name="Name"><![CDATA[Elevator Go Down]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Called">
-              <ID name="Go Down" mc="Standard.Activity" uid="18c7db2c-b881-4871-9eee-65aabf0f0a6a"/>
+              <ID name="Elevator Go Down" mc="Standard.Activity" uid="18c7db2c-b881-4871-9eee-65aabf0f0a6a"/>
             </LINK>
             <COMP relation="Outgoing">
               <OBJECT>
