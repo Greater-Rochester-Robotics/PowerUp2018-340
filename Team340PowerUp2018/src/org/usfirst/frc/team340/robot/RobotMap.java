@@ -17,4 +17,8 @@ public class RobotMap {
 	public static final int RIGHT_DRIVE_ENCODER_A = 3;
 	public static final int RIGHT_DRIVE_ENCODER_B = 2;
 	public static final int ELEVATOR_BUMP = 4;
+	
+	//Claw wheel speeds
+	public static final double CLAW_WHEEL_FULLSPEED_VBUS = 1.0;
+	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
 }

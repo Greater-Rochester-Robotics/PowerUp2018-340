@@ -7,16 +7,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClawPrepareToAcquire extends Command {
+public class ClawDrop extends Command {
 
-    public ClawPrepareToAcquire() {
+    public ClawDrop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.spinWheelsIn(1);
+    	Robot.claw.open();
+    	Robot.claw.stopWheels();
+    	Robot.elevator.setTiltForward();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run

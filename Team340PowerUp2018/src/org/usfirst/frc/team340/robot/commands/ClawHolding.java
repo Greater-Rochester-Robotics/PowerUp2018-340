@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClawCheckCube extends Command {
+public class ClawHolding extends Command {
 
-    public ClawCheckCube() {
+    public ClawHolding() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -17,6 +17,9 @@ public class ClawCheckCube extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.close();
+    	Robot.claw.spinWheelsIn(-.5);
+    	Robot.elevator.setTiltForward();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +28,7 @@ public class ClawCheckCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

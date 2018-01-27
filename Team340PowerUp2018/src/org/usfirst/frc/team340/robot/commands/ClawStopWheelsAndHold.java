@@ -7,18 +7,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClawShoot extends Command {
+public class ClawStopWheelsAndHold extends Command {
 
-    public ClawShoot() {
+    public ClawStopWheelsAndHold() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.claw.stopWheels();
     	Robot.claw.close();
-    	Robot.claw.spinWheelsOut(1);
-    	Robot.elevator.setTiltForward();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +27,7 @@ public class ClawShoot extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

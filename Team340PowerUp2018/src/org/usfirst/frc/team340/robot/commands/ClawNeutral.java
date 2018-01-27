@@ -12,12 +12,16 @@ public class ClawNeutral extends Command {
     public ClawNeutral() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.claw);
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.neutral();
     	Robot.claw.stopWheels();
+    	Robot.elevator.setTiltForward();
+    	Robot.elevator.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run

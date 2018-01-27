@@ -9,8 +9,8 @@ public class AcquireCube extends CommandGroup {
 
     public AcquireCube() {
     	addSequential(new ClawNeutral());
-    	addSequential(new ClawPrepareToAcquire());
-    	addSequential(new ClawCheckCube());
+    	addSequential(new ClawAcquireCube());
+    	addSequential(new ClawAlignCube());
     	addSequential(new ClawAcquireCube());
     	addSequential(new ClawElevatorRaiseCube());
     }
