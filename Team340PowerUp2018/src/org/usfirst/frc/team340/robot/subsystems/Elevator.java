@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-	private static CANTalon talonA;
+	private static TalonSRX talonA;
 	private static CANTalon talonB;
 	private static DigitalInput bottomSwitch;
 	private static Encoder encoder;
