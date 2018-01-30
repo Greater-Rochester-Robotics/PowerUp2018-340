@@ -42,11 +42,9 @@
         <OBJECT>
           <ID name="Stop Elevator" mc="Standard.OpaqueAction" uid="3ad05b6e-33fe-47e5-8769-1678d3ec83dd"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setClawSolenoids=close
-setWheels=0
-elevatorPos=unknown
+            <ATT name="Body"><![CDATA[elevatorPos=unknown
 bottomSwitch=unknown
-elevatorTilt=up
+elevatorTilt=forward
 elevator=stationary
 Tell Driver Position]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>

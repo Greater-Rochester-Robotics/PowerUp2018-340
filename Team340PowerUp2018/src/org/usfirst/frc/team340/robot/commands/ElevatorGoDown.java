@@ -12,7 +12,6 @@ public class ElevatorGoDown extends Command {
     public ElevatorGoDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.claw);
     	requires(Robot.elevator);
     }
 
@@ -20,7 +19,6 @@ public class ElevatorGoDown extends Command {
     protected void initialize() {
     	Robot.elevator.goDown(1);
     	Robot.elevator.setTiltForward();
-    	Robot.claw.stopWheels();
     	Robot.elevator.getPosition();
     }
 

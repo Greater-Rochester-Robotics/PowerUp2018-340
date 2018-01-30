@@ -9,7 +9,6 @@ package org.usfirst.frc.team340.robot;
 
 import org.usfirst.frc.team340.robot.commands.ClawReSecureCube;
 import org.usfirst.frc.team340.robot.commands.groups.AcquireCube;
-import org.usfirst.frc.team340.robot.commands.groups.Travel;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -85,8 +84,6 @@ public OI () {
 		
 		//Buttons
 		driverA.whenPressed(new AcquireCube());
-		driverA.whenReleased(new Travel());
 		driverB.whenPressed(new ClawReSecureCube());
-		driverB.whenReleased(new Travel());
 	}
 }

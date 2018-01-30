@@ -44,11 +44,7 @@
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setClawSolenoids=close
 setWheels=-50%
-elevatorPos=unknown
-bottomSwitch=unknown
-elevatorTilt=up
-elevator=unknown
-The Elevator Should Be Stationary, But Not Required]]></ATT>
+]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[ReSecure Cube]]></ATT>

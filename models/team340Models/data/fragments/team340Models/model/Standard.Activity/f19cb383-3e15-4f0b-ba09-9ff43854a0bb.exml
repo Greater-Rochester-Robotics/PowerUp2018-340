@@ -42,11 +42,9 @@
         <OBJECT>
           <ID name="Elevator Go Up" mc="Standard.OpaqueAction" uid="9d73e0cb-d91c-4024-8567-ee1abd787c73"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setClawSolenoids=unknown
-setWheels=0
-elevatorPos=unknown
+            <ATT name="Body"><![CDATA[elevatorPos=unknown
 bottomSwitch=unknown
-elevatorTilt=up
+elevatorTilt=forward
 elevator=raise
 Tell Driver Position
 Only if not at top]]></ATT>

@@ -43,11 +43,7 @@
           <ID name="Open Claw" mc="Standard.OpaqueAction" uid="db529831-1e33-4f47-a826-d4b34d03c617"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setClawSolenoids=open
-setWheels=0
-elevatorPos=unknown
-bottomSwitch=unknown
-elevatorTilt=up
-elevator=stationary]]></ATT>
+setWheels=0]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Open Claw]]></ATT>
@@ -99,7 +95,7 @@ elevator=stationary]]></ATT>
         </OBJECT>
       </COMP>
       <COMP relation="Product">
-        <COMPID name="Score (Drop)" mc="Standard.ActivityDiagram" uid="97af6131-b7bc-4ba0-bd7e-3d2f9421175c"/>
+        <COMPID name="Drop Score" mc="Standard.ActivityDiagram" uid="97af6131-b7bc-4ba0-bd7e-3d2f9421175c"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

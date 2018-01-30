@@ -13,14 +13,12 @@ public class ClawShootScore extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
-    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.close();
     	Robot.claw.spinWheelsOut(1);
-    	Robot.elevator.setTiltForward();
     }
 
     // Called repeatedly when this Command is scheduled to run

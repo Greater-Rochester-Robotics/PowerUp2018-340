@@ -7,21 +7,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClawDrop extends Command {
+public class ClawDropScore extends Command {
 
-    public ClawDrop() {
+    public ClawDropScore() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
-    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.open();
-    	Robot.claw.stopWheels();
-    	Robot.elevator.setTiltForward();
-    	
+    	Robot.claw.stopWheels();    	
     }
 
     // Called repeatedly when this Command is scheduled to run

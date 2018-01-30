@@ -42,12 +42,9 @@
         <OBJECT>
           <ID name="Neutral Position" mc="Standard.OpaqueAction" uid="fcff961d-911a-4971-8908-9f605983c54e"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoid=neutral
+            <ATT name="Body"><![CDATA[setClawSolenoid=neutral
 setWheels=0
-elevatorPos=unknown
-bottomSwitch=unknown
-elevatorTilt=up
-elevator=stationary]]></ATT>
+]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Neutral Position]]></ATT>
@@ -77,12 +74,9 @@ elevator=stationary]]></ATT>
         <OBJECT>
           <ID name="Acquire Cube" mc="Standard.OpaqueAction" uid="ccdde075-777f-4e71-91eb-ee076faf353b"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoid=neutral
+            <ATT name="Body"><![CDATA[setClawSolenoid=neutral
 setWheels=-100%
-elevatorPos=unknown
-bottomSwitch=unknown
-elevatorTilt=up
-elevator=stationary]]></ATT>
+]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Acquire Cube]]></ATT>
@@ -112,13 +106,9 @@ elevator=stationary]]></ATT>
         <OBJECT>
           <ID name="Secure Cube" mc="Standard.OpaqueAction" uid="72f46771-92ff-4cfe-9210-b07b42bc85a7"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoid=close
+            <ATT name="Body"><![CDATA[setClawSolenoid=close
 setWheels=-50%
-elevatorPos=unknown
-bottomSwitch=unknown
-elevatorTilt=up
-elevator=stationary
-It Is Necessary For The Elevator To Be Stationary]]></ATT>
+]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Secure Cube]]></ATT>
@@ -148,12 +138,9 @@ It Is Necessary For The Elevator To Be Stationary]]></ATT>
         <OBJECT>
           <ID name="Align Cube" mc="Standard.OpaqueAction" uid="3ed6c148-5512-4ad5-b675-79551752bda5"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[setSolenoid=close
+            <ATT name="Body"><![CDATA[setClawSolenoid=close
 setWheels=-100%
-elevatorPos=unknown
-bottomSwitch=unknown
-elevatorTilt=up
-elevator=stationary]]></ATT>
+]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Align Cube]]></ATT>

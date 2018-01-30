@@ -43,11 +43,7 @@
           <ID name="Neutral" mc="Standard.OpaqueAction" uid="85c6001f-5e70-4806-b50e-ecd63987ec3a"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setClawSolenoids=neutral
-setWheels=0
-elevatorPos=unknown
-bottomSwitch=unknown
-elevatorTilt=up
-elevator=stationary]]></ATT>
+setWheels=0]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Neutral]]></ATT>

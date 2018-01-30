@@ -43,11 +43,7 @@
           <ID name="Shoot Cube" mc="Standard.OpaqueAction" uid="a6b531e2-b876-4edb-bf75-46e707fc9ffe"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[setClawSolenoids=close
-setWheels=+100%
-elevatorPos=unknown
-bottomSwitch=unknown
-elevatorTilt=up
-elevator=stationary]]></ATT>
+setWheels=+100%]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[Shoot Cube]]></ATT>

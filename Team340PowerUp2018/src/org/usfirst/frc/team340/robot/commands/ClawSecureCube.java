@@ -15,15 +15,12 @@ public class ClawSecureCube extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
-    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_HOLDSPEED_VBUS);
     	Robot.claw.close();
-    	Robot.elevator.setTiltForward();
-    	Robot.elevator.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
