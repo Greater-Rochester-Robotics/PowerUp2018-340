@@ -1,4 +1,4 @@
-package org.usfirst.frc.team340.robot.commands;
+package org.usfirst.frc.team340.robot.commands.manual;
 
 import org.usfirst.frc.team340.robot.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorRaiseCube extends Command {
+public class ManualElevatorStop extends Command {
 
-    public ElevatorRaiseCube() {
+    public ManualElevatorStop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
@@ -17,8 +17,7 @@ public class ElevatorRaiseCube extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.goUp(1);
-    	Robot.elevator.isAtBottom();
+    	Robot.elevator.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run

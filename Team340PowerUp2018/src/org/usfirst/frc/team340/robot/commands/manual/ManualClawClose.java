@@ -1,4 +1,4 @@
-package org.usfirst.frc.team340.robot.commands;
+package org.usfirst.frc.team340.robot.commands.manual;
 
 import org.usfirst.frc.team340.robot.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClawNeutral extends Command {
+public class ManualClawClose extends Command {
 
-    public ClawNeutral() {
+    public ManualClawClose() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
@@ -17,8 +17,7 @@ public class ClawNeutral extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.neutral();
-    	Robot.claw.stopWheels();
+    	Robot.claw.close();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -32,12 +31,10 @@ public class ClawNeutral extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	//what you need to return to a safe state
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

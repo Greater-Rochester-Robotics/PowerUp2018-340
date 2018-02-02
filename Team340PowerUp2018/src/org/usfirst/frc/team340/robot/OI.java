@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team340.robot;
 
-import org.usfirst.frc.team340.robot.commands.ClawReSecureCube;
+import org.usfirst.frc.team340.robot.commands.claw.ClawReSecureCube;
 import org.usfirst.frc.team340.robot.commands.groups.AcquireCube;
 
 import edu.wpi.first.wpilibj.Joystick;

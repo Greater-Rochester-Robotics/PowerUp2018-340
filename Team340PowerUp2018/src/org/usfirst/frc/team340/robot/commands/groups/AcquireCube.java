@@ -4,6 +4,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc.team340.robot.RobotMap;
 import org.usfirst.frc.team340.robot.commands.*;
+import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
+import org.usfirst.frc.team340.robot.commands.claw.ClawAlignCube;
+import org.usfirst.frc.team340.robot.commands.claw.ClawNeutral;
+import org.usfirst.frc.team340.robot.commands.claw.ClawSecureCube;
 /**
  *
  */

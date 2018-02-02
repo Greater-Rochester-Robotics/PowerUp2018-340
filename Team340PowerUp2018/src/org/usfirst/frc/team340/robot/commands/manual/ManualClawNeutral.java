@@ -1,4 +1,4 @@
-package org.usfirst.frc.team340.robot.commands;
+package org.usfirst.frc.team340.robot.commands.manual;
 
 import org.usfirst.frc.team340.robot.Robot;
 
@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorStartPosition extends Command {
+public class ManualClawNeutral extends Command {
 
-    public ElevatorStartPosition() {
+    public ManualClawNeutral() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    	requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.setPosition(position);
+    	Robot.claw.neutral();
     }
 
     // Called repeatedly when this Command is scheduled to run

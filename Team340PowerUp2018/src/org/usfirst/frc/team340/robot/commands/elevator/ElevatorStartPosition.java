@@ -1,4 +1,4 @@
-package org.usfirst.frc.team340.robot.commands;
+package org.usfirst.frc.team340.robot.commands.elevator;
 
 import org.usfirst.frc.team340.robot.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorGoDown extends Command {
+public class ElevatorStartPosition extends Command {
 
-    public ElevatorGoDown() {
+    public ElevatorStartPosition() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
@@ -17,9 +17,7 @@ public class ElevatorGoDown extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.goDown(1);
-    	Robot.elevator.setTiltForward();
-    	Robot.elevator.getPosition();
+    	Robot.elevator.setPosition(0);
     }
 
     // Called repeatedly when this Command is scheduled to run

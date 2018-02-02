@@ -1,15 +1,16 @@
-package org.usfirst.frc.team340.robot.commands;
+package org.usfirst.frc.team340.robot.commands.elevator;
 
 import org.usfirst.frc.team340.robot.Robot;
+import org.usfirst.frc.team340.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ElevatorGoUp extends Command {
+public class ElevatorGoAbovePosition extends Command {
 
-    public ElevatorGoUp() {
+    public ElevatorGoAbovePosition() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
@@ -17,9 +18,9 @@ public class ElevatorGoUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.goUp(1);
-    	Robot.elevator.setTiltForward();
-    	Robot.elevator.getPosition();
+    	if (Robot.elevator.getPosition()< RobotMap.ELEVATOR_TRAVEL_POSTION_TICKS){
+    		Robot.elevator.setPosition(RobotMap.ELEVATOR_TRAVEL_POSTION_TICKS);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +29,7 @@ public class ElevatorGoUp extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return Robot.elevator.getPosition()>= RobotMap.ELEVATOR_TRAVEL_POSTION_TICKS;
     }
 
     // Called once after isFinished returns true

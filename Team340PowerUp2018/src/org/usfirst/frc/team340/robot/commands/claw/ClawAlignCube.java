@@ -1,4 +1,4 @@
-package org.usfirst.frc.team340.robot.commands;
+package org.usfirst.frc.team340.robot.commands.claw;
 
 import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.RobotMap;
@@ -8,19 +8,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorGoAbovePosition extends Command {
+public class ClawAlignCube extends Command {
 
-    public ElevatorGoAbovePosition() {
+    public ClawAlignCube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    	requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.elevator.getPosition()< RobotMap.ELEVATOR_TRAVEL_POSTION_TICKS){
-    		Robot.elevator.setPosition(RobotMap.ELEVATOR_TRAVEL_POSTION_TICKS);
-    	}
+    	Robot.claw.close();
+    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_FULLSPEED_VBUS);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,7 +28,7 @@ public class ElevatorGoAbovePosition extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.elevator.getPosition()>= RobotMap.ELEVATOR_TRAVEL_POSTION_TICKS;
+        return true;
     }
 
     // Called once after isFinished returns true
