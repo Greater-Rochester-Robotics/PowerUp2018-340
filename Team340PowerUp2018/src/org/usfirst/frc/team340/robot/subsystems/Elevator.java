@@ -19,6 +19,7 @@ public class Elevator extends Subsystem {
 	private static DigitalInput bottomSwitch;
 	private static Encoder encoder;
 	
+	
 	public Elevator() {
 		talonA = new WPI_TalonSRX(RobotMap.ELEVATOR_TALONSRX_A_ID);
 		talonB = new WPI_TalonSRX(RobotMap.ELEVATOR_TALONSRX_B_ID);
@@ -27,7 +28,7 @@ public class Elevator extends Subsystem {
 		
 		//talonB.setControlMode(TalonControlMode.Follower);
 		//talonB.set(RobotMap.ELEVATOR_TALONSRX_A_ID);
-		
+		//talonB.configForwardLimitSwitchSource(arg0, arg1, arg2, arg3)
 		talonA.set(ControlMode.PercentOutput, 0.5);
 	}
 	

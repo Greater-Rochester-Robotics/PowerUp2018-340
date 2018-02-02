@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ManualClawIntakeOut extends Command {
+public class ManualClawWheelsStop extends Command {
 
-    public ManualClawIntakeOut() {
+    public ManualClawWheelsStop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
@@ -18,7 +18,7 @@ public class ManualClawIntakeOut extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.spinWheelsOut(RobotMap.CLAW_WHEEL_FULLSPEED_VBUS);
+    	Robot.claw.stopWheels();
     }
 
     // Called repeatedly when this Command is scheduled to run

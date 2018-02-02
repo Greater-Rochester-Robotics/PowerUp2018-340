@@ -15,9 +15,22 @@ package org.usfirst.frc.team340.robot;
  */
 public class RobotMap {
 	
+	//PWM Channels
+	
+	//CAN ID's
+	
+	//Digital Channels
+	
+	//Solenoid Channels
+	
+	
+	
 	//Claw Devices
-	public static final int CLAW_SOLENOID_CHANNEL = 1;
-	public static final int CLAW_WHEEL_CHANNEL = 2;
+	public static final int CLAW_SOLENOID_OPEN_CHANNEL = 1;
+	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 2;
+	public static final int CLAW_WHEEL_LEFT_CHANNEL = 2;
+	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 3;
+	public static final int CLAW_CUBE_SENSOR_CHANNEL = 1;
 	
 	//Claw Wheel Speeds
 	public static final double CLAW_WHEEL_FULLSPEED_VBUS = 1.0;
@@ -37,4 +50,7 @@ public class RobotMap {
 	
 	//Elevator Positions
 	public static final int ELEVATOR_TRAVEL_POSTION_TICKS = 10;
+	
+	//Elevator Speeds
+	public static final double ELEVATOR_FULLSPEED_VBUS = 1.0;
 }

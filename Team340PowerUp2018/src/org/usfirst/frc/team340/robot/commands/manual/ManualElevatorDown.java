@@ -18,7 +18,7 @@ public class ManualElevatorDown extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.goDown(1);
+    	Robot.elevator.goDown(RobotMap.ELEVATOR_FULLSPEED_VBUS);
     	
     }
 
