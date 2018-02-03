@@ -5,7 +5,8 @@ import org.usfirst.frc.team340.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Not sure we're using this. {@link ElevatorGoToBottom} seems more useful. So....
+ * @deprecated
  */
 public class ElevatorStartPosition extends Command {
 
