@@ -33,8 +33,8 @@ public class Drive extends Subsystem {
     	driveRight = new Talon(RobotMap.DRIVE_TALONSR_RIGHT_CHANNEL);
     	driveLeft = new Talon(RobotMap.DRIVE_TALONSR_LEFT_CHANNEL);
     	
-    	encoderRight = new Encoder(RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_A, RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_B);
-    	encoderLeft = new Encoder(RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_A, RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_B);
+    	encoderRight = new Encoder(RobotMap.DRIVE_ENCODERA_CHANNEL_A, RobotMap.DRIVE_ENCODERA_CHANNEL_B);
+    	encoderLeft = new Encoder(RobotMap.DRIVE_ENCODERB_CHANNEL_B, RobotMap.DRIVE_ENCODERB_CHANNEL_B);
 	}
 	
 	/**
