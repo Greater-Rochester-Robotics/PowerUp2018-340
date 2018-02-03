@@ -3,7 +3,6 @@ package org.usfirst.frc.team340.robot.subsystems;
 import org.usfirst.frc.team340.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -15,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 	private static WPI_TalonSRX talonA;
+	@SuppressWarnings("unused")
 	private static WPI_TalonSRX talonB;
 	private static DigitalInput bottomSwitch;
 	private static Encoder encoder;
