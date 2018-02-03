@@ -8,6 +8,7 @@
 package org.usfirst.frc.team340.robot;
 
 import org.usfirst.frc.team340.robot.subsystems.Claw;
+import org.usfirst.frc.team340.robot.subsystems.Drive;
 import org.usfirst.frc.team340.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -24,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+	public static final Drive drive = new Drive();
 	public static final Claw claw = new Claw();
 	public static final Elevator elevator = new Elevator();
 	public static OI oi;
