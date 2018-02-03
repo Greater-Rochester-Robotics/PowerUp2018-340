@@ -46,6 +46,7 @@
 bottomSwitch=unknown
 elevatorTilt=forward
 elevator=raise
+brakeSolenoid=disengaged
 Tell Driver Position
 Only if not at top]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>

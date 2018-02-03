@@ -46,6 +46,7 @@
 bottomSwitch=unknown
 elevatorTilt=forward
 elevator=stationary
+brakeSolenoid=engaged
 Tell Driver Position]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>

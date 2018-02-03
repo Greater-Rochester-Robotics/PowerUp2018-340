@@ -46,6 +46,7 @@
 bottomSwitch=unknown
 elevatorTilt=forward
 elevator=lower
+brakeSolenoid=disengaged
 Tell Driver Position
 Only when the bottomSwitch not pressed]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>

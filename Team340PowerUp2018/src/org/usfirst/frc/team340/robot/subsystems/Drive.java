@@ -25,8 +25,10 @@ public class Drive extends Subsystem {
 		leftMotorSpeed = 0;
     	rightMotorSpeed = 0;
     	
-    	driveRight = new Talon(RobotMap.DRIVE_TALONSR_RIGHT_CHANNEL);
-    	driveLeft = new Talon(RobotMap.DRIVE_TALONSR_LEFT_CHANNEL);
+    	drive1Right = new Talon(RobotMap.DRIVE_TALONSR_RIGHT_1_CHANNEL);
+    	drive1Left = new Talon(RobotMap.DRIVE_TALONSR_LEFT_1_CHANNEL);
+    	
+    	driveLeft.setInverted(true);
     	
     	encoderA = new Encoder(RobotMap.DRIVE_ENCODERA_CHANNEL_A, RobotMap.DRIVE_ENCODERA_CHANNEL_B);
     	encoderB = new Encoder(RobotMap.DRIVE_ENCODERB_CHANNEL_A, RobotMap.DRIVE_ENCODERB_CHANNEL_B);
@@ -54,7 +56,7 @@ public class Drive extends Subsystem {
     	} else if(speed > 1) {
     		speed = 1;
     	}
-    	driveLeft.set(-speed);
+    	driveLeft.set(speed);
     }
     
     /**
