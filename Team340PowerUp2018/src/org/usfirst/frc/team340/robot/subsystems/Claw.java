@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * <h1><i>Claw</i></h1>
- * It's a claw. It picks up cubes. Power Cubes. They're secretly milk cartons, but they're cubes
+ * It's a claw. It picks up cubes. Power Cubes. They're secretly milk cartons, but they're cubes<br>
+ * <br>
+ * <i>Do not use {@link #getRightSRX()}, {@link #getLeftSRX()}, or {@link #getClawStatus()}. Please.</i>
  */
 public class Claw extends Subsystem {
 	private static DigitalInput cubeSensor;
@@ -37,6 +39,35 @@ public class Claw extends Subsystem {
 	 * We don't use this because we don't need the claw doing anything by default
 	 */
     public void initDefaultCommand() {}
+    
+    /**
+     * TEMPORARY SOLUTION! WILL CHANGE!
+     * @return
+     */
+    public WPI_TalonSRX getRightSRX() {
+    	return rightWheels;
+    }
+    
+    /**
+     * TEMPORARY SOLUTION! WILL CHANGE!
+     * @return
+     */
+    public WPI_TalonSRX getLeftSRX() {
+    	return leftWheels;
+    }
+    
+    /**
+     * JANKY TEMPORARY SOLUTION! WILL DEFINITELY CHANGE!!
+     */
+    public String getClawStatus() {
+    	if(closeSolenoid.get() && !openSolenoid.get()) {
+    		return "Closed";
+    	} else if(!closeSolenoid.get() && openSolenoid.get()) {
+    		return "Opened";
+    	} else {
+    		return "Neutralized";
+    	}
+    }
     
     /**
      * Open the claw
