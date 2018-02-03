@@ -57,4 +57,10 @@ public class RobotMap {
 	
 	//Elevator Speeds
 	public static final double ELEVATOR_FULLSPEED_VBUS = 1.0;
+	public static final int ELEVATOR_TALONSRX_C_ID = 5;
+	
+	public static final double ELEVATOR_DELTA_TICS_TO_SLOW_DOWN = 150;
+	public static final double ELEVATOR_KP = (1023)/ELEVATOR_DELTA_TICS_TO_SLOW_DOWN;
+	public static final int ELEVATOR_MAX_TICS = 800;
+	public static final double ELEVATOR_RAMP_TIME_S = 0.5;
 }
