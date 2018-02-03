@@ -14,18 +14,23 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * <h1><i>Elevator</i></h1>
+ * Raises and lowers - or elevates - the cube acquisition device (commonly referred to as the {@link Claw})
  */
 public class Elevator extends Subsystem {
+	private static DoubleSolenoid brake;
+	private static DoubleSolenoid tilt;
 	private static WPI_TalonSRX talonA;
 	private static WPI_TalonSRX talonB;
 	private static WPI_TalonSRX talonC;
-	private static DoubleSolenoid tilt;
-	private static DoubleSolenoid brake;
 	
+	/**
+	 * Raises and lowers the claw to get the cube into the switch and scale
+	 */
 	public Elevator() {
-		tilt = new DoubleSolenoid(RobotMap.ELEVATOR_TILT_CHANNEL_A, RobotMap.ELEVATOR_TILT_CHANNEL_B);
 		brake = new DoubleSolenoid(RobotMap.ELEVATOR_BRAKE_CHANNEL_A, RobotMap.ELEVATOR_BRAKE_CHANNEL_B);
+		tilt = new DoubleSolenoid(RobotMap.ELEVATOR_TILT_CHANNEL_A, RobotMap.ELEVATOR_TILT_CHANNEL_B);
+		
 		talonA = new WPI_TalonSRX(RobotMap.ELEVATOR_TALONSRX_A_ID);
 		talonB = new WPI_TalonSRX(RobotMap.ELEVATOR_TALONSRX_B_ID);
 		talonC = new WPI_TalonSRX(RobotMap.ELEVATOR_TALONSRX_C_ID);
@@ -43,7 +48,7 @@ public class Elevator extends Subsystem {
 		talonA.configNominalOutputReverse(RobotMap.ELEVATOR_MIN_SPEED_DOWN_VBUS, 0);
 		talonA.configPeakOutputReverse(RobotMap.ELEVATOR_MAX_SPEED_DOWN_VBUS, 0);
 		
-		//Tune here
+		//TODO: tune here
 		talonA.setSensorPhase(true);
 		talonA.setInverted(false);
 		
@@ -55,58 +60,101 @@ public class Elevator extends Subsystem {
 		
 	}
 	
+	/**
+	 * No, because we don't want any elevator commands going at the moment we start
+	 */
 	public void initDefaultCommand() {}
     
+	/**
+	 * Set the elevator to some unit-counted position
+	 * @param position the unit count to position the elevator
+	 */
     public void setPosition(int position) {
     	talonA.set(ControlMode.Position,position);
     	setBrakeDisengaged();
     }
     
+    /**
+     * @return the encoder position
+     */
     public int getPosition() {
     	return talonA.getSelectedSensorPosition(0);
     }
     
+    /**
+     * @param position unit position to check
+     * @return <code>true</code> if the intended position is exactly equal to the encoder reading
+     */
     public boolean isAtPosition(int position) {
     	return getPosition() == position;
     }
     
+    /**
+     * @param position unit position to check
+     * @return <code>true</code> if the encoder reading is within the constant tolerance above/below the given position
+     */
     public boolean isAtToleratedPosition(int position) {
     	return getPosition() <= position + RobotMap.ELEVATOR_TOLERANCE_TICS && getPosition() >= position - RobotMap.ELEVATOR_TOLERANCE_TICS;
     }
     
+    /**
+     * @return <code>true</code> if the bottom DIO is pressed
+     */
     public boolean isAtBottom() {
     	return talonA.getSensorCollection().isRevLimitSwitchClosed();
     }
     
+    /**
+     * Tilt the elevator into the vertical/forward position
+     */
     public void setTiltForward() {
-    	tilt.set(Value.kForward);    	
+    	tilt.set(Value.kForward);
     }
     
+    /**
+     * Tilt the elevator into the angled/backward position
+     */
     public void setTiltBackward() {
     	tilt.set(Value.kReverse);
     }
     
+    /**
+     * Engage the elevator brake
+     */
     public void setBrakeEngaged() {
     	brake.set(Value.kForward);
     }
     
+    /**
+     * Disengage the elevator brake
+     */
     public void setBrakeDisengaged() {
     	brake.set(Value.kReverse);
     }
     
+    /**
+     * Raise the elevator at a constant speed
+     * @param speed the speed to raise at as [0 ~ 1]
+     */
     public void goUp(double speed) {
     	talonA.set(ControlMode.PercentOutput, Math.abs(speed));
     	setBrakeDisengaged();
     }
     
+    /**
+     * Lower the elevator at a constant speed
+     * @param speed the speed to drop at as [0 ~ 1]
+     */
     public void goDown(double speed) {
     	talonA.set(ControlMode.PercentOutput, -Math.abs(speed));
     	setBrakeDisengaged();
     }
     
+    /**
+     * Stop the elevator's movement and engage the brake
+     */
     public void stop() {
     	talonA.stopMotor();
     	setBrakeEngaged();
     }
 }
-
