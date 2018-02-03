@@ -55,7 +55,6 @@ public class RobotMap {
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
 	
 	//Drive Devices
-	
 	//Elevator Devices
 	
 	//Elevator Positions

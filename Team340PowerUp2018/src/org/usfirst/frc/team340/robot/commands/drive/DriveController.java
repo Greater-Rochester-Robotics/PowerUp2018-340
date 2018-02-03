@@ -1,24 +1,26 @@
-package org.usfirst.frc.team340.robot.commands.manual;
+package org.usfirst.frc.team340.robot.commands.drive;
 
 import org.usfirst.frc.team340.robot.Robot;
-import org.usfirst.frc.team340.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * <h1><i>Drive</h1> (Limited Time Command Edition)</i><br>
+ * <br>
+ * Allows the robo-guy to go <b>nyoom</b> around the not-called-a-field-this-year.<br>
+ * <i>This command will be implemented at a later time<i>
  */
-public class ManualClawWheelsIn extends Command {
+public class DriveController extends Command {
 
-    public ManualClawWheelsIn() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.claw);
+	/**
+	 * Takes the drivebase and uses it to drive. Pretty self-explanatory, I suppose
+	 */
+    public DriveController() {
+        requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_FULLSPEED_VBUS);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +29,7 @@ public class ManualClawWheelsIn extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -37,6 +39,5 @@ public class ManualClawWheelsIn extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }
