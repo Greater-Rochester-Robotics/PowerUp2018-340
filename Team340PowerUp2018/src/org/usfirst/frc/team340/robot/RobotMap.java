@@ -40,6 +40,10 @@ public class RobotMap {
 	//Drive Devices
 	public static final int DRIVE_TALONSR_RIGHT_CHANNEL = 4;
 	public static final int DRIVE_TALONSR_LEFT_CHANNEL = 8;
+	public static final int DRIVE_ENCODERA_CHANNEL_A = 420; //TODO: get this
+	public static final int DRIVE_ENCODERA_CHANNEL_B = 421; //TODO: get this
+	public static final int DRIVE_ENCODERB_CHANNEL_A = 68; //TODO: get this
+	public static final int DRIVE_ENCODERB_CHANNEL_B = 69; //TODO: get this
 	
 	//Elevator Devices
 	public static final int ELEVATOR_BUMP_SWITCH_PORT = 7;

@@ -2,6 +2,7 @@ package org.usfirst.frc.team340.robot.subsystems;
 
 import org.usfirst.frc.team340.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,14 +18,26 @@ public class Drive extends Subsystem {
 	private static Talon driveRight;
 	private static Talon driveLeft;
 	
+	private static Encoder encoderA;
+	private static Encoder encoderB;
+	
 	public Drive () {
 		leftMotorSpeed = 0;
     	rightMotorSpeed = 0;
     	
     	driveRight = new Talon(RobotMap.DRIVE_TALONSR_RIGHT_CHANNEL);
     	driveLeft = new Talon(RobotMap.DRIVE_TALONSR_LEFT_CHANNEL);
+    	
+    	encoderA = new Encoder(RobotMap.DRIVE_ENCODERA_CHANNEL_A, RobotMap.DRIVE_ENCODERA_CHANNEL_B);
+    	encoderB = new Encoder(RobotMap.DRIVE_ENCODERB_CHANNEL_A, RobotMap.DRIVE_ENCODERB_CHANNEL_B);
 	}
 	
+	public int driveRightEncoder() {
+    	return encoderA.get();
+	}
+	public int driveLeftEncoder() {
+		return encoderB.get();
+	}
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
