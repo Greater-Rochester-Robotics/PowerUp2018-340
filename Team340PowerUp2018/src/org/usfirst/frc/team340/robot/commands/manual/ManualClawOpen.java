@@ -45,5 +45,6 @@ public class ManualClawOpen extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	System.out.println("[" + getClass().getName() + "] -Interrupting-");
+    	end();
     }
 }

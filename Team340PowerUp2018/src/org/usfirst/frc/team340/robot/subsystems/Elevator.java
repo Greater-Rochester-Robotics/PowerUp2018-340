@@ -105,6 +105,13 @@ public class Elevator extends Subsystem {
     }
     
     /**
+     * @return the brake value
+     */
+    public boolean getBrake() {
+    	return brake.get() == Value.kForward;
+    }
+    
+    /**
      * Tilt the elevator into the vertical/forward position
      */
     public void setTiltForward() {
