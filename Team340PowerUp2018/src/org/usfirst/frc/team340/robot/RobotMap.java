@@ -31,10 +31,10 @@ public class RobotMap {
 	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 5;
 	
 	//Digital Channels
-	public static final int DRIVE_ENCODERA_CHANNEL_A = 0; //TODO: assume left, but find if left or right
-	public static final int DRIVE_ENCODERA_CHANNEL_B = 1; //TODO: assume left, but find if left or right
-	public static final int DRIVE_ENCODERB_CHANNEL_A = 2; //TODO: assume right, but find if left or right
-	public static final int DRIVE_ENCODERB_CHANNEL_B = 3; //TODO: assume right, but find if left or right
+	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 0; //TODO: assume left, but find if left or right
+	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_B = 1; //TODO: assume left, but find if left or right
+	public static final int DRIVE_LEFT_ENCODER_CHANNEL_A = 2; //TODO: assume right, but find if left or right
+	public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 3; //TODO: assume right, but find if left or right
 	public static final int CLAW_CUBE_SENSOR_CHANNEL = 4;
 	
 	//Solenoid Channels
