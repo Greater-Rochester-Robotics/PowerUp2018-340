@@ -1,6 +1,7 @@
 package org.usfirst.frc.team340.robot.commands.elevator;
 
 import org.usfirst.frc.team340.robot.Robot;
+import org.usfirst.frc.team340.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,7 +18,7 @@ public class ElevatorGoToBottom extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.goDown(0.75);
+    	Robot.elevator.goDown(.75);
     	Robot.elevator.setTiltForward();
     }
 

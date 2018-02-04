@@ -1,6 +1,7 @@
 package org.usfirst.frc.team340.robot.commands.elevator;
 
 import org.usfirst.frc.team340.robot.Robot;
+import org.usfirst.frc.team340.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,7 +18,7 @@ public class ElevatorRaiseCube extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.goUp(1);
+    	Robot.elevator.goUp(RobotMap.ELEVATOR_FULLSPEED_VBUS);
     	Robot.elevator.isAtBottom();
     }
 
