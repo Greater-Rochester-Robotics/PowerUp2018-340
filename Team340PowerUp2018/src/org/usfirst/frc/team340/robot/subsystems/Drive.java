@@ -17,12 +17,8 @@ public class Drive extends Subsystem {
 	private double leftMotorSpeed;
 	private double rightMotorSpeed;
 	    
-	private static Talon drive1Right;
-	private static Talon drive2Right;
-	private static Talon drive3Right;
-	private static Talon drive1Left;
-	private static Talon drive2Left;
-	private static Talon drive3Left;
+	private static Talon driveRight;
+	private static Talon driveLeft;
 	
 	private static Encoder encoderRight; //FIXME: set the distance/pulse ratio
 	private static Encoder encoderLeft; //FIXME: set the distance/pulse ratio
@@ -34,16 +30,10 @@ public class Drive extends Subsystem {
 		leftMotorSpeed = 0;
     	rightMotorSpeed = 0;
     	
-    	drive1Right = new Talon(RobotMap.DRIVE_TALONSR_RIGHT_1_CHANNEL);
-    	drive2Right = new Talon(RobotMap.DRIVE_TALONSR_LEFT_2_CHANNEL);
-    	drive3Right = new Talon(RobotMap.DRIVE_TALONSR_LEFT_3_CHANNEL);
-    	drive1Left = new Talon(RobotMap.DRIVE_TALONSR_LEFT_1_CHANNEL);
-     	drive2Left = new Talon(RobotMap.DRIVE_TALONSR_LEFT_2_CHANNEL);
-     	drive3Left = new Talon(RobotMap.DRIVE_TALONSR_LEFT_3_CHANNEL);
+    	driveRight = new Talon(RobotMap.DRIVE_TALONSR_RIGHT_CHANNEL);
+    	driveLeft = new Talon(RobotMap.DRIVE_TALONSR_LEFT_CHANNEL);
     	
-    	drive1Left.setInverted(true);
-    	drive2Left.setInverted(true);
-    	drive3Left.setInverted(true);
+    	driveLeft.setInverted(true);
     	
     	encoderRight = new Encoder(RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_A, RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_B);
     	encoderLeft = new Encoder(RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_A, RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_B);
@@ -96,9 +86,7 @@ public class Drive extends Subsystem {
     	} else if(speed > 1) {
     		speed = 1;
     	}
-    	drive1Left.set(speed);
-    	drive2Left.set(speed);
-    	drive3Left.set(speed);
+    	driveLeft.set(speed);
     }
     
     /**
@@ -114,9 +102,7 @@ public class Drive extends Subsystem {
     		speed = 1;
     	}
     	
-    	drive1Right.set(speed);
-    	drive2Right.set(speed);
-    	drive3Right.set(speed);
+    	driveRight.set(speed);
     }
     
     /**

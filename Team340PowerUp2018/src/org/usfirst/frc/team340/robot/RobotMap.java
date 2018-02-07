@@ -16,12 +16,8 @@ package org.usfirst.frc.team340.robot;
 public class RobotMap {
 	
 	//PWM Channels
-	public static final int DRIVE_TALONSR_LEFT_1_CHANNEL = 0;
-	public static final int DRIVE_TALONSR_LEFT_2_CHANNEL = 1;
-	public static final int DRIVE_TALONSR_LEFT_3_CHANNEL = 2;
-	public static final int DRIVE_TALONSR_RIGHT_1_CHANNEL = 3;
-	public static final int DRIVE_TALONSR_RIGHT_2_CHANNEL = 4;
-	public static final int DRIVE_TALONSR_RIGHT_3_CHANNEL = 5;
+	public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
+	public static final int DRIVE_TALONSR_RIGHT_CHANNEL = 1;
 	
 	//CAN ID's
 	public static final int ELEVATOR_TALONSRX_A_ID = 1;
@@ -35,15 +31,16 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_B = 1; //TODO: assume left, but find if left or right
 	public static final int DRIVE_LEFT_ENCODER_CHANNEL_A = 2; //TODO: assume right, but find if left or right
 	public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 3; //TODO: assume right, but find if left or right
-	public static final int CLAW_CUBE_SENSOR_CHANNEL = 4;
+	public static final int CLAW_CUBE_SENSOR_CHANNEL_A = 4;
+	public static final int CLAW_CUBE_SENSOR_CHANNEL_B = 5;
 	
 	//Solenoid Channels
 	public static final int ELEVATOR_BRAKE_CHANNEL_A = 0;
 	public static final int ELEVATOR_BRAKE_CHANNEL_B = 1;
-	public static final int ELEVATOR_TILT_CHANNEL_A = 2;
-	public static final int ELEVATOR_TILT_CHANNEL_B = 3;
-	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 4;
-	public static final int CLAW_SOLENOID_OPEN_CHANNEL = 5;
+	public static final int ELEVATOR_TILT_CHANNEL_A = 3;
+	public static final int ELEVATOR_TILT_CHANNEL_B = 2;
+	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 5;
+	public static final int CLAW_SOLENOID_OPEN_CHANNEL = 6;
 	
 	
 	
@@ -72,4 +69,5 @@ public class RobotMap {
 	public static final double ELEVATOR_MAX_SPEED_UP_VBUS = 1;
 	public static final double ELEVATOR_MIN_SPEED_DOWN_VBUS = .15;
 	public static final double ELEVATOR_MAX_SPEED_DOWN_VBUS = 1;
+	public static final double ELEVATOR_GO_BOTTOM_VBUS = .75;
 }

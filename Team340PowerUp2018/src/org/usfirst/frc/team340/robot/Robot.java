@@ -25,9 +25,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final Drive drive = new Drive();
-	public static final Claw claw = new Claw();
-	public static final Elevator elevator = new Elevator();
+	public static Drive drive;
+	public static Claw claw;
+	public static Elevator elevator;
 	public static OI oi;
 
 	Command m_autonomousCommand;
@@ -39,6 +39,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		drive = new Drive();
+		claw = new Claw();
+		elevator = new Elevator();
+		//SUBSYSTEMS BEFORE THIS LINE, OI AFTER
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);

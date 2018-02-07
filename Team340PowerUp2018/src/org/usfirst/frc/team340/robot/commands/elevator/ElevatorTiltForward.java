@@ -1,16 +1,15 @@
 package org.usfirst.frc.team340.robot.commands.elevator;
 
 import org.usfirst.frc.team340.robot.Robot;
-import org.usfirst.frc.team340.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ElevatorGoToBottom extends Command {
+public class ElevatorTiltForward extends Command {
 
-    public ElevatorGoToBottom() {
+    public ElevatorTiltForward() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
@@ -18,7 +17,6 @@ public class ElevatorGoToBottom extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.goDown(RobotMap.ELEVATOR_GO_BOTTOM_VBUS);
     	Robot.elevator.setTiltForward();
     }
 
@@ -28,17 +26,15 @@ public class ElevatorGoToBottom extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.elevator.isAtBottom();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

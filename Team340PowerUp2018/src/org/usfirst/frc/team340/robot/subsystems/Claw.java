@@ -15,7 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * <i>Do not use {@link #getRightSRX()}, {@link #getLeftSRX()}, or {@link #getClawStatus()}. Please.</i>
  */
 public class Claw extends Subsystem {
-	private static DigitalInput cubeSensor;
+	private static DigitalInput cubeSensor1;
+	private static DigitalInput cubeSensor2;
 	private static Solenoid closeSolenoid;
 	private static Solenoid openSolenoid;
 	private static WPI_TalonSRX leftWheels;
@@ -25,7 +26,8 @@ public class Claw extends Subsystem {
 	 * It picks up <s>milk cartons</s> cubes
 	 */
 	public Claw() {
-		cubeSensor = new DigitalInput(RobotMap.CLAW_CUBE_SENSOR_CHANNEL);
+		cubeSensor1 = new DigitalInput(RobotMap.CLAW_CUBE_SENSOR_CHANNEL_A);
+		cubeSensor2 = new DigitalInput(RobotMap.CLAW_CUBE_SENSOR_CHANNEL_B);
 		
 		closeSolenoid = new Solenoid(RobotMap.CLAW_SOLENOID_CLOSE_CHANNEL);
 		openSolenoid = new Solenoid(RobotMap.CLAW_SOLENOID_OPEN_CHANNEL);
@@ -123,6 +125,6 @@ public class Claw extends Subsystem {
      * @return <code>true</code> if a cube is currently in the claw
      */
     public boolean isCubePresent() {
-    	return cubeSensor.get();
+    	return cubeSensor1.get() && cubeSensor2.get();
     }
 }
