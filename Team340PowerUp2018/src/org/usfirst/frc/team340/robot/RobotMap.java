@@ -19,12 +19,13 @@ public class RobotMap {
 	public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
 	public static final int DRIVE_TALONSR_RIGHT_CHANNEL = 1;
 	
-	//CAN ID's
-	public static final int ELEVATOR_TALONSRX_A_ID = 1;
-	public static final int ELEVATOR_TALONSRX_B_ID = 2;
-	public static final int ELEVATOR_TALONSRX_C_ID = 3;
-	public static final int CLAW_WHEEL_LEFT_CHANNEL = 4;
-	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 5;
+	//CAN IDs
+	public static final int CLAW_WHEEL_LEFT_CHANNEL = 1;
+	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 2;
+	//Climber IDs later
+	public static final int ELEVATOR_TALONSRX_A_ID = 8;
+	public static final int ELEVATOR_TALONSRX_B_ID = 7;
+	public static final int ELEVATOR_TALONSRX_C_ID = 6;
 	
 	//Digital Channels
 	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 0; //TODO: assume left, but find if left or right

@@ -33,8 +33,9 @@ public class Claw extends Subsystem {
 		openSolenoid = new Solenoid(RobotMap.CLAW_SOLENOID_OPEN_CHANNEL);
 		
 		leftWheels = new WPI_TalonSRX(RobotMap.CLAW_WHEEL_LEFT_CHANNEL);
-		leftWheels.setInverted(true);
+		leftWheels.setInverted(true); //This will probably not be inverted later :P
 		rightWheels = new WPI_TalonSRX(RobotMap.CLAW_WHEEL_RIGHT_CHANNEL);
+		rightWheels.setInverted(true);
 	}
 	
 	/**
@@ -125,6 +126,6 @@ public class Claw extends Subsystem {
      * @return <code>true</code> if a cube is currently in the claw
      */
     public boolean isCubePresent() {
-    	return cubeSensor1.get() && cubeSensor2.get();
+    	return !(cubeSensor1.get() && cubeSensor2.get());
     }
 }
