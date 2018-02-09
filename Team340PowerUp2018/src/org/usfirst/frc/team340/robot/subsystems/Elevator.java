@@ -40,6 +40,8 @@ public class Elevator extends Subsystem {
 		talonA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		talonA.configForwardSoftLimitThreshold(RobotMap.ELEVATOR_MAX_TICS, 0);
 		talonA.configForwardSoftLimitEnable(true, 0);
+		talonA.configReverseSoftLimitThreshold(RobotMap.ELEVATOR_MAX_TICS, 0); //Testing
+		talonA.configReverseSoftLimitEnable(true, 0); //Testing
 		talonA.configOpenloopRamp(RobotMap.ELEVATOR_RAMP_TIME_S, 0);
 		talonA.configAllowableClosedloopError(0, RobotMap.ELEVATOR_TOLERANCE_TICS, 0);
 		talonA.config_kP(0, RobotMap.ELEVATOR_KP, 10);
@@ -115,14 +117,14 @@ public class Elevator extends Subsystem {
      * Tilt the elevator into the vertical/forward position
      */
     public void setTiltForward() {
-    	tilt.set(Value.kForward);
+    	tilt.set(Value.kReverse);
     }
     
     /**
      * Tilt the elevator into the angled/backward position
      */
     public void setTiltBackward() {
-    	tilt.set(Value.kReverse);
+    	tilt.set(Value.kForward);
     }
     
     /**

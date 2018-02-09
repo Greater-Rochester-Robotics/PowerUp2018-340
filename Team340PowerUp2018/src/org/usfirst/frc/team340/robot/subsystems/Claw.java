@@ -92,8 +92,8 @@ public class Claw extends Subsystem {
      * Loosens the claw. No force applied either way
      */
     public void neutral() {
-    	openSolenoid.set(false);
-    	closeSolenoid.set(false);
+    	openSolenoid.set(true);
+    	closeSolenoid.set(true);
     }
     
     /**
@@ -101,8 +101,8 @@ public class Claw extends Subsystem {
      * @param speed percent of max speed [0 ~ 1]
      */
     public void spinWheelsIn(double speed) {
-    	leftWheels.set(-Math.abs(speed));
-    	rightWheels.set(-Math.abs(speed));
+    	leftWheels.set(-Math.abs(speed)); // unchecked
+    	rightWheels.set(Math.abs(speed)); // checked
     }
     
     /**
@@ -110,8 +110,8 @@ public class Claw extends Subsystem {
      * @param speed percent of max speed [0 ~ 1]
      */
     public void spinWheelsOut(double speed) {
-    	leftWheels.set(Math.abs(speed));
-    	rightWheels.set(Math.abs(speed));
+    	leftWheels.set(Math.abs(speed)); // unchecked
+    	rightWheels.set(-Math.abs(speed)); // checked
     }
     
     /**

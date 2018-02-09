@@ -15,6 +15,10 @@ package org.usfirst.frc.team340.robot;
  */
 public class RobotMap {
 	
+	////////////////////////////////////////////////////////
+	// SRX 5 IS NO GOOD! SWITCHED 5 AND 1 IN SILVERLIGHT! //
+	////////////////////////////////////////////////////////
+	
 	//PWM Channels
 	public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
 	public static final int DRIVE_TALONSR_RIGHT_CHANNEL = 1;

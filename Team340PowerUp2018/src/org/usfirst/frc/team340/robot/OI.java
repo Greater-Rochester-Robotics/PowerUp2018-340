@@ -15,6 +15,8 @@ import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsOut;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorDown;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorStop;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltBackward;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorUp;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -74,6 +76,8 @@ public class OI {
 		coDriverY.whenPressed(new ManualElevatorUp());
 		coDriverY.whenReleased(new ManualElevatorStop());
 		coDriverA.whenReleased(new ManualElevatorStop());
+		coDriverRB.whenPressed(new ManualElevatorTiltForward());
+		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
 	}
 	
 	/**
