@@ -126,6 +126,8 @@ public class Claw extends Subsystem {
      * @return <code>true</code> if a cube is currently in the claw
      */
     public boolean isCubePresent() {
-    	return !(cubeSensor1.get() && cubeSensor2.get());
+//    	System.out.println("SENSOR 1: " + cubeSensor1.get() + " SENSOR 2: " + cubeSensor2.get());
+//    	System.out.println("Boolean condition: " + (!cubeSensor1.get() || !cubeSensor2.get()));
+    	return !cubeSensor1.get() || !cubeSensor2.get();
     }
 }

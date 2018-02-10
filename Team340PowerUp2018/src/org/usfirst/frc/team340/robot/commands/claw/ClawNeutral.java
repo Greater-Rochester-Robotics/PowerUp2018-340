@@ -33,6 +33,8 @@ public class ClawNeutral extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	//what you need to return to a safe state
+    	Robot.claw.neutral();
+    	Robot.claw.stopWheels();
     }
 
     // Called when another command which requires one or more of the same

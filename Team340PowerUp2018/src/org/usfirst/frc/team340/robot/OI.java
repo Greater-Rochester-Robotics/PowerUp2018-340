@@ -7,6 +7,11 @@
 
 package org.usfirst.frc.team340.robot;
 
+import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
+import org.usfirst.frc.team340.robot.commands.claw.ClawDropScore;
+import org.usfirst.frc.team340.robot.commands.claw.ClawNeutral;
+import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltBackward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
@@ -18,6 +23,7 @@ import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorStop;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltBackward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorUp;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorControl;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -64,20 +70,38 @@ public class OI {
 	public OI () {
 		
 		//Buttons
-		driverA.whenPressed(new ManualClawClose());
-		driverY.whenPressed(new ManualClawNeutral());
-		driverX.whenPressed(new ManualClawOpen());
-		driverRB.whenPressed(new ManualClawWheelsIn());
-		driverRB.whenReleased(new ManualClawWheelsStop());
-		driverLB.whenPressed(new ManualClawWheelsOut());
-		driverLB.whenReleased(new ManualClawWheelsStop());
+//		driverA.whenPressed(new ManualClawClose());
+//		driverY.whenPressed(new ManualClawNeutral());
+//		driverX.whenPressed(new ManualClawOpen());
+//		driverRB.whenPressed(new ManualClawWheelsIn());
+//		driverRB.whenReleased(new ManualClawWheelsStop());
+//		driverLB.whenPressed(new ManualClawWheelsOut());
+//		driverLB.whenReleased(new ManualClawWheelsStop());
 		
-		coDriverA.whenPressed(new ManualElevatorDown());
-		coDriverY.whenPressed(new ManualElevatorUp());
-		coDriverY.whenReleased(new ManualElevatorStop());
-		coDriverA.whenReleased(new ManualElevatorStop());
+		driverA.whenPressed(new ClawAcquireCube());
+		driverA.whenReleased(new ManualClawWheelsStop());
+		
+		driverY.whenPressed(new ClawDropScore());
+		driverY.whenReleased(new ClawNeutral());
+		
+		driverX.whenPressed(new ClawShootScore());
+		driverX.whenReleased(new ClawNeutral());
+		
+		coDriverA.whenPressed(new ClawAcquireCube());
+		coDriverA.whenReleased(new ManualClawWheelsStop());
+
+		coDriverX.whenPressed(new ClawShootScore());
+		coDriverX.whenReleased(new ClawNeutral());
+		
+		coDriverY.whenPressed(new ClawDropScore());
+		coDriverY.whenReleased(new ClawNeutral());
+		
+//		coDriverA.whenPressed(new ManualElevatorDown());
+//		coDriverY.whenPressed(new ManualElevatorUp());
+//		coDriverY.whenReleased(new ManualElevatorStop());
+//		coDriverA.whenReleased(new ManualElevatorStop());
 		coDriverRB.whenPressed(new ManualElevatorTiltForward());
-		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
+		coDriverLB.whenPressed(new ElevatorTiltBackward());
 	}
 	
 	/**

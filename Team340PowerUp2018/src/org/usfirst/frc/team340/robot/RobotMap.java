@@ -24,12 +24,12 @@ public class RobotMap {
 	public static final int DRIVE_TALONSR_RIGHT_CHANNEL = 1;
 	
 	//CAN IDs
-	public static final int CLAW_WHEEL_LEFT_CHANNEL = 1;
-	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 2;
+	public static final int CLAW_WHEEL_LEFT_CHANNEL = 1; //E
+	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 2; //B
 	//Climber IDs later
-	public static final int ELEVATOR_TALONSRX_A_ID = 8;
-	public static final int ELEVATOR_TALONSRX_B_ID = 7;
-	public static final int ELEVATOR_TALONSRX_C_ID = 6;
+	public static final int ELEVATOR_TALONSRX_A_ID = 8; //H
+	public static final int ELEVATOR_TALONSRX_B_ID = 7; //G
+	public static final int ELEVATOR_TALONSRX_C_ID = 6; //F
 	
 	//Digital Channels
 	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 0; //TODO: assume left, but find if left or right
@@ -66,7 +66,7 @@ public class RobotMap {
 	public static final double ELEVATOR_FULLSPEED_VBUS = 1.0;
 	public static final double ELEVATOR_DELTA_TICS_TO_SLOW_DOWN = 150;
 	public static final double ELEVATOR_KP = (1023)/ELEVATOR_DELTA_TICS_TO_SLOW_DOWN;
-	public static final int ELEVATOR_MAX_TICS = 800;
+	public static final int ELEVATOR_MAX_TICS = 3000;
 	public static final double ELEVATOR_RAMP_TIME_S = 0.5;
 	public static final int ELEVATOR_TICS_PER_INCH = 10;
 	public static final int ELEVATOR_TOLERANCE_TICS = 1 * ELEVATOR_TICS_PER_INCH;

@@ -7,11 +7,13 @@
 
 package org.usfirst.frc.team340.robot;
 
+import org.usfirst.frc.team340.robot.OI.Axis;
 import org.usfirst.frc.team340.robot.subsystems.Claw;
 import org.usfirst.frc.team340.robot.subsystems.Drive;
 import org.usfirst.frc.team340.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -61,6 +63,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+
+		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
+		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
+		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 	}
 
 	/**
@@ -97,6 +103,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+
+		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
+		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
+		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 	}
 
 	@Override
@@ -116,6 +126,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
+		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
+		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
+		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 	}
 
 	/**

@@ -3,6 +3,8 @@ package org.usfirst.frc.team340.robot.subsystems;
 import org.usfirst.frc.team340.robot.RobotMap;
 import org.usfirst.frc.team340.robot.commands.drive.DriveController;
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,6 +25,8 @@ public class Drive extends Subsystem {
 	private static Encoder encoderRight; //FIXME: set the distance/pulse ratio
 	private static Encoder encoderLeft; //FIXME: set the distance/pulse ratio
 	
+	private static ADIS16448_IMU imu;
+	
 	/**
 	 * Moves the robo-machine around the <s>field</s> arcade. Weeeeeeee
 	 */
@@ -37,6 +41,8 @@ public class Drive extends Subsystem {
     	
     	encoderRight = new Encoder(RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_A, RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_B);
     	encoderLeft = new Encoder(RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_A, RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_B);
+    	
+    	imu = new ADIS16448_IMU(); // verify yaw axis
 	}
 	
 	/**
@@ -73,6 +79,19 @@ public class Drive extends Subsystem {
 	 */
 	public double getLeftDistance() {
 		return encoderLeft.getDistance();
+	}
+	
+	public void resetRightEncoder() {
+		encoderRight.reset();
+	}
+	
+	public void resetLeftEncoder() {
+		encoderLeft.reset();
+	}
+	
+	public void resetBothEncoders() {
+		resetRightEncoder();
+		resetLeftEncoder();
 	}
 	
 	/**
@@ -159,5 +178,9 @@ public class Drive extends Subsystem {
      */
     public void stop() {
     	setBothDrive(0);
+    }
+    
+    public double getYaw() {
+    	return imu.getYaw();
     }
 }
