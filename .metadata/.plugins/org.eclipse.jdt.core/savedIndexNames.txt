@@ -1,9 +1,0 @@
-INDEX VERSION 1.130+C:\Users\Robotics\robotics\PowerUp2018-340\.metadata\.plugins\org.eclipse.jdt.core
-2073290180.index
-531448973.index
-258599897.index
-667496093.index
-1273685496.index
-3016664729.index
-575750368.index
-2332506226.index
