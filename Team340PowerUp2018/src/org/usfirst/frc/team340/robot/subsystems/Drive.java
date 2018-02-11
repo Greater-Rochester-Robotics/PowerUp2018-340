@@ -183,4 +183,8 @@ public class Drive extends Subsystem {
     public double getYaw() {
     	return imu.getYaw();
     }
+    
+    public void resetIMU() {
+    	imu.reset();
+    }
 }

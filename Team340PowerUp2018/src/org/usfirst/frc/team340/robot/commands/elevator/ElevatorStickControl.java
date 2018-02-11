@@ -34,19 +34,19 @@ public class ElevatorStickControl extends Command {
     	
 		if (speed < 0) {
 			stopping = false;
-			speed *= 0.60;
+			speed *= 0.80;
 			if(Robot.elevator.isAtBottom()) {
 				speed = 0;
 			} if(Robot.elevator.getPosition() < 300) {
-				speed *= 0.50;
+				speed *= 0.4;
 			}
 		} else {
-			speed *= 0.60;
-			if(Robot.elevator.getPosition() > 3000 || stopping) {
+			speed *= 1.00;
+			if(Robot.elevator.getPosition() > 2950 || stopping) {
 				speed = 0;
 				stopping = true;
-			} else if(Robot.elevator.getPosition() > 2700) {
-				speed *= 0.50;
+			} else if(Robot.elevator.getPosition() > 2400) {
+				speed *= 0.4;
 			} else {
 				stopping = false;
 			}

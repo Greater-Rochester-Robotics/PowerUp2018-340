@@ -19,7 +19,7 @@ public class ClawShootScore extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.close();
-    	Robot.claw.spinWheelsOut(RobotMap.CLAW_WHEEL_FULLSPEED_VBUS);
+    	Robot.claw.spinWheelsOut(RobotMap.CLAW_WHEEL_SHOOTSPEED_VBUS);
     }
 
     // Called repeatedly when this Command is scheduled to run

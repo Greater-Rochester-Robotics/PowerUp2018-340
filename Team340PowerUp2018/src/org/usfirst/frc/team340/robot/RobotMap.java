@@ -53,6 +53,7 @@ public class RobotMap {
 	
 	//Claw Wheel Speeds
 	public static final double CLAW_WHEEL_FULLSPEED_VBUS = 1.0;
+	public static final double CLAW_WHEEL_SHOOTSPEED_VBUS = 0.6969;
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
 	
