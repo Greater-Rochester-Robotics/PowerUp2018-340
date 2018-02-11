@@ -4,6 +4,7 @@ import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.OI.Axis;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -34,18 +35,21 @@ public class ElevatorStickControl extends Command {
     	
 		if (speed < 0) {
 			stopping = false;
-			speed *= 0.80;
+			speed *= 1.0;
 			if(Robot.elevator.isAtBottom()) {
 				speed = 0;
-			} if(Robot.elevator.getPosition() < 300) {
-				speed *= 0.4;
+			}
+			if(Robot.elevator.getPosition() < 800) {
+				speed *= 0.3;
+			} else if(Robot.elevator.getPosition() < 400) {
+				speed *= 0.1;
 			}
 		} else {
 			speed *= 1.00;
-			if(Robot.elevator.getPosition() > 2950 || stopping) {
-				speed = 0;
+			if(Robot.elevator.getPosition() > 2960 || stopping) {
+				speed = 0.05;
 				stopping = true;
-			} else if(Robot.elevator.getPosition() > 2400) {
+			} else if(Robot.elevator.getPosition() > 2500) {
 				speed *= 0.4;
 			} else {
 				stopping = false;
@@ -54,7 +58,7 @@ public class ElevatorStickControl extends Command {
 		
     	Robot.elevator.talonA.set(speed);
 		
-		if (speed == 0) {
+		if (stopping || speed == 0) {
 //			Robot.elevator.setBrakeEngaged();
 			
 			if (Robot.oi.getCoDriverAxis(Axis.LEFT_Y) >= 0) {
@@ -67,6 +71,9 @@ public class ElevatorStickControl extends Command {
 			brakeTime = timeSinceInitialized();
 			Robot.elevator.setBrakeDisengaged();
 		}
+		
+		SmartDashboard.putNumber("Elevator speed", speed);
+		SmartDashboard.putNumber("encoder", Robot.elevator.getPosition());
 		
 //		System.out.println("\n\nTalon: " + Robot.elevator.talonA.get());
 //		System.out.println("Joystick: " + Robot.oi.getCoDriverAxis(Axis.LEFT_Y));

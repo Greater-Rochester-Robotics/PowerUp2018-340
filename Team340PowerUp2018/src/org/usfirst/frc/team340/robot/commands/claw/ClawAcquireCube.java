@@ -20,14 +20,14 @@ public class ClawAcquireCube extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_FULLSPEED_VBUS);
+    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
     	Robot.claw.neutral();
     	goodSamples = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_FULLSPEED_VBUS);
+    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
     	Robot.claw.neutral();
     	if(Robot.claw.isCubePresent()) {
     		goodSamples++;
