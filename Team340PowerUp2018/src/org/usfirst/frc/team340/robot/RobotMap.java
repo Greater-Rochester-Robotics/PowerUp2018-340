@@ -32,10 +32,10 @@ public class RobotMap {
 	public static final int ELEVATOR_TALONSRX_C_ID = 6; //F
 	
 	//Digital Channels
-	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 0; //TODO: assume left, but find if left or right
-	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_B = 1; //TODO: assume left, but find if left or right
-	public static final int DRIVE_LEFT_ENCODER_CHANNEL_A = 2; //TODO: assume right, but find if left or right
-	public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 3; //TODO: assume right, but find if left or right
+	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 1; //TODO: assume left, but find if left or right
+	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_B = 0; //TODO: assume left, but find if left or right
+	public static final int DRIVE_LEFT_ENCODER_CHANNEL_A = 3; //TODO: assume right, but find if left or right
+	public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 2; //TODO: assume right, but find if left or right
 	public static final int CLAW_CUBE_SENSOR_CHANNEL_A = 4;
 	public static final int CLAW_CUBE_SENSOR_CHANNEL_B = 5;
 	
@@ -66,13 +66,13 @@ public class RobotMap {
 	
 	//Elevator Speeds
 	public static final double ELEVATOR_FULLSPEED_VBUS = 1.0;
-	public static final double ELEVATOR_DELTA_TICS_TO_SLOW_DOWN = 150;
+	public static final double ELEVATOR_DELTA_TICS_TO_SLOW_DOWN = 300;
 	public static final double ELEVATOR_KP = (1023)/ELEVATOR_DELTA_TICS_TO_SLOW_DOWN;
 	public static final int ELEVATOR_MAX_TICS = 3000;
 	public static final double ELEVATOR_RAMP_TIME_S = 0.5;
 	public static final int ELEVATOR_TICS_PER_INCH = 10;
 	public static final int ELEVATOR_TOLERANCE_TICS = 1 * ELEVATOR_TICS_PER_INCH;
-	public static final double ELEVATOR_MIN_SPEED_UP_VBUS = .15;
+	public static final double ELEVATOR_MIN_SPEED_UP_VBUS = .3;
 	public static final double ELEVATOR_MAX_SPEED_UP_VBUS = 1;
 	public static final double ELEVATOR_MIN_SPEED_DOWN_VBUS = .15;
 	public static final double ELEVATOR_MAX_SPEED_DOWN_VBUS = 1;

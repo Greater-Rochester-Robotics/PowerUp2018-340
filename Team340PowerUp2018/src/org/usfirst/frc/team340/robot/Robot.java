@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
+		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 	}
 
 	/**
@@ -107,6 +108,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
+		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 	}
 
 	@Override
@@ -130,6 +132,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
+		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 	}
 
 	/**

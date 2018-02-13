@@ -19,12 +19,12 @@ public class ElevatorGoToBottom extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.elevator.goDown(RobotMap.ELEVATOR_GO_BOTTOM_VBUS);
-    	Robot.elevator.goDown(.75);
     	Robot.elevator.setTiltForward();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("pos = " + Robot.elevator.getPosition() + ", state = " + Robot.elevator.isAtBottom() + ", speed = " + Robot.elevator.getSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()

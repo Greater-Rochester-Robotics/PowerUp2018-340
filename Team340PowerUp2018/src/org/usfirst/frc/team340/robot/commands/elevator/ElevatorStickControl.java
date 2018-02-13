@@ -38,8 +38,7 @@ public class ElevatorStickControl extends Command {
 			speed *= 1.0;
 			if(Robot.elevator.isAtBottom()) {
 				speed = 0;
-			}
-			if(Robot.elevator.getPosition() < 800) {
+			}else if(Robot.elevator.getPosition() < 800) {
 				speed *= 0.3;
 			} else if(Robot.elevator.getPosition() < 400) {
 				speed *= 0.1;
@@ -63,7 +62,7 @@ public class ElevatorStickControl extends Command {
 			
 			if (Robot.oi.getCoDriverAxis(Axis.LEFT_Y) >= 0) {
 				Robot.elevator.setBrakeEngaged();
-			} else if (timeSinceInitialized() - brakeTime > 0.4) {
+			} else if (timeSinceInitialized() - brakeTime > 0.4 || Robot.elevator.isAtBottom()) {
 				Robot.elevator.setBrakeEngaged();
 			}
 			
@@ -77,7 +76,7 @@ public class ElevatorStickControl extends Command {
 		
 //		System.out.println("\n\nTalon: " + Robot.elevator.talonA.get());
 //		System.out.println("Joystick: " + Robot.oi.getCoDriverAxis(Axis.LEFT_Y));
-//		System.out.println("Encoder: " + Robot.elevator.getPosition());
+		System.out.println("Encoder: " + Robot.elevator.getPosition() + " Switch: " + Robot.elevator.isAtBottom());
 //		System.out.println("speed: " + speed);
     }
 

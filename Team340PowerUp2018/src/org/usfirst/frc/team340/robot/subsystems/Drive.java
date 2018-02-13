@@ -1,13 +1,16 @@
 package org.usfirst.frc.team340.robot.subsystems;
 
+import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.RobotMap;
 import org.usfirst.frc.team340.robot.commands.drive.DriveController;
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
+import com.analog.adis16448.frc.ADIS16448_IMU.Axis;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * <h1><i>Drive</i></h1>
@@ -42,7 +45,7 @@ public class Drive extends Subsystem {
     	encoderRight = new Encoder(RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_A, RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_B);
     	encoderLeft = new Encoder(RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_A, RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_B);
     	
-    	imu = new ADIS16448_IMU(); // verify yaw axis
+    	imu = new ADIS16448_IMU(Axis.kZ); // verify yaw axis
 	}
 	
 	/**
@@ -57,14 +60,14 @@ public class Drive extends Subsystem {
 	 * @return right encoder's count
 	 */
 	public int getRightEncoder() {
-    	return encoderRight.get();
+    	return encoderRight.get() / 3;
 	}
 	
 	/**
 	 * @return left encoder's count
 	 */
 	public int getLeftEncoder() {
-		return encoderLeft.get();
+		return encoderLeft.get() / 3;
 	}
 	
 	/**
@@ -181,7 +184,10 @@ public class Drive extends Subsystem {
     }
     
     public double getYaw() {
-    	return imu.getYaw();
+//    	SmartDashboard.putNumber("YawX", imu.getAngleX());
+//    	SmartDashboard.putNumber("YawY", imu.getAngleY());
+//    	SmartDashboard.putNumber("YawZ", imu.getAngleZ());
+    	return imu.getAngleZ();
     }
     
     public void resetIMU() {

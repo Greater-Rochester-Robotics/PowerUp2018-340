@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public abstract class RunPath extends Command {
+public class RunPath extends Command {
 	
 
 	private final double arcDivisor = 45;
@@ -23,7 +23,7 @@ public abstract class RunPath extends Command {
 	
 	private Function<Double, Double> speed;
 	
-    private RunPath(Path path, double speed) {
+    public RunPath(Path path, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);
@@ -33,7 +33,7 @@ public abstract class RunPath extends Command {
     	this.speed = x -> speed;
     }
     
-    private RunPath(Path path, Function<Double, Double> speed) {
+    public RunPath(Path path, Function<Double, Double> speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);
@@ -44,7 +44,8 @@ public abstract class RunPath extends Command {
     }
     
 	public double dydx(double s) {
-		return path.getPathAtDistance(s).getDerivative().apply(s);
+		PathSegment segment = path.getPathAtDistance(s);
+		return segment.getDerivative().apply(s/segment.getLength());
 	}
 
     // Called just before this Command runs the first time
@@ -55,7 +56,7 @@ public abstract class RunPath extends Command {
     }
     
     private double getDistance() {
-    	return Robot.drive.getRightDistance();
+    	return Robot.drive.getRightEncoder();
     }
     
     private double deltaAngle(double currentAngle) {
@@ -70,7 +71,7 @@ public abstract class RunPath extends Command {
     }
     
     public double speed() {
-    	return speed.apply(getDistance());
+    	return -speed.apply(getDistance());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -84,8 +85,8 @@ public abstract class RunPath extends Command {
     	if(Math.abs(getDistance()) > 3) {
     		double speed = leftSpeed;
         	Robot.drive.setBothDrive(
-        			leftSpeed-((error)/(arcDivisor/Math.abs(speed))), 
-        			rightSpeed+(((error)/(arcDivisor/Math.abs(speed)))));
+        			(leftSpeed+((error)/(arcDivisor/Math.abs(speed)))), 
+        			(rightSpeed-(((error)/(arcDivisor/Math.abs(speed))))));
     	} else {
         	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
     	}
@@ -93,7 +94,8 @@ public abstract class RunPath extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(getDistance()) > (length);
+    	System.out.println(path.getPathAtDistance(Robot.drive.getRightDistance()).getLength());
+        return Math.abs(getDistance()) > (path.getPathAtDistance(Robot.drive.getRightDistance()).getLength());
     }
 
     // Called once after isFinished returns true

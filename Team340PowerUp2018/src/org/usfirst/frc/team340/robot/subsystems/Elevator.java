@@ -1,7 +1,6 @@
 package org.usfirst.frc.team340.robot.subsystems;
 
 import org.usfirst.frc.team340.robot.RobotMap;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStickControl;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -21,7 +20,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Elevator extends Subsystem {
 	private static DoubleSolenoid brake;
 	private static DoubleSolenoid tilt;
-	public static WPI_TalonSRX talonA; //Contains bottom switch and encoder. Is hw 1.5
+	public static WPI_TalonSRX talonA; //Contains bottom switch and encoder. Is hw 1.7
 	private static WPI_TalonSRX talonB;
 	private static WPI_TalonSRX talonC;
 	
@@ -41,20 +40,18 @@ public class Elevator extends Subsystem {
 		talonA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		
 		// broke
-		talonA.configForwardSoftLimitThreshold(RobotMap.ELEVATOR_MAX_TICS, 0);
-		talonA.configForwardSoftLimitEnable(false, 0);
-		talonA.configReverseSoftLimitThreshold(0, 0); //Testing
-		talonA.configReverseSoftLimitEnable(false, 0); //Testing
+		talonA.configForwardSoftLimitThreshold(RobotMap.ELEVATOR_MAX_TICS, 1);
+		talonA.configForwardSoftLimitEnable(true, 1);
 		
-		talonA.configOpenloopRamp(RobotMap.ELEVATOR_RAMP_TIME_S, 0);
+//		talonA.configOpenloopRamp(RobotMap.ELEVATOR_RAMP_TIME_S, 0);
 		talonA.configAllowableClosedloopError(0, RobotMap.ELEVATOR_TOLERANCE_TICS, 0);
 		talonA.config_kP(0, RobotMap.ELEVATOR_KP, 10);
 		talonA.configNominalOutputForward(RobotMap.ELEVATOR_MIN_SPEED_UP_VBUS, 0);
-		talonA.configPeakOutputForward(RobotMap.ELEVATOR_MAX_SPEED_UP_VBUS, 0);
-		talonA.configNominalOutputReverse(-RobotMap.ELEVATOR_MIN_SPEED_DOWN_VBUS, 0);
-		talonA.configPeakOutputReverse(-RobotMap.ELEVATOR_MAX_SPEED_DOWN_VBUS, 0);
+//		talonA.configPeakOutputForward(RobotMap.ELEVATOR_MAX_SPEED_UP_VBUS, 0);
+//		talonA.configNominalOutputReverse(-RobotMap.ELEVATOR_MIN_SPEED_DOWN_VBUS, 0);
+//		talonA.configPeakOutputReverse(-RobotMap.ELEVATOR_MAX_SPEED_DOWN_VBUS, 0);
 		//TODO: tune here
-		talonA.setSensorPhase(true);
+		talonA.setSensorPhase(false);
 		talonA.setInverted(false);
 		
 		talonB.set(ControlMode.Follower, RobotMap.ELEVATOR_TALONSRX_A_ID);
@@ -66,7 +63,7 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevatorStickControl());
+//		setDefaultCommand(new ElevatorStickControl());
 	}
     
 	/**
@@ -74,7 +71,7 @@ public class Elevator extends Subsystem {
 	 * @param position the unit count to position the elevator
 	 */
     public void setPosition(int position) {
-    	talonA.set(ControlMode.Position,position);
+    	talonA.set(ControlMode.Position, position);
     	setBrakeDisengaged();
     }
     
@@ -82,7 +79,7 @@ public class Elevator extends Subsystem {
      * @return the encoder position
      */
     public int getPosition() {
-    	return -talonA.getSelectedSensorPosition(0);
+    	return talonA.getSelectedSensorPosition(0);
     }
     
     /**
@@ -167,5 +164,15 @@ public class Elevator extends Subsystem {
     public void stop() {
     	talonA.stopMotor();
     	setBrakeEngaged();
+    }
+    
+    //testing
+    
+    public double getSpeed() {
+    	return talonA.getBusVoltage()/12;
+    }
+    
+    public String getCurrent() {
+    	return talonA.getOutputCurrent() + " / " + talonB.getOutputCurrent() + " / " + talonC.getOutputCurrent();
     }
 }

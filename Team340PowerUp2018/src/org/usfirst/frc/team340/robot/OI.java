@@ -7,23 +7,25 @@
 
 package org.usfirst.frc.team340.robot;
 
+import java.util.function.Function;
+
 import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
+import org.usfirst.frc.team340.robot.commands.pathing.Path;
+import org.usfirst.frc.team340.robot.commands.pathing.PathSegment;
+import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 import org.usfirst.frc.team340.robot.commands.claw.ClawDropScore;
 import org.usfirst.frc.team340.robot.commands.claw.ClawNeutral;
 import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltBackward;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsIn;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsOut;
+import org.usfirst.frc.team340.robot.commands.drive.DriveStop;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoDown;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoUp;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStop;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
-import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorDown;
-import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorStop;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltBackward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
-import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorUp;
-import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorControl;
+import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -87,21 +89,38 @@ public class OI {
 		driverX.whenPressed(new ClawShootScore());
 		driverX.whenReleased(new ClawNeutral());
 		
-		coDriverA.whenPressed(new ClawAcquireCube());
-		coDriverA.whenReleased(new ManualClawWheelsStop());
-
-		coDriverX.whenPressed(new ClawShootScore());
-		coDriverX.whenReleased(new ClawNeutral());
+		driverB.whenPressed(new RunPath(new Path(new PathSegment(
+				t -> (-15 + 294 * t + -336 * Math.pow(t, 2))/ (132 + -360 * t + 324 * Math.pow(t, 2)), 70
+			)), 0.3));
+		driverB.whenReleased(new DriveStop());
 		
-		coDriverY.whenPressed(new ClawDropScore());
-		coDriverY.whenReleased(new ClawNeutral());
+//		coDriverA.whenPressed(new ClawAcquireCube());
+//		coDriverA.whenReleased(new ManualClawWheelsStop());
+		
+		coDriverA.whenPressed(new ElevatorGoToBottom());
+		coDriverA.whenReleased(new ElevatorStop());
+		
+		coDriverB.whenPressed(new ElevatorGoDown());
+		coDriverB.whenReleased(new ElevatorStop());
+		
+		coDriverStart.whenPressed(new ElevatorGoUp());
+		coDriverStart.whenReleased(new ElevatorStop());
+		
+		coDriverBack.whenPressed(new ElevatorGoToPosition(2900));
+		coDriverBack.whenReleased(new ElevatorStop());
+
+//		coDriverX.whenPressed(new ClawShootScore());
+//		coDriverX.whenReleased(new ClawNeutral());
+		
+//		coDriverY.whenPressed(new ClawDropScore());
+//		coDriverY.whenReleased(new ClawNeutral());
 		
 //		coDriverA.whenPressed(new ManualElevatorDown());
 //		coDriverY.whenPressed(new ManualElevatorUp());
 //		coDriverY.whenReleased(new ManualElevatorStop());
 //		coDriverA.whenReleased(new ManualElevatorStop());
 		coDriverRB.whenPressed(new ManualElevatorTiltForward());
-		coDriverLB.whenPressed(new ElevatorTiltBackward());
+		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
 	}
 	
 	/**
