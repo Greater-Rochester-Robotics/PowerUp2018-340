@@ -92,8 +92,8 @@ public class Claw extends Subsystem {
      * Loosens the claw. No force applied either way
      */
     public void neutral() {
-    	openSolenoid.set(true);
-    	closeSolenoid.set(true);
+    	openSolenoid.set(false);
+    	closeSolenoid.set(false);
     }
     
     /**

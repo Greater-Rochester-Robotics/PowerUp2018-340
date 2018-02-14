@@ -7,12 +7,15 @@
 
 package org.usfirst.frc.team340.robot;
 
+import java.nio.file.Paths;
 import java.util.function.Function;
 
+import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
 import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.PathSegment;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 import org.usfirst.frc.team340.robot.commands.claw.ClawDropScore;
 import org.usfirst.frc.team340.robot.commands.claw.ClawNeutral;
 import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
@@ -89,31 +92,37 @@ public class OI {
 		driverX.whenPressed(new ClawShootScore());
 		driverX.whenReleased(new ClawNeutral());
 		
-		driverB.whenPressed(new RunPath(new Path(new PathSegment(
-				t -> (-15 + 294 * t + -336 * Math.pow(t, 2))/ (132 + -360 * t + 324 * Math.pow(t, 2)), 70
-			)), 0.3));
+//		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_LEFT, s -> {
+//			if(s < 0.65) {
+//				return 0.35;
+//			} else {
+//				return 0.25;
+//			}
+//		}));
+//		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_RIGHT, 0.5));
+		driverB.whenPressed(new CenterSwitchAuto());
 		driverB.whenReleased(new DriveStop());
 		
-//		coDriverA.whenPressed(new ClawAcquireCube());
-//		coDriverA.whenReleased(new ManualClawWheelsStop());
+		coDriverA.whenPressed(new ClawAcquireCube());
+		coDriverA.whenReleased(new ManualClawWheelsStop());
 		
-		coDriverA.whenPressed(new ElevatorGoToBottom());
-		coDriverA.whenReleased(new ElevatorStop());
-		
-		coDriverB.whenPressed(new ElevatorGoDown());
-		coDriverB.whenReleased(new ElevatorStop());
-		
-		coDriverStart.whenPressed(new ElevatorGoUp());
-		coDriverStart.whenReleased(new ElevatorStop());
-		
-		coDriverBack.whenPressed(new ElevatorGoToPosition(2900));
-		coDriverBack.whenReleased(new ElevatorStop());
+//		coDriverA.whenPressed(new ElevatorGoToBottom());
+//		coDriverA.whenReleased(new ElevatorStop());
+//		
+//		coDriverB.whenPressed(new ElevatorGoDown());
+//		coDriverB.whenReleased(new ElevatorStop());
+//		
+//		coDriverStart.whenPressed(new ElevatorGoUp());
+//		coDriverStart.whenReleased(new ElevatorStop());
+//		
+//		coDriverBack.whenPressed(new ElevatorGoToPosition(2900));
+//		coDriverBack.whenReleased(new ElevatorStop());
 
-//		coDriverX.whenPressed(new ClawShootScore());
-//		coDriverX.whenReleased(new ClawNeutral());
+		coDriverX.whenPressed(new ClawShootScore());
+		coDriverX.whenReleased(new ClawNeutral());
 		
-//		coDriverY.whenPressed(new ClawDropScore());
-//		coDriverY.whenReleased(new ClawNeutral());
+		coDriverY.whenPressed(new ClawDropScore());
+		coDriverY.whenReleased(new ClawNeutral());
 		
 //		coDriverA.whenPressed(new ManualElevatorDown());
 //		coDriverY.whenPressed(new ManualElevatorUp());

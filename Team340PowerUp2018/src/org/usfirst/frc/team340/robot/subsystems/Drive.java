@@ -144,6 +144,8 @@ public class Drive extends Subsystem {
      * @param rSpeed right speed
      */
     public void setBothDrive(double lSpeed, double rSpeed) {
+    	System.out.println(lSpeed);
+    	System.out.println(rSpeed);
     	setDriveLeft(lSpeed);
     	setDriveRight(rSpeed);
     }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team340.robot.subsystems;
 
 import org.usfirst.frc.team340.robot.RobotMap;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStickControl;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -63,7 +64,7 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void initDefaultCommand() {
-//		setDefaultCommand(new ElevatorStickControl());
+		setDefaultCommand(new ElevatorStickControl());
 	}
     
 	/**

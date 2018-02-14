@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RunPath extends Command {
 	
 
-	private final double arcDivisor = 45;
+	private final double arcDivisor = 15;
 
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;
@@ -28,8 +28,8 @@ public class RunPath extends Command {
         // eg. requires(chassis);
     	requires(Robot.drive);
     	this.path = path;
-    	this.leftSpeed = speed;
-    	this.rightSpeed = speed;
+    	this.leftSpeed = -speed;
+    	this.rightSpeed = -speed;
     	this.speed = x -> speed;
     }
     
@@ -49,7 +49,7 @@ public class RunPath extends Command {
 	}
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() {	
     	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
     	Robot.drive.resetIMU();
     	Robot.drive.resetBothEncoders();
@@ -71,7 +71,8 @@ public class RunPath extends Command {
     }
     
     public double speed() {
-    	return -speed.apply(getDistance());
+//    	System.out.println(-speed.apply(getDistance()/path.getTotalLength()));
+    	return -speed.apply(getDistance()/path.getTotalLength());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -94,8 +95,13 @@ public class RunPath extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	System.out.println(path.getPathAtDistance(Robot.drive.getRightDistance()).getLength());
-        return Math.abs(getDistance()) > (path.getPathAtDistance(Robot.drive.getRightDistance()).getLength());
+    	try {
+//        	System.out.println(path.getPathAtDistance(Robot.drive.getRightDistance()).getLength());
+            return Math.abs(getDistance()) > (path.getTotalLength());
+    	} catch (Exception e) {
+    		System.err.println(e);
+    		return true;
+    	}
     }
 
     // Called once after isFinished returns true
