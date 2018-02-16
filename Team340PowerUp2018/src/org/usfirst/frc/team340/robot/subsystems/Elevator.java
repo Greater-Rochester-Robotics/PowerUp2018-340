@@ -1,8 +1,7 @@
 package org.usfirst.frc.team340.robot.subsystems;
 
-import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.RobotMap;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStickControl;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStickControl2;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -50,7 +49,7 @@ public class Elevator extends Subsystem {
 		talonA.configForwardSoftLimitThreshold(RobotMap.ELEVATOR_MAX_TICS, 1);
 		talonA.configForwardSoftLimitEnable(true, 1);
 		
-//		talonA.configOpenloopRamp(RobotMap.ELEVATOR_RAMP_TIME_S, 0);
+		talonA.configOpenloopRamp(RobotMap.ELEVATOR_RAMP_TIME_S, 0);
 		talonA.configAllowableClosedloopError(0, RobotMap.ELEVATOR_TOLERANCE_TICS, 0);
 		talonA.config_kP(0, RobotMap.ELEVATOR_KP, 10);
 		talonA.configNominalOutputForward(RobotMap.ELEVATOR_MIN_SPEED_UP_VBUS, 0);
@@ -70,7 +69,7 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevatorStickControl());
+		setDefaultCommand(new ElevatorStickControl2());
 	}
     
 	/**
@@ -156,7 +155,7 @@ public class Elevator extends Subsystem {
 			} else if(getPosition() < BOTTOM_LOWER_SLOW) {
 				speed *= 0.1;
 			}
-		} else {
+		} else if (speed > 0) {
 			speed *= 1.00;
 			if(getPosition() > TOP_UPPER_SLOW) {
 				speed = 0.05;

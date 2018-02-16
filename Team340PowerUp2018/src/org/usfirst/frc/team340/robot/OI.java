@@ -25,6 +25,7 @@ import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoUp;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStop;
+import org.usfirst.frc.team340.robot.commands.groups.AcquireCube;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
@@ -85,21 +86,12 @@ public class OI {
 //		driverRB.whenReleased(new ManualClawWheelsStop());
 //		driverLB.whenPressed(new ManualClawWheelsOut());
 //		driverLB.whenReleased(new ManualClawWheelsStop());
-		
-		driverY.whenPressed(new ClawAcquireCube());
-		driverY.whenReleased(new ManualClawWheelsStop());
 //		
 //		driverY.whenPressed(new ClawDropScore());
 //		driverY.whenReleased(new ClawNeutral());
 //		
 //		driverX.whenPressed(new ClawShootScore());
 //		driverX.whenReleased(new ClawNeutral());
-		
-		driverA.whenPressed(new ManualClawOpen());
-		
-		driverB.whenPressed(new ManualClawClose());
-		
-		driverX.whenPressed(new ManualClawNeutral());
 		
 //		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_LEFT, s -> {
 //			if(s < 0.65) {
@@ -109,29 +101,26 @@ public class OI {
 //			}
 //		}));
 //		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_RIGHT, 0.5));
-		driverB.whenPressed(new CenterSwitchAuto());
-		driverB.whenReleased(new DriveStop());
+//		driverB.whenPressed(new CenterSwitchAuto());
+//		driverB.whenReleased(new DriveStop());
+		driverA.whenPressed(new AcquireCube());
+		driverA.whenReleased(new ManualClawClose());
 		
-		coDriverA.whenPressed(new ClawAcquireCube());
-		coDriverA.whenReleased(new ManualClawWheelsStop());
+		driverX.whenPressed(new ClawShootScore());
+		driverX.whenReleased(new ClawNeutral());
 		
-//		coDriverA.whenPressed(new ElevatorGoToBottom());
-//		coDriverA.whenReleased(new ElevatorStop());
-//		
-//		coDriverB.whenPressed(new ElevatorGoDown());
-//		coDriverB.whenReleased(new ElevatorStop());
-//		
-//		coDriverStart.whenPressed(new ElevatorGoUp());
-//		coDriverStart.whenReleased(new ElevatorStop());
-//		
+		driverY.whenPressed(new ClawDropScore());
+		driverY.whenReleased(new ClawNeutral());
+
+		
 //		coDriverBack.whenPressed(new ElevatorGoToPosition(2900));
 //		coDriverBack.whenReleased(new ElevatorStop());
 
-		coDriverX.whenPressed(new ClawShootScore());
-		coDriverX.whenReleased(new ClawNeutral());
-		
-		coDriverY.whenPressed(new ClawDropScore());
-		coDriverY.whenReleased(new ClawNeutral());
+//		coDriverX.whenPressed(new ClawShootScore());
+//		coDriverX.whenReleased(new ClawNeutral());
+//		
+//		coDriverY.whenPressed(new ClawDropScore());
+//		coDriverY.whenReleased(new ClawNeutral());
 		
 //		coDriverA.whenPressed(new ManualElevatorDown());
 //		coDriverY.whenPressed(new ManualElevatorUp());

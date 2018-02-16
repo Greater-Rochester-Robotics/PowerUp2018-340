@@ -9,23 +9,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ElevatorStickControl extends Command {
-
-	private double brakeTime = 0.0;
-	private boolean stopping = false;
+public class ElevatorStickControl2 extends Command {
 	
-    public ElevatorStickControl() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+	
+    public ElevatorStickControl2() {
     	requires(Robot.elevator);
-    	brakeTime = 0.0;
-    	stopping = false;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	brakeTime = 0.0;
-    	stopping = false;
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -40,30 +33,13 @@ public class ElevatorStickControl extends Command {
      *    - after some time engage brake  
      */
     protected void execute() {
-		
 		double speed = -Robot.oi.getCoDriverAxis(Axis.LEFT_Y);
-    	// see if the elvator is going down
-		if (speed < 0) {
-			stopping = false;
-		} else if( stopping) {
-			// if the elevator is stopping
-			speed = 0.05;
-			stopping = true;
-		}	
 		
     	Robot.elevator.setSpeedScaled(speed);
 		
-		if (stopping || speed == 0) {
-//			Robot.elevator.setBrakeEngaged();
-			
-			if (Robot.oi.getCoDriverAxis(Axis.LEFT_Y) >= 0) {
-				Robot.elevator.setBrakeEngaged();
-			} else if (timeSinceInitialized() - brakeTime > 0.4 || Robot.elevator.isAtBottom()) {
-				Robot.elevator.setBrakeEngaged();
-			}
-			
+		if(speed == 0) {
+			Robot.elevator.setBrakeEngaged();
 		} else {
-			brakeTime = timeSinceInitialized();
 			Robot.elevator.setBrakeDisengaged();
 		}
 		
