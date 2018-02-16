@@ -25,6 +25,9 @@ import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoUp;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStop;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltBackward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
@@ -83,14 +86,20 @@ public class OI {
 //		driverLB.whenPressed(new ManualClawWheelsOut());
 //		driverLB.whenReleased(new ManualClawWheelsStop());
 		
-		driverA.whenPressed(new ClawAcquireCube());
-		driverA.whenReleased(new ManualClawWheelsStop());
+		driverY.whenPressed(new ClawAcquireCube());
+		driverY.whenReleased(new ManualClawWheelsStop());
+//		
+//		driverY.whenPressed(new ClawDropScore());
+//		driverY.whenReleased(new ClawNeutral());
+//		
+//		driverX.whenPressed(new ClawShootScore());
+//		driverX.whenReleased(new ClawNeutral());
 		
-		driverY.whenPressed(new ClawDropScore());
-		driverY.whenReleased(new ClawNeutral());
+		driverA.whenPressed(new ManualClawOpen());
 		
-		driverX.whenPressed(new ClawShootScore());
-		driverX.whenReleased(new ClawNeutral());
+		driverB.whenPressed(new ManualClawClose());
+		
+		driverX.whenPressed(new ManualClawNeutral());
 		
 //		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_LEFT, s -> {
 //			if(s < 0.65) {

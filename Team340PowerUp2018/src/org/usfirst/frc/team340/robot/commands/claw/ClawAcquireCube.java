@@ -20,6 +20,7 @@ public class ClawAcquireCube extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("CLAW ACQUIRE CUBE STARTING");
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
     	Robot.claw.neutral();
     	goodSamples = 0;
@@ -34,9 +35,9 @@ public class ClawAcquireCube extends Command {
     	} else {
     		goodSamples = 0;
     	}
-    	if(goodSamples > 15) {
-    		Robot.claw.close();
-    	}
+//    	if(goodSamples > 15) {
+//    		Robot.claw.close();
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

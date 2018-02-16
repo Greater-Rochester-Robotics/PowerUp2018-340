@@ -19,6 +19,7 @@ public class ClawSecureCube extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("CLAW SECURE CUBE STARTING");
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_HOLDSPEED_VBUS);
     	Robot.claw.close();
     }

@@ -35,27 +35,15 @@ public class ElevatorStickControl extends Command {
     	
 		if (speed < 0) {
 			stopping = false;
-			speed *= 1.0;
-			if(Robot.elevator.isAtBottom()) {
-				speed = 0;
-			}else if(Robot.elevator.getPosition() < 800) {
-				speed *= 0.3;
-			} else if(Robot.elevator.getPosition() < 400) {
-				speed *= 0.1;
-			}
 		} else {
 			speed *= 1.00;
-			if(Robot.elevator.getPosition() > 2960 || stopping) {
+			if( stopping) {
 				speed = 0.05;
 				stopping = true;
-			} else if(Robot.elevator.getPosition() > 2500) {
-				speed *= 0.4;
-			} else {
-				stopping = false;
-			}
+			} 
 		}	
 		
-    	Robot.elevator.talonA.set(speed);
+    	Robot.elevator.setSpeedScaled(speed);
 		
 		if (stopping || speed == 0) {
 //			Robot.elevator.setBrakeEngaged();

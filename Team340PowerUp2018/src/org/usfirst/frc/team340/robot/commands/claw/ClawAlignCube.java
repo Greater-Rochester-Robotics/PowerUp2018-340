@@ -18,6 +18,7 @@ public class ClawAlignCube extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("CLAW ALIGN CUBE STARTING");
     	Robot.claw.close();
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_FULLSPEED_VBUS);
     }
@@ -28,7 +29,7 @@ public class ClawAlignCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

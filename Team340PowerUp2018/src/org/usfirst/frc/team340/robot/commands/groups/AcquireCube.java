@@ -15,7 +15,7 @@ public class AcquireCube extends CommandGroup {
     public AcquireCube() {
     	addSequential(new ClawNeutral());
     	addSequential(new ClawAcquireCube());
-    	addSequential(new ClawAlignCube(),RobotMap.CLAW_ALIGNMENT_WAIT_S);
+    	addSequential(new ClawAlignCube(), RobotMap.CLAW_ALIGNMENT_WAIT_S);
     	addSequential(new ClawSecureCube());
     }
 }

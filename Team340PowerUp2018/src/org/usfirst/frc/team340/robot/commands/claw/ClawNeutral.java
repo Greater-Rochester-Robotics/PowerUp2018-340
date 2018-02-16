@@ -17,6 +17,7 @@ public class ClawNeutral extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("CLAW NEUTRAL STARTED");
     	Robot.claw.neutral();
     	Robot.claw.stopWheels();
     }

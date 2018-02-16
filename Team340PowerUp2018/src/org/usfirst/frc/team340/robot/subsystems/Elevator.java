@@ -1,5 +1,6 @@
 package org.usfirst.frc.team340.robot.subsystems;
 
+import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.RobotMap;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStickControl;
 
@@ -24,6 +25,11 @@ public class Elevator extends Subsystem {
 	public static WPI_TalonSRX talonA; //Contains bottom switch and encoder. Is hw 1.7
 	private static WPI_TalonSRX talonB;
 	private static WPI_TalonSRX talonC;
+	
+	private static final double BOTTOM_LOWER_SLOW = 400;
+	private static final double BOTTOM_UPPER_SLOW = 800;
+	private static final double TOP_LOWER_SLOW = 2500;
+	private static final double TOP_UPPER_SLOW = 2960;
 	
 	/**
 	 * Raises and lowers the claw to get the cube into the switch and scale
@@ -139,6 +145,28 @@ public class Elevator extends Subsystem {
      */
     public void setBrakeDisengaged() {
     	brake.set(Value.kReverse);
+    }
+    public void setSpeedScaled(double speed){
+    	if (speed < 0) {
+			speed *= 1.0;
+			if(isAtBottom()) {
+				speed = 0;
+			}else if(getPosition() < BOTTOM_UPPER_SLOW) {
+				speed *= 0.3;
+			} else if(getPosition() < BOTTOM_LOWER_SLOW) {
+				speed *= 0.1;
+			}
+		} else {
+			speed *= 1.00;
+			if(getPosition() > TOP_UPPER_SLOW) {
+				speed = 0.05;
+			} else if(getPosition() > TOP_LOWER_SLOW) {
+				speed *= 0.4;
+			} 
+			
+		}	
+		
+    	talonA.set(speed);
     }
     
     /**
