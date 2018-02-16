@@ -63,6 +63,9 @@ public class RobotMap {
 	
 	//Elevator Positions
 	public static final int ELEVATOR_TRAVEL_POSITION_TICKS = 10;
+	public static final int ELEVATOR_SCALE_MID_HEIGHT = 2560;
+	public static final int ELEVATOR_SCALE_MAX_HEIGHT = 3000;
+	public static final int ELEVATOR_SCALE_MIN_HEIGHT = 2240;
 	
 	//Elevator Speeds
 	public static final double ELEVATOR_FULLSPEED_VBUS = 1.0;
