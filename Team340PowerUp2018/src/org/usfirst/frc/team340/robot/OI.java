@@ -7,32 +7,20 @@
 
 package org.usfirst.frc.team340.robot;
 
-import java.nio.file.Paths;
-import java.util.function.Function;
-
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
-import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
-import org.usfirst.frc.team340.robot.commands.pathing.Path;
-import org.usfirst.frc.team340.robot.commands.pathing.PathSegment;
-import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
-import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
+import org.usfirst.frc.team340.robot.commands.auto.RightSideEasyAuto;
 import org.usfirst.frc.team340.robot.commands.claw.ClawDropScore;
 import org.usfirst.frc.team340.robot.commands.claw.ClawNeutral;
 import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberClimb;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployHook;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberRetract;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberStop;
 import org.usfirst.frc.team340.robot.commands.drive.DriveStop;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoDown;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoUp;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStop;
 import org.usfirst.frc.team340.robot.commands.groups.AcquireCube;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltBackward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
-import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -101,8 +89,8 @@ public class OI {
 //			}
 //		}));
 //		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_RIGHT, 0.5));
-//		driverB.whenPressed(new CenterSwitchAuto());
-//		driverB.whenReleased(new DriveStop());
+		driverB.whenPressed(new RightSideEasyAuto());
+		driverB.whenReleased(new DriveStop());
 		driverA.whenPressed(new AcquireCube());
 		driverA.whenReleased(new ManualClawClose());
 		
@@ -126,6 +114,14 @@ public class OI {
 //		coDriverY.whenPressed(new ManualElevatorUp());
 //		coDriverY.whenReleased(new ManualElevatorStop());
 //		coDriverA.whenReleased(new ManualElevatorStop());
+		
+		coDriverY.whenPressed(new ClimberDeployHook());
+		coDriverB.whenPressed(new ClimberRetract());
+		coDriverA.whenPressed(new ClimberClimb(.3));
+		coDriverA.whenReleased(new ClimberStop());
+		coDriverX.whenPressed(new ClimberClimb(-.3));
+		coDriverX.whenReleased(new ClimberStop());
+		
 		coDriverRB.whenPressed(new ManualElevatorTiltForward());
 		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
 	}

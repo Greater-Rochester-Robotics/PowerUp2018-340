@@ -7,13 +7,12 @@
 
 package org.usfirst.frc.team340.robot;
 
-import org.usfirst.frc.team340.robot.OI.Axis;
 import org.usfirst.frc.team340.robot.subsystems.Claw;
+import org.usfirst.frc.team340.robot.subsystems.Climber;
 import org.usfirst.frc.team340.robot.subsystems.Drive;
 import org.usfirst.frc.team340.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -29,6 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 	public static Drive drive;
 	public static Claw claw;
+	public static Climber climber;
 	public static Elevator elevator;
 	public static OI oi;
 
@@ -43,6 +43,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		drive = new Drive();
 		claw = new Claw();
+		climber = new Climber();
 		elevator = new Elevator();
 		//SUBSYSTEMS BEFORE THIS LINE, OI AFTER
 		oi = new OI();

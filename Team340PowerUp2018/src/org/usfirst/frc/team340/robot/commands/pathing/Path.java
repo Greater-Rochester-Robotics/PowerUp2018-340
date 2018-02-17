@@ -3,7 +3,8 @@ package org.usfirst.frc.team340.robot.commands.pathing;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Path extends ArrayList<PathSegment>{
+public class Path extends ArrayList<PathSegment> {
+	public static final long serialVersionUID = 340; //Because why not?
 
 	public Path(PathSegment... paths) {
         super(Arrays.asList(paths));
@@ -12,6 +13,20 @@ public class Path extends ArrayList<PathSegment>{
     public double getTotalLength() {
         // Returns the sum of the lengths of each Path
         return this.stream().mapToDouble(PathSegment::getLength).sum();
+    }
+    
+    public double getTotalOfCompletedPaths(double distance) {
+    	PathSegment current = getPathAtDistance(distance);
+    	Path previous = new Path();
+    	for(PathSegment p : this) {
+    		if (current.equals(p)) {
+    			return previous.getTotalLength();
+    		} else {
+    			previous.add(p);
+    		}
+    	}
+    	
+    	return previous.getTotalLength();
     }
 
     /**

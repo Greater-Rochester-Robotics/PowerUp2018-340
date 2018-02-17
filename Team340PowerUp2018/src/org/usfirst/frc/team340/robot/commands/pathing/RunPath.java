@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class RunPath extends Command {
-	
-
 	private final double arcDivisor = 15;
 
 	private double leftSpeed = 0;
@@ -45,7 +43,7 @@ public class RunPath extends Command {
     
 	public double dydx(double s) {
 		PathSegment segment = path.getPathAtDistance(s);
-		return segment.getDerivative().apply(s/segment.getLength());
+		return segment.getDerivative().apply((s - path.getTotalOfCompletedPaths(s))/segment.getLength());
 	}
 
     // Called just before this Command runs the first time
@@ -56,7 +54,7 @@ public class RunPath extends Command {
     }
     
     private double getDistance() {
-    	return Robot.drive.getRightEncoder();
+    	return (Robot.drive.getRightEncoder() + Robot.drive.getLeftEncoder())/2;
     }
     
     private double deltaAngle(double currentAngle) {

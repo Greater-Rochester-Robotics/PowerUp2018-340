@@ -10,16 +10,25 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ClawShootScore extends Command {
 
+	private double speed = 0.5;
     public ClawShootScore() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
+    	speed = RobotMap.CLAW_WHEEL_SHOOTSPEED_VBUS;
+    }
+    
+    public ClawShootScore(double speed) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.claw);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.close();
-    	Robot.claw.spinWheelsOut(RobotMap.CLAW_WHEEL_SHOOTSPEED_VBUS);
+    	Robot.claw.spinWheelsOut(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run

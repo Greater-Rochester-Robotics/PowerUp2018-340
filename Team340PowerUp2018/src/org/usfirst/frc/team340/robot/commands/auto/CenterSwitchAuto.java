@@ -1,10 +1,12 @@
 package org.usfirst.frc.team340.robot.commands.auto;
 
 import org.usfirst.frc.team340.robot.commands.claw.ClawDropScore;
+import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
+import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
@@ -39,8 +41,8 @@ public class CenterSwitchAuto extends CommandGroup {
     	addSequential(new WaitCommand(0.5));
     	addSequential(new ElevatorGoToBottom(), 1.5);
     	addSequential(new WaitCommand(0.5));
-    	addParallel(new ElevatorGoToPosition(1169), 1);
-    	addSequential(new RunPath(Paths.choosePath("RLR", 0, FROM_CENTER.SWITCH_LEFT, FROM_CENTER.SWITCH_RIGHT), x -> {
+    	addParallel(new ElevatorGoToPosition(969), 1);
+    	addSequential(new RunPath((Path) Paths.choose("LRL", 0, FROM_CENTER.SWITCH_LEFT, FROM_CENTER.SWITCH_RIGHT), x -> {
     		if(x < 0.3) {
     			return 0.3;
     		} else if (x < 0.75) {
@@ -49,7 +51,7 @@ public class CenterSwitchAuto extends CommandGroup {
     			return 0.25;
     		}
     	}), 4.5);
-    	
-    	addSequential(new ClawDropScore(), 1);
+    	addSequential(new WaitCommand(0.5));
+    	addSequential(new ClawShootScore(0.4069), 1);
     }
 }

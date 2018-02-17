@@ -15,9 +15,9 @@ package org.usfirst.frc.team340.robot;
  */
 public class RobotMap {
 	
-	////////////////////////////////////////////////////////
-	// SRX 5 IS NO GOOD! SWITCHED 5 AND 1 IN SILVERLIGHT! //
-	////////////////////////////////////////////////////////
+	//////////////////////////////////////////
+	// SRX SWITCHED 5 AND 1 IN SILVERLIGHT! //
+	//////////////////////////////////////////
 	
 	//PWM Channels
 	public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
@@ -26,7 +26,8 @@ public class RobotMap {
 	//CAN IDs
 	public static final int CLAW_WHEEL_LEFT_CHANNEL = 1; //E
 	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 2; //B
-	//Climber IDs later
+	public static final int CLIMBER_TALONSRX_A_ID = 3; //C
+	public static final int CLIMBER_TALONSRX_B_ID = 4; //D
 	public static final int ELEVATOR_TALONSRX_A_ID = 8; //H
 	public static final int ELEVATOR_TALONSRX_B_ID = 7; //G
 	public static final int ELEVATOR_TALONSRX_C_ID = 6; //F
@@ -46,6 +47,7 @@ public class RobotMap {
 	public static final int ELEVATOR_TILT_CHANNEL_B = 2;
 	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 6;
 	public static final int CLAW_SOLENOID_OPEN_CHANNEL = 5;
+	public static final int CLIMBER_DEPLOY_CHANNEL= 7;
 	
 	
 	

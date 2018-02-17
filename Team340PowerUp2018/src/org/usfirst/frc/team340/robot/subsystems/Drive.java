@@ -1,6 +1,5 @@
 package org.usfirst.frc.team340.robot.subsystems;
 
-import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.RobotMap;
 import org.usfirst.frc.team340.robot.commands.drive.DriveController;
 
@@ -10,7 +9,6 @@ import com.analog.adis16448.frc.ADIS16448_IMU.Axis;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * <h1><i>Drive</i></h1>
