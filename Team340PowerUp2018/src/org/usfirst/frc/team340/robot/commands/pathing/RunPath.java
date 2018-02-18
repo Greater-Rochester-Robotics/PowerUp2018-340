@@ -17,6 +17,8 @@ public class RunPath extends Command {
 	
 	private double length = -1;
 	
+	private boolean reset = true;
+	
 	private Path path;
 	
 	private Function<Double, Double> speed;
@@ -31,6 +33,11 @@ public class RunPath extends Command {
     	this.speed = x -> speed;
     }
     
+    public RunPath(Path path, double speed, boolean reset) {
+    	this(path, speed);
+    	this.reset = reset;
+    }
+    
     public RunPath(Path path, Function<Double, Double> speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -41,6 +48,11 @@ public class RunPath extends Command {
     	this.rightSpeed = speed.apply(0.0);
     }
     
+    public RunPath(Path path, Function<Double, Double> speed, boolean reset) {
+    	this(path, speed);
+    	this.reset = reset;
+    }
+    
 	public double dydx(double s) {
 		PathSegment segment = path.getPathAtDistance(s);
 		return segment.getDerivative().apply((s - path.getTotalOfCompletedPaths(s))/segment.getLength());
@@ -49,8 +61,9 @@ public class RunPath extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {	
     	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
-    	Robot.drive.resetIMU();
     	Robot.drive.resetBothEncoders();
+    	Robot.drive.resetIMU();
+    	System.out.println("RUNPATH INIT");
     }
     
     private double getDistance() {

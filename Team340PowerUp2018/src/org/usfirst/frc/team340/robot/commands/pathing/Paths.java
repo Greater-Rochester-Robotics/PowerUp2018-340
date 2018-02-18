@@ -1,5 +1,7 @@
 package org.usfirst.frc.team340.robot.commands.pathing;
 
+import org.usfirst.frc.team340.robot.Robot;
+
 public class Paths {
 	public static class FROM_CENTER {
 		public static final Path SWITCH_RIGHT = new Path(
@@ -27,10 +29,10 @@ public class Paths {
 				, 66)
 				);  
 		public static final Path SWITCH_RIGHT = new Path(
-			new PathSegment(t -> 
-			/* {"start":{"x":0,"y":100},"mid1":{"x":51,"y":96},"mid2":{"x":25,"y":142},"end":{"x":144,"y":136}} */
-			(-12 + 300 * t + -306 * Math.pow(t, 2))/ (153 + -462 * t + 666 * Math.pow(t, 2)) 
-			, 153)
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":100},"mid1":{"x":51,"y":96},"mid2":{"x":25,"y":143},"end":{"x":131,"y":136}} */
+				(-12 + 306 * t + -315 * Math.pow(t, 2))/ (153 + -462 * t + 627 * Math.pow(t, 2)) 
+				, 141)
 		);
 		public static final Path SWITCH_RIGHT_FINISH = new Path(
 				new PathSegment(t -> 
@@ -38,13 +40,31 @@ public class Paths {
 				(-30 + 36 * t + -72 * Math.pow(t, 2))/ (60 + -96 * t + 36 * Math.pow(t, 2)) 
 				, 48)
 			);
+		public static final Path SWITCH_LEFT = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":100},"mid1":{"x":51,"y":96},"mid2":{"x":25,"y":143},"end":{"x":131,"y":136}} */
+				(-12 + 306 * t + -315 * Math.pow(t, 2))/ (153 + -462 * t + 627 * Math.pow(t, 2)) 
+				, 141),
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":264},"mid1":{"x":78,"y":261},"mid2":{"x":81,"y":199},"end":{"x":72,"y":0}} */
+				(-9 + -354 * t + -234 * Math.pow(t, 2))/ (234 + -450 * t + 189 * Math.pow(t, 2)) 
+				, 306)
+				);
+		public static final Path SWITCH_LEFT_FINISH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":100,"y":100},"mid1":{"x":153,"y":106},"mid2":{"x":142,"y":5},"end":{"x":85,"y":12}} */
+				(18 + -642 * t + 645 * Math.pow(t, 2))/ (159 + -384 * t + 54 * Math.pow(t, 2)) 
+				, 139)
+				);
+		public static final Path SCALE_LEFT_FINISH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":100,"y":100},"mid1":{"x":145,"y":90},"mid2":{"x":174,"y":119},"end":{"x":124,"y":180}} */
+				(-30 + 234 * t + -21 * Math.pow(t, 2))/ (135 + -96 * t + -189 * Math.pow(t, 2)) 
+				, 128)
+				);
 	}
 	
-	public static Object choose(String fms, int pos, Object left, Object right) {
-		if(fms.substring(pos, pos + 1).toLowerCase().equals("l")) {
-			return left;
-		} else {
-			return right;
-		}
+	public static Path choose(String fms, int pos, Path left, Path right) {
+		return (Path) Robot.choose(fms, pos, left, right);
 	}
 }

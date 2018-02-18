@@ -117,9 +117,9 @@ public class OI {
 		
 		coDriverY.whenPressed(new ClimberDeployHook());
 		coDriverB.whenPressed(new ClimberRetract());
-		coDriverA.whenPressed(new ClimberClimb(.3));
+		coDriverA.whenPressed(new ClimberClimb(.9069));
 		coDriverA.whenReleased(new ClimberStop());
-		coDriverX.whenPressed(new ClimberClimb(-.3));
+		coDriverX.whenPressed(new ClimberClimb(-.9069));
 		coDriverX.whenReleased(new ClimberStop());
 		
 		coDriverRB.whenPressed(new ManualElevatorTiltForward());

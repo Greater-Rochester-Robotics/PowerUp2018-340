@@ -50,6 +50,14 @@ public class Robot extends TimedRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
+	
+	public static Object choose(String fms, int pos, Object left, Object right) {
+		if(fms.substring(pos, pos + 1).toLowerCase().equals("l")) {
+			return left;
+		} else {
+			return right;
+		}
+	}
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
