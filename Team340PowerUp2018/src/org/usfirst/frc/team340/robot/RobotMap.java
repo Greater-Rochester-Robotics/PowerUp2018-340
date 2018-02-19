@@ -24,13 +24,13 @@ public class RobotMap {
 	public static final int DRIVE_TALONSR_RIGHT_CHANNEL = 1;
 	
 	//CAN IDs
-	public static final int CLAW_WHEEL_LEFT_CHANNEL = 1; //E
-	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 2; //B
-	public static final int CLIMBER_TALONSRX_A_ID = 3; //C
-	public static final int CLIMBER_TALONSRX_B_ID = 4; //D
-	public static final int ELEVATOR_TALONSRX_A_ID = 8; //H
-	public static final int ELEVATOR_TALONSRX_B_ID = 7; //G
-	public static final int ELEVATOR_TALONSRX_C_ID = 6; //F
+	public static final int CLAW_WHEEL_LEFT_CHANNEL = 1; //E on prac, A on comp
+	public static final int CLAW_WHEEL_RIGHT_CHANNEL = 2; //B on both (the claws may not be correct, in intake and outtake)
+	public static final int CLIMBER_TALONSRX_A_ID = 3; //C on prac, F on comp
+	public static final int CLIMBER_TALONSRX_B_ID = 4; //D on prac, G on comp
+	public static final int ELEVATOR_TALONSRX_A_ID = 8; //H on prac, D on comp
+	public static final int ELEVATOR_TALONSRX_B_ID = 7; //G on prac, C on comp
+	public static final int ELEVATOR_TALONSRX_C_ID = 6; //F on prac, E on comp
 	
 	//Digital Channels
 	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 1; //TODO: assume left, but find if left or right
@@ -58,14 +58,14 @@ public class RobotMap {
 	public static final double CLAW_WHEEL_SHOOTSPEED_VBUS = 0.5;
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
-	public static final double CLAW_WHEEL_ACQUIRE_SPEED_VBUS = 0.75;
+	public static final double CLAW_WHEEL_ACQUIRE_SPEED_VBUS = 0.5;
 	
 	//Drive Devices
 	//Elevator Devices
 	
 	//Elevator Positions
 	public static final int ELEVATOR_TRAVEL_POSITION_TICKS = 10;
-	public static final int ELEVATOR_SCALE_MID_HEIGHT = 2560;
+	public static final int ELEVATOR_SCALE_MID_HEIGHT = 2600;
 	public static final int ELEVATOR_SCALE_MAX_HEIGHT = 3000;
 	public static final int ELEVATOR_SCALE_MIN_HEIGHT = 2240;
 	

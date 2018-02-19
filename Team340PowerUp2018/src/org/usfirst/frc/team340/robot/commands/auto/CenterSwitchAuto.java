@@ -1,5 +1,6 @@
 package org.usfirst.frc.team340.robot.commands.auto;
 
+import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.commands.claw.ClawDropScore;
 import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
@@ -18,8 +19,8 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  *
  */
 public class CenterSwitchAuto extends CommandGroup {
-
-    public CenterSwitchAuto() {
+	
+    public CenterSwitchAuto(Path path) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -42,7 +43,16 @@ public class CenterSwitchAuto extends CommandGroup {
     	addSequential(new ElevatorGoToBottom(), 1.5);
     	addSequential(new WaitCommand(0.5));
     	addParallel(new ElevatorGoToPosition(969), 1);
-    	addSequential(new RunPath((Path) Paths.choose("LRL", 0, FROM_CENTER.SWITCH_LEFT, FROM_CENTER.SWITCH_RIGHT), x -> {
+    	/*addSequential(new RunPath(Paths.choose(Robot.FMSData(), 0, FROM_CENTER.SWITCH_LEFT, FROM_CENTER.SWITCH_RIGHT), x -> {
+    		if(x < 0.3) {
+    			return 0.3;
+    		} else if (x < 0.75) {
+    			return 0.5069;
+    		} else {
+    			return 0.25;
+    		}
+    	}), 4.5);*/
+    	addSequential(new RunPath(path, x -> {
     		if(x < 0.3) {
     			return 0.3;
     		} else if (x < 0.75) {

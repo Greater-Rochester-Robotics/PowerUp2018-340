@@ -7,20 +7,14 @@
 
 package org.usfirst.frc.team340.robot;
 
-import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
-import org.usfirst.frc.team340.robot.commands.auto.RightSideEasyAuto;
-import org.usfirst.frc.team340.robot.commands.claw.ClawDropScore;
-import org.usfirst.frc.team340.robot.commands.claw.ClawNeutral;
-import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberClimb;
-import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployHook;
-import org.usfirst.frc.team340.robot.commands.climber.ClimberRetract;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberStop;
-import org.usfirst.frc.team340.robot.commands.drive.DriveStop;
-import org.usfirst.frc.team340.robot.commands.groups.AcquireCube;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
-import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltBackward;
-import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsIn;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsOut;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -63,23 +57,34 @@ public class OI {
 	private Button coDriverStart = new JoystickButton(coDriver, 8);
 	private Button coDriverLS = new JoystickButton(coDriver, 9);
 	private Button coDriverRS = new JoystickButton(coDriver, 10);
+	private Button coDriverDPadUp = new DPad(coDriver, DPad.Direction.up);
+	private Button coDriverDPadDown = new DPad(coDriver, DPad.Direction.down);
+	private Button coDriverDPadRight = new DPad(coDriver, DPad.Direction.right);
+	private Button coDriverDPadLeft = new DPad(coDriver, DPad.Direction.left);
+	private Button coDriverRT = new JoyTrigger(coDriver, Axis.RIGHT_TRIGGER.getAxis(), .2);
 		
 	public OI () {
 		
 		//Buttons
-//		driverA.whenPressed(new ManualClawClose());
-//		driverY.whenPressed(new ManualClawNeutral());
-//		driverX.whenPressed(new ManualClawOpen());
-//		driverRB.whenPressed(new ManualClawWheelsIn());
-//		driverRB.whenReleased(new ManualClawWheelsStop());
-//		driverLB.whenPressed(new ManualClawWheelsOut());
-//		driverLB.whenReleased(new ManualClawWheelsStop());
-//		
+		driverA.whenPressed(new ManualClawClose());
+		driverY.whenPressed(new ManualClawNeutral());
+		driverX.whenPressed(new ManualClawOpen());
+		driverRB.whenPressed(new ManualClawWheelsIn());
+		driverRB.whenReleased(new ManualClawWheelsStop());
+		driverLB.whenPressed(new ManualClawWheelsOut());
+		driverLB.whenReleased(new ManualClawWheelsStop());
+		
+//		coDriverRB.whenPressed(new ManualElevatorTiltForward());
+//		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
+		
 //		driverY.whenPressed(new ClawDropScore());
 //		driverY.whenReleased(new ClawNeutral());
 //		
 //		driverX.whenPressed(new ClawShootScore());
 //		driverX.whenReleased(new ClawNeutral());
+		
+//		driverB.whenPressed(new RunPath(Paths.straightLength(48), -0.5));
+//		driverB.whenReleased(new DriveStop());
 		
 //		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_LEFT, s -> {
 //			if(s < 0.65) {
@@ -89,16 +94,29 @@ public class OI {
 //			}
 //		}));
 //		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_RIGHT, 0.5));
-		driverB.whenPressed(new RightSideEasyAuto());
-		driverB.whenReleased(new DriveStop());
-		driverA.whenPressed(new AcquireCube());
-		driverA.whenReleased(new ManualClawClose());
+//		driverB.whenPressed(new CenterSwitchAuto());
+//		driverB.whenReleased(new DriveStop());
 		
-		driverX.whenPressed(new ClawShootScore());
-		driverX.whenReleased(new ClawNeutral());
 		
-		driverY.whenPressed(new ClawDropScore());
-		driverY.whenReleased(new ClawNeutral());
+		
+		
+		
+		
+		
+		
+		// =====================================================
+		
+//		driverA.whenPressed(new AcquireCube());
+//		driverA.whenReleased(new ManualClawClose());
+//		
+//		driverX.whenPressed(new ClawShootScore());
+//		driverX.whenReleased(new ClawNeutral());
+//		
+//		driverY.whenPressed(new ClawDropScore());
+//		driverY.whenReleased(new ClawNeutral());
+		// =====================================================
+		
+		
 
 		
 //		coDriverBack.whenPressed(new ElevatorGoToPosition(2900));
@@ -115,15 +133,20 @@ public class OI {
 //		coDriverY.whenReleased(new ManualElevatorStop());
 //		coDriverA.whenReleased(new ManualElevatorStop());
 		
-		coDriverY.whenPressed(new ClimberDeployHook());
-		coDriverB.whenPressed(new ClimberRetract());
-		coDriverA.whenPressed(new ClimberClimb(.9069));
-		coDriverA.whenReleased(new ClimberStop());
-		coDriverX.whenPressed(new ClimberClimb(-.9069));
-		coDriverX.whenReleased(new ClimberStop());
 		
-		coDriverRB.whenPressed(new ManualElevatorTiltForward());
-		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
+		// use below for drive practice
+		
+//		coDriverDPadRight.whenPressed(new ClimberDeployHook());
+//		coDriverDPadLeft.whenPressed(new ClimberRetract());
+//		coDriverDPadDown.whenPressed(new ClimberClimb(1.0));
+//		coDriverDPadDown.whenReleased(new ClimberStop());
+//		coDriverDPadUp.whenPressed(new ClimberClimb(-1.0));
+//		coDriverDPadUp.whenReleased(new ClimberStop());
+		
+//		coDriverA.whenPressed(new ElevatorGoToPosition(100));
+//		coDriverB.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MID_HEIGHT));
+//		coDriverY.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MAX_HEIGHT));
+//		coDriverRT.whenPressed(new ElevatorGoToBottom());
 	}
 	
 	/**

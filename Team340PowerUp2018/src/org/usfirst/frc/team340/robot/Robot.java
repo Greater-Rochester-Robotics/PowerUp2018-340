@@ -7,11 +7,17 @@
 
 package org.usfirst.frc.team340.robot;
 
+import org.usfirst.frc.team340.robot.OI.Axis;
+import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
+import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_RIGHT;
 import org.usfirst.frc.team340.robot.subsystems.Claw;
 import org.usfirst.frc.team340.robot.subsystems.Climber;
 import org.usfirst.frc.team340.robot.subsystems.Drive;
 import org.usfirst.frc.team340.robot.subsystems.Elevator;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -51,7 +57,12 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 	
+	public static String FMSData() {
+		return DriverStation.getInstance().getGameSpecificMessage();
+	}
+	
 	public static Object choose(String fms, int pos, Object left, Object right) {
+		SmartDashboard.putString("FMS", fms);
 		if(fms.substring(pos, pos + 1).toLowerCase().equals("l")) {
 			return left;
 		} else {
@@ -79,6 +90,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 	}
 
+	private static final String start = "C"; // L[eft] C[enter] or R[ight]
+	private static final int cubes = 1; // 1/2/3 cubes etc
+	
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -92,7 +106,39 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+//		m_autonomousCommand = m_chooser.getSelected();
+		String fms = FMSData();
+		switch(fms) {
+			case "RRR":
+				if(start.equals("R") && cubes == 1) {
+					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
+				} else if (start.equals("C")) {
+					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_RIGHT);
+				}
+				break;
+			case "LLL":
+				if(start.equals("R") && cubes == 1) {
+					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT, FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
+				} else if (start.equals("C")) {
+					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
+				}
+				break;
+			case "RLR":
+				if(start.equals("R") && cubes == 1) {
+					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT, FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
+				} else if (start.equals("C")) {
+					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_RIGHT);
+				}
+				break;
+			case "LRL":
+				if(start.equals("R") && cubes == 1) {
+					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
+				} else if (start.equals("C")) {
+					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
+				}
+				break;
+		}
+			
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -142,6 +188,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
+		
 	}
 
 	/**

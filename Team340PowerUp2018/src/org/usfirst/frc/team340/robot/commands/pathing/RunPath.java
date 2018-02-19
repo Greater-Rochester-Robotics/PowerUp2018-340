@@ -67,7 +67,7 @@ public class RunPath extends Command {
     }
     
     private double getDistance() {
-    	return (Robot.drive.getRightEncoder() + Robot.drive.getLeftEncoder())/2;
+    	return Math.abs((Robot.drive.getRightEncoder() + Robot.drive.getLeftEncoder())/2);
     }
     
     private double deltaAngle(double currentAngle) {

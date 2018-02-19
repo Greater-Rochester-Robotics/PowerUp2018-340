@@ -47,6 +47,7 @@ public class Paths {
 				, 141),
 				new PathSegment(t -> 
 				/* {"start":{"x":0,"y":264},"mid1":{"x":78,"y":261},"mid2":{"x":81,"y":199},"end":{"x":72,"y":0}} */
+				/* try this if too tight: {"start":{"x":0,"y":264},"mid1":{"x":106,"y":288},"mid2":{"x":67,"y":213},"end":{"x":72,"y":0}} */
 				(-9 + -354 * t + -234 * Math.pow(t, 2))/ (234 + -450 * t + 189 * Math.pow(t, 2)) 
 				, 306)
 				);
@@ -62,6 +63,11 @@ public class Paths {
 				(-30 + 234 * t + -21 * Math.pow(t, 2))/ (135 + -96 * t + -189 * Math.pow(t, 2)) 
 				, 128)
 				);
+	}
+	
+	public static final Path STRAIGHT = new Path(new PathSegment(t -> 0.0, 9999999.999999));
+	public static Path straightLength(double length) {
+		return new Path(new PathSegment(t -> 0.0, length));
 	}
 	
 	public static Path choose(String fms, int pos, Path left, Path right) {
