@@ -18,8 +18,8 @@ public class ElevatorGoAbovePosition extends Command {
     
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Robot.elevator.getPosition() < RobotMap.ELEVATOR_TRAVEL_POSITION_TICKS) {
-    		Robot.elevator.setPosition(RobotMap.ELEVATOR_TRAVEL_POSITION_TICKS);
+    	if(Robot.elevator.getPosition() < RobotMap.ELEVATOR_TRAVEL_POSITION_HEIGHT) {
+    		Robot.elevator.setPosition(RobotMap.ELEVATOR_TRAVEL_POSITION_HEIGHT);
     	}
     }
 
@@ -30,7 +30,7 @@ public class ElevatorGoAbovePosition extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.elevator.getPosition() >= RobotMap.ELEVATOR_TRAVEL_POSITION_TICKS;
+        return Robot.elevator.getPosition() >= RobotMap.ELEVATOR_TRAVEL_POSITION_HEIGHT;
     }
 
     // Called once after isFinished returns true

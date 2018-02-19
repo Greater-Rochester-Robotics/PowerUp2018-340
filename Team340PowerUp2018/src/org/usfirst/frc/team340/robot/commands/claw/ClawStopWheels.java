@@ -5,7 +5,7 @@ import org.usfirst.frc.team340.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Also closes!!
  */
 public class ClawStopWheels extends Command {
 
@@ -18,6 +18,7 @@ public class ClawStopWheels extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.stopWheels();
+    	Robot.claw.close();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team340.robot;
 
-import org.usfirst.frc.team340.robot.OI.Axis;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
@@ -190,11 +189,17 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
 		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
-		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
+		
+		System.out.println("\t\t\t\t\t\telev enc = "+elevator.getPosition());
+		System.out.println("\t\t\t\t\t\tis at bottom? "+elevator.isAtBottom());
+		
+//		System.out.println("DT Left= " + Robot.drive.getLeftEncoder());
+//		System.out.println("DT Right= " + Robot.drive.getRightEncoder());
+//		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
+//		System.out.println("IMU= " + Robot.drive.getYaw());
 		
 	}
 

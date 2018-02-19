@@ -155,17 +155,20 @@ public class Elevator extends Subsystem {
 			} else if(getPosition() < BOTTOM_LOWER_SLOW) {
 				speed *= 0.1;
 			}
+			
+			goDown(speed);
 		} else if (speed > 0) {
 			speed *= 1.00;
 			if(getPosition() > TOP_UPPER_SLOW) {
 				speed = 0.05;
 			} else if(getPosition() > TOP_LOWER_SLOW) {
 				speed *= 0.4;
-			} 
+			}
 			
-		}	
-		
-    	talonA.set(speed);
+			goUp(speed);
+		} else {
+			stop();
+		}
     }
     
     /**
