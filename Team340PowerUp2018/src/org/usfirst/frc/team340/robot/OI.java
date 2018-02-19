@@ -8,13 +8,19 @@
 package org.usfirst.frc.team340.robot;
 
 import org.usfirst.frc.team340.robot.commands.climber.ClimberClimb;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployHook;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberRetract;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberStop;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsIn;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsOut;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltBackward;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -74,8 +80,8 @@ public class OI {
 		driverLB.whenPressed(new ManualClawWheelsOut());
 		driverLB.whenReleased(new ManualClawWheelsStop());
 		
-//		coDriverRB.whenPressed(new ManualElevatorTiltForward());
-//		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
+		coDriverRB.whenPressed(new ManualElevatorTiltForward());
+		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
 		
 //		driverY.whenPressed(new ClawDropScore());
 //		driverY.whenReleased(new ClawNeutral());
@@ -136,17 +142,17 @@ public class OI {
 		
 		// use below for drive practice
 		
-//		coDriverDPadRight.whenPressed(new ClimberDeployHook());
-//		coDriverDPadLeft.whenPressed(new ClimberRetract());
-//		coDriverDPadDown.whenPressed(new ClimberClimb(1.0));
-//		coDriverDPadDown.whenReleased(new ClimberStop());
-//		coDriverDPadUp.whenPressed(new ClimberClimb(-1.0));
-//		coDriverDPadUp.whenReleased(new ClimberStop());
+		coDriverDPadRight.whenPressed(new ClimberDeployHook());
+		coDriverDPadLeft.whenPressed(new ClimberRetract());
+		coDriverDPadDown.whenPressed(new ClimberClimb(1.0));
+		coDriverDPadDown.whenReleased(new ClimberStop());
+		coDriverDPadUp.whenPressed(new ClimberClimb(-1.0));
+		coDriverDPadUp.whenReleased(new ClimberStop());
 		
-//		coDriverA.whenPressed(new ElevatorGoToPosition(100));
-//		coDriverB.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MID_HEIGHT));
-//		coDriverY.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MAX_HEIGHT));
-//		coDriverRT.whenPressed(new ElevatorGoToBottom());
+		coDriverA.whenPressed(new ElevatorGoToPosition(100));
+		coDriverB.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MID_HEIGHT));
+		coDriverY.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MAX_HEIGHT));
+		coDriverRT.whenPressed(new ElevatorGoToBottom());
 	}
 	
 	/**

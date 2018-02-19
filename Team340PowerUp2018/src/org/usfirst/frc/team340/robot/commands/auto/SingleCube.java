@@ -34,7 +34,7 @@ public class SingleCube extends CommandGroup {
 		if(x < 0.3) {
 			return 0.3;
 		} else if (x < 0.75) {
-			return 0.4;
+			return 0.35;
 		} else {
 			return 0.25;
 		}

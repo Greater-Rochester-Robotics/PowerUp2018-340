@@ -65,6 +65,36 @@ public class Paths {
 				);
 	}
 	
+	public static class FROM_LEFT_PORTAL {
+		public static final Path SWITCH_LEFT_TRAVEL = straightLength(100);
+		public static final Path SWITCH_LEFT_FINISH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":100},"mid1":{"x":12,"y":97},"mid2":{"x":31,"y":108},"end":{"x":30,"y":130}} */
+				(-9 + 84 * t + -9 * Math.pow(t, 2))/ (36 + 42 * t + -81 * Math.pow(t, 2)) 
+				, 49)
+				);
+		public static final Path SCALE_LEFT_TRAVEL = straightLength(240);
+		public static final Path SCALE_LEFT_FINISH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":102},"mid2":{"x":15,"y":104},"end":{"x":30,"y":117}} */
+				(6 + 0 * t + 33 * Math.pow(t, 2))/ (30 + -30 * t + 45 * Math.pow(t, 2)) 
+				, 36)
+				);
+		public static final Path SCALE_RIGHT_TRAVEL = new Path(
+				straightLength(156).getPathAtDistance(10),
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":0},"mid1":{"x":109,"y":-13},"mid2":{"x":34,"y":191},"end":{"x":69,"y":230}} */
+				(-39 + 1302 * t + -1146 * Math.pow(t, 2))/ (327 + -1104 * t + 882 * Math.pow(t, 2)) 
+				, 271)
+				);
+		public static final Path SCALE_RIGHT_FINISH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":100},"mid1":{"x":30,"y":106},"mid2":{"x":70,"y":95},"end":{"x":36,"y":60}} */
+				(18 + -102 * t + -21 * Math.pow(t, 2))/ (90 + 60 * t + -252 * Math.pow(t, 2)) 
+				, 86)
+				);
+	}
+	
 	public static final Path STRAIGHT = new Path(new PathSegment(t -> 0.0, 9999999.999999));
 	public static Path straightLength(double length) {
 		return new Path(new PathSegment(t -> 0.0, length));
