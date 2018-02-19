@@ -7,9 +7,8 @@
 
 package org.usfirst.frc.team340.robot;
 
-import org.usfirst.frc.team340.robot.OI.Axis;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
-import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
+//import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_RIGHT;
 import org.usfirst.frc.team340.robot.subsystems.Claw;
@@ -107,37 +106,37 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 //		m_autonomousCommand = m_chooser.getSelected();
-		String fms = FMSData();
-		switch(fms) {
-			case "RRR":
-				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
-				} else if (start.equals("C")) {
-					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_RIGHT);
-				}
-				break;
-			case "LLL":
-				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT, FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
-				} else if (start.equals("C")) {
-					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
-				}
-				break;
-			case "RLR":
-				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT, FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
-				} else if (start.equals("C")) {
-					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_RIGHT);
-				}
-				break;
-			case "LRL":
-				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
-				} else if (start.equals("C")) {
-					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
-				}
-				break;
-		}
+//		String fms = FMSData();
+//		switch(fms) {
+//			case "RRR":
+//				if(start.equals("R") && cubes == 1) {
+//					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
+//				} else if (start.equals("C")) {
+//					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_RIGHT);
+//				}
+//				break;
+//			case "LLL":
+//				if(start.equals("R") && cubes == 1) {
+//					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT, FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
+//				} else if (start.equals("C")) {
+//					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
+//				}
+//				break;
+//			case "RLR":
+//				if(start.equals("R") && cubes == 1) {
+//					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT, FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
+//				} else if (start.equals("C")) {
+//					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_RIGHT);
+//				}
+//				break;
+//			case "LRL":
+//				if(start.equals("R") && cubes == 1) {
+//					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
+//				} else if (start.equals("C")) {
+//					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
+//				}
+//				break;
+//		}
 			
 
 		/*
@@ -183,11 +182,17 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
 		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
-		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
+		
+		System.out.println("\t\t\t\t\t\telev enc = "+elevator.getPosition());
+		System.out.println("\t\t\t\t\t\tis at bottom? "+elevator.isAtBottom());
+		
+//		System.out.println("DT Left= " + Robot.drive.getLeftEncoder());
+//		System.out.println("DT Right= " + Robot.drive.getRightEncoder());
+//		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
+//		System.out.println("IMU= " + Robot.drive.getYaw());
 		
 	}
 

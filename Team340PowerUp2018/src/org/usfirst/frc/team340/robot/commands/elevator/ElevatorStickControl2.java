@@ -37,11 +37,12 @@ public class ElevatorStickControl2 extends Command {
 		
     	Robot.elevator.setSpeedScaled(speed);
 		
-		if(speed == 0) {
-			Robot.elevator.setBrakeEngaged();
-		} else {
-			Robot.elevator.setBrakeDisengaged();
-		}
+    	//Accounted for
+//		if(speed == 0) {
+//			Robot.elevator.setBrakeEngaged();
+//		} else {
+//			Robot.elevator.setBrakeDisengaged();
+//		}
 		
 		SmartDashboard.putNumber("Elevator speed", speed);
 		SmartDashboard.putNumber("encoder", Robot.elevator.getPosition());

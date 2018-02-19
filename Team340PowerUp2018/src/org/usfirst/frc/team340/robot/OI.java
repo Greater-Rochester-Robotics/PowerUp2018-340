@@ -7,14 +7,18 @@
 
 package org.usfirst.frc.team340.robot;
 
+import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
+import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
+import org.usfirst.frc.team340.robot.commands.claw.ClawStopWheels;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberClimb;
-import org.usfirst.frc.team340.robot.commands.climber.ClimberStop;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployHook;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberRetract;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoAbovePosition;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsIn;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsOut;
-import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltBackward;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -62,20 +66,28 @@ public class OI {
 	private Button coDriverDPadRight = new DPad(coDriver, DPad.Direction.right);
 	private Button coDriverDPadLeft = new DPad(coDriver, DPad.Direction.left);
 	private Button coDriverRT = new JoyTrigger(coDriver, Axis.RIGHT_TRIGGER.getAxis(), .2);
-		
+	
+	//Climber - positive climb/roll-in; negative unclimb/roll-out
 	public OI () {
 		
 		//Buttons
-		driverA.whenPressed(new ManualClawClose());
-		driverY.whenPressed(new ManualClawNeutral());
-		driverX.whenPressed(new ManualClawOpen());
-		driverRB.whenPressed(new ManualClawWheelsIn());
-		driverRB.whenReleased(new ManualClawWheelsStop());
-		driverLB.whenPressed(new ManualClawWheelsOut());
-		driverLB.whenReleased(new ManualClawWheelsStop());
+		driverA.whenPressed(new ClawAcquireCube());
+		driverA.whenReleased(new ClawStopWheels()); //Also closes!!!
+		driverX.whenPressed(new ClawShootScore());
+		driverX.whenReleased(new ClawStopWheels()); //Also closes!!!
+		driverY.whenPressed(new ManualClawOpen());
 		
-//		coDriverRB.whenPressed(new ManualElevatorTiltForward());
-//		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
+		coDriverA.whenPressed(new ElevatorGoAbovePosition());
+		coDriverB.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MID_HEIGHT));
+		coDriverY.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MAX_HEIGHT));
+		//X is do nuffin
+		coDriverRT.whenPressed(new ElevatorGoToBottom());
+		coDriverRB.whenPressed(new ManualElevatorTiltForward());
+		coDriverLB.whenPressed(new ManualElevatorTiltBackward());
+		coDriverDPadLeft.whenPressed(new ClimberDeployHook());
+		coDriverDPadRight.whenPressed(new ClimberRetract());
+		coDriverDPadUp.whenPressed(new ClimberClimb(-.5));
+		coDriverDPadDown.whenPressed(new ClimberClimb(.5));
 		
 //		driverY.whenPressed(new ClawDropScore());
 //		driverY.whenReleased(new ClawNeutral());
@@ -181,7 +193,7 @@ public class OI {
 	 * @see Axis
 	 */
 	public double getDriverAxis(Axis axis) {
-	    return (driver.getRawAxis(axis.getAxis()) < -.05 || driver.getRawAxis(axis.getAxis()) > .05) ? driver.getRawAxis(axis.getAxis()) : 0;
+	    return (driver.getRawAxis(axis.getAxis()) < -.1 || driver.getRawAxis(axis.getAxis()) > .1) ? driver.getRawAxis(axis.getAxis()) : 0;
 	}
 	
 	/**
@@ -193,6 +205,6 @@ public class OI {
 	 * @see Axis
 	 */
 	public double getCoDriverAxis(Axis axis) {
-	    return (coDriver.getRawAxis(axis.getAxis()) < -.05 || coDriver.getRawAxis(axis.getAxis()) > .05) ? coDriver.getRawAxis(axis.getAxis()) : 0;
+	    return (coDriver.getRawAxis(axis.getAxis()) < -.1 || coDriver.getRawAxis(axis.getAxis()) > .1) ? coDriver.getRawAxis(axis.getAxis()) : 0;
 	}
 }
