@@ -41,6 +41,8 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+	public static final boolean isCompBot = true;
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -55,7 +57,26 @@ public class Robot extends TimedRobot {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+//		SmartDashboard.putNumber("PracticeToCompMultiplier", 1.7657);
+//		SmartDashboard.putNumber("CompToPracticeMultiplier", 0.5663);
+//		SmartDashboard.setPersistent("PracticeToCompMultiplier");
+//		SmartDashboard.setPersistent("CompToPracticeMultiplier");
 	}
+	
+	/*public static double getPracticeToCompMultiplier() {
+		if(!isCompBot) {
+			return 1.8678;
+		}
+		return 1;
+//		return SmartDashboard.getNumber("PracticeToCompMultiplier", 1.0);
+	}
+	public static double getCompToPracticeMultiplier() {
+		if(!isCompBot) {
+			return 0.535;
+		}
+		return 1;
+//		return SmartDashboard.getNumber("CompToPracticeMultiplier", 1.0);
+	}*/
 	
 	public static String FMSData() {
 		return DriverStation.getInstance().getGameSpecificMessage();
@@ -90,7 +111,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 	}
 
-	private static final String start = "L"; // L[eft] C[enter] or R[ight]
+	private static final String start = "C"; // L[eft] C[enter] or R[ight]
 	private static final int cubes = 1; // 1/2/3 cubes etc
 	
 	/**

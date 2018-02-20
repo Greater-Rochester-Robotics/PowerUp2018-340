@@ -1,5 +1,6 @@
 package org.usfirst.frc.team340.robot.subsystems;
 
+import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.RobotMap;
 import org.usfirst.frc.team340.robot.commands.drive.DriveController;
 
@@ -58,6 +59,9 @@ public class Drive extends Subsystem {
 	 * @return right encoder's count
 	 */
 	public int getRightEncoder() {
+		if(Robot.isCompBot) {
+			return (int) (encoderRight.get() / 13);
+		}
     	return encoderRight.get() / 3;
 	}
 	
@@ -65,6 +69,9 @@ public class Drive extends Subsystem {
 	 * @return left encoder's count
 	 */
 	public int getLeftEncoder() {
+		if(Robot.isCompBot) {
+			return (int) (encoderLeft.get() / 13 * 1.01695);
+		}
 		return encoderLeft.get() / 3;
 	}
 	

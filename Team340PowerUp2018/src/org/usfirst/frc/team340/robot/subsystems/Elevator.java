@@ -1,5 +1,6 @@
 package org.usfirst.frc.team340.robot.subsystems;
 
+import org.usfirst.frc.team340.robot.Robot;
 import org.usfirst.frc.team340.robot.RobotMap;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStickControl2;
 
@@ -46,7 +47,7 @@ public class Elevator extends Subsystem {
 		talonA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		
 		// broke
-		talonA.configForwardSoftLimitThreshold(RobotMap.ELEVATOR_MAX_TICS, 1);
+		talonA.configForwardSoftLimitThreshold((int) (RobotMap.ELEVATOR_MAX_TICS), 1);
 		talonA.configForwardSoftLimitEnable(true, 1);
 		
 		talonA.configOpenloopRamp(RobotMap.ELEVATOR_RAMP_TIME_S, 0);
@@ -85,7 +86,7 @@ public class Elevator extends Subsystem {
      * @return the encoder position
      */
     public int getPosition() {
-    	return talonA.getSelectedSensorPosition(0);
+    	return (int) (talonA.getSelectedSensorPosition(0));
     }
     
     /**

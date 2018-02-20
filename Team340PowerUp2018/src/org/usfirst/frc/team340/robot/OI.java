@@ -14,11 +14,15 @@ import org.usfirst.frc.team340.robot.commands.climber.ClimberClimb;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployHook;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberRetract;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberStop;
+import org.usfirst.frc.team340.robot.commands.drive.DriveStop;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltBackward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
+import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -74,6 +78,9 @@ public class OI {
 		driverA.whenPressed(new ClawAcquireCube());
 		driverA.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverX.whenPressed(new ClawShootScore());
+		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_LEFT, 0.4));
+		driverB.whenReleased(new DriveStop());
+		
 		driverX.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverY.whenPressed(new ManualClawOpen());
 
