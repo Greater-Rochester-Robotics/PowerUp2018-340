@@ -23,9 +23,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class SingleCube extends CommandGroup {
 	private final Function<Double, Double> speedFast = x -> {
 		if(x < 0.1) {
-			return 0.3;
+			return 0.35;
 		} else if (x < 0.85) {
-			return 0.6969;
+			return 0.7569;
 		} else {
 			return 0.25;
 		}
@@ -43,15 +43,15 @@ public class SingleCube extends CommandGroup {
     public SingleCube(Path travelPath, Path finishPath, int elevatePosition, double shootSpeed) {
     	addSequential(new ManualClawClose(), 0.1);
     	addSequential(new ManualElevatorTiltForward(), 0.5);
-    	addSequential(new WaitCommand(0.5));
+    	addSequential(new WaitCommand(0.35));
     	addSequential(new ElevatorGoToBottom(), 1.5);
-    	addSequential(new WaitCommand(0.5));
+//    	addSequential(new WaitCommand(0.5));
     	addParallel(new ElevatorGoToPosition(300), 1);
     	addSequential(new RunPath(travelPath, speedFast), 9.5);
-    	addSequential(new WaitCommand(0.5));
+    	addSequential(new WaitCommand(0.25));
     	addParallel(new ElevatorGoToPosition(elevatePosition));
     	addSequential(new RunPath(finishPath, speedSlow), 3.5);
-    	addSequential(new WaitCommand(0.5));
+    	addSequential(new WaitCommand(0.25));
     	addSequential(new ClawShootScore(shootSpeed), 1);
     }
 }

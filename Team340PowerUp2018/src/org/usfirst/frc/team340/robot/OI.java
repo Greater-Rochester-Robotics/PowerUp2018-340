@@ -78,8 +78,8 @@ public class OI {
 		driverA.whenPressed(new ClawAcquireCube());
 		driverA.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverX.whenPressed(new ClawShootScore());
-		driverB.whenPressed(new RunPath(FROM_CENTER.SWITCH_LEFT, 0.4));
-		driverB.whenReleased(new DriveStop());
+//		driverB.whenPressed(new ManualClawOpen());
+//		driverB.whenReleased(new DriveStop());
 		
 		driverX.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverY.whenPressed(new ManualClawOpen());

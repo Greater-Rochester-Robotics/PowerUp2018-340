@@ -65,6 +65,36 @@ public class Paths {
 				);
 	}
 	
+	public static class FROM_RIGHT_PORTAL {
+		public static final Path SWITCH_RIGHT_TRAVEL = straightLength(100);
+		public static final Path SWITCH_RIGHT_FINISH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":100},"mid1":{"x":12,"y":104},"mid2":{"x":31,"y":92},"end":{"x":30,"y":70}} */
+				(12 + -96 * t + 18 * Math.pow(t, 2))/ (36 + 42 * t + -81 * Math.pow(t, 2)) 
+				, 50)
+				);
+		public static final Path SCALE_RIGHT_TRAVEL = straightLength(228);
+		public static final Path SCALE_RIGHT_FINISH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":98},"mid2":{"x":15,"y":97},"end":{"x":30,"y":83}} */
+				(-6 + 6 * t + -42 * Math.pow(t, 2))/ (30 + -30 * t + 45 * Math.pow(t, 2)) 
+				, 36)
+				);
+		public static final Path SCALE_LEFT_TRAVEL = new Path(
+				straightLength(156).getPathAtDistance(10),
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":230},"mid1":{"x":109,"y":242},"mid2":{"x":34,"y":39},"end":{"x":69,"y":0}} */
+				(36 + -1290 * t + 1137 * Math.pow(t, 2))/ (327 + -1104 * t + 882 * Math.pow(t, 2)) 
+				, 271)
+				);
+		public static final Path SCALE_LEFT_FINISH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":100},"mid1":{"x":30,"y":96},"mid2":{"x":60,"y":105},"end":{"x":36,"y":140}} */
+				(-12 + 78 * t + 39 * Math.pow(t, 2))/ (90 + 0 * t + -162 * Math.pow(t, 2)) 
+				, 79)
+				);
+	}
+	
 	public static class FROM_LEFT_PORTAL {
 		public static final Path SWITCH_LEFT_TRAVEL = straightLength(100);
 		public static final Path SWITCH_LEFT_FINISH = new Path(
@@ -73,7 +103,7 @@ public class Paths {
 				(-9 + 84 * t + -9 * Math.pow(t, 2))/ (36 + 42 * t + -81 * Math.pow(t, 2)) 
 				, 49)
 				);
-		public static final Path SCALE_LEFT_TRAVEL = straightLength(240);
+		public static final Path SCALE_LEFT_TRAVEL = straightLength(228);
 		public static final Path SCALE_LEFT_FINISH = new Path(
 				new PathSegment(t -> 
 				/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":102},"mid2":{"x":15,"y":104},"end":{"x":30,"y":117}} */
