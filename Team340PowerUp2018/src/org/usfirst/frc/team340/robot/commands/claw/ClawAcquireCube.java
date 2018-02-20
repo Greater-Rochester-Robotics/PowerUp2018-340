@@ -42,7 +42,7 @@ public class ClawAcquireCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return goodSamples >= 30;
+        return goodSamples >= 15;
     }
 
     // Called once after isFinished returns true

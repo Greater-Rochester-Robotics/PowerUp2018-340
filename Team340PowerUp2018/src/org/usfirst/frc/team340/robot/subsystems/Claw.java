@@ -76,16 +76,16 @@ public class Claw extends Subsystem {
      * Open the claw
      */
     public void open() {
-    	closeSolenoid.set(false);
-    	openSolenoid.set(true);
+    	closeSolenoid.set(true); //false on prac
+    	openSolenoid.set(false); //true on prac
     }
     
     /**
      * Close the claw
      */
     public void close() {
-    	closeSolenoid.set(true);
-    	openSolenoid.set(false);
+    	closeSolenoid.set(false); //true on prac
+    	openSolenoid.set(true); //false on prac
     }
     
     /**

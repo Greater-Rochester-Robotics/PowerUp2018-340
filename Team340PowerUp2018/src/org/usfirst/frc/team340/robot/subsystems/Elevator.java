@@ -86,7 +86,7 @@ public class Elevator extends Subsystem {
      * @return the encoder position
      */
     public int getPosition() {
-    	return (int) (talonA.getSelectedSensorPosition(0));
+    	return talonA.getSelectedSensorPosition(0);
     }
     
     /**
