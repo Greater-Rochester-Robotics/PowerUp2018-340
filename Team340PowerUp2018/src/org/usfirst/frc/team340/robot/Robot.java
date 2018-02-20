@@ -113,7 +113,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 	}
 
-	private static final String start = "R"; // L[eft] C[enter] or R[ight]
+	private static final String start = "L"; // L[eft] C[enter] or R[ight]
 	private static final int cubes = 1; // 1/2/3 cubes etc
 	
 	/**
@@ -148,7 +148,8 @@ public class Robot extends TimedRobot {
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT, FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
 					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.5069);
 				} else if (start.equals("L") &&  cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.6969);
+					m_autonomousCommand = new TwoCubeEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 90, 0.6069, 0.3069);
+//					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.6969);
 				} else if (start.equals("C")) {
 					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
 				}
