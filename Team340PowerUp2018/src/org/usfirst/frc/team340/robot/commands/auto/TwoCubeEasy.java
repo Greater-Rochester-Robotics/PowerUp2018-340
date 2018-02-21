@@ -43,7 +43,7 @@ public class TwoCubeEasy extends CommandGroup {
 			return 0.25;
 		}
 	};
-    public TwoCubeEasy(Path travelPath, Path finishPath, double turnAngle, double scaleSpeed, double switchSpeed) {
+    public TwoCubeEasy(Path travelPath, Path finishPath, Path secondCube, double turnAngle, double scaleSpeed, double switchSpeed) {
     	addSequential(new SingleCube(travelPath, finishPath, 3000, scaleSpeed), 11);
     	addSequential(new ElevatorGoToBottom(), 2);
     	addSequential(new RunPath(Paths.straightLength(20), -0.5), 1.5);
@@ -51,7 +51,7 @@ public class TwoCubeEasy extends CommandGroup {
 //    	addSequential(new WaitCommand(0.25));
     	addSequential(new ManualClawOpen(), 0.5);
     	addParallel(new ManualClawWheelsIn());
-    	addSequential(new RunPath(FROM_LEFT_PORTAL.SECOND_CUBE, 0.4), 3);
+    	addSequential(new RunPath(secondCube, 0.4), 3);
     	addSequential(new ManualClawClose(), 0.5);
     	addSequential(new ManualClawWheelsStop(), 0.5);
     	addSequential(new ClawAcquireCube(), 1);
