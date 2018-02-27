@@ -1,16 +1,12 @@
 package org.usfirst.frc.team340.robot.commands.auto;
 
-import org.usfirst.frc.team340.robot.Robot;
-import org.usfirst.frc.team340.robot.commands.claw.ClawDropScore;
 import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
-import org.usfirst.frc.team340.robot.commands.pathing.Paths;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
-import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;

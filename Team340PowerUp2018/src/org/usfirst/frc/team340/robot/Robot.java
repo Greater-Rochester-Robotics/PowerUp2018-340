@@ -12,7 +12,6 @@ import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.auto.TwoCubeEasy;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_LEFT_PORTAL;
-import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_RIGHT;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_RIGHT_PORTAL;
 import org.usfirst.frc.team340.robot.subsystems.Claw;
 import org.usfirst.frc.team340.robot.subsystems.Climber;

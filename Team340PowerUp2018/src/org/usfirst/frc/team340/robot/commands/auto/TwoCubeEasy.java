@@ -4,16 +4,12 @@ import java.util.function.Function;
 
 import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
 import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
-import org.usfirst.frc.team340.robot.commands.claw.ClawStopWheels;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsIn;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
-import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
-import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_LEFT_PORTAL;
-import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_RIGHT;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
