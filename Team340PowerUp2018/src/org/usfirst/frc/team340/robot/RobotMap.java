@@ -41,8 +41,7 @@ public class RobotMap {
 	public static final int CLAW_CUBE_SENSOR_CHANNEL_B = 5;
 	
 	//Solenoid Channels
-	public static final int ELEVATOR_BRAKE_CHANNEL_A = 0;
-	public static final int ELEVATOR_BRAKE_CHANNEL_B = 1;
+	public static final int ELEVATOR_BRAKE_CHANNEL = 1;
 	public static final int ELEVATOR_TILT_CHANNEL_A = 3;
 	public static final int ELEVATOR_TILT_CHANNEL_B = 2;
 	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 6;

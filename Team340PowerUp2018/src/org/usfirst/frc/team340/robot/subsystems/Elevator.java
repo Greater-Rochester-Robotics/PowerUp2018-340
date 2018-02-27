@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,7 +20,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Raises and lowers - or elevates - the cube acquisition device (commonly referred to as the {@link Claw})
  */
 public class Elevator extends Subsystem {
-	private static DoubleSolenoid brake;
+	private static Solenoid brake;
 	private static DoubleSolenoid tilt;
 	public static WPI_TalonSRX talonA; //Contains bottom switch and encoder. Is hw 1.7
 	private static WPI_TalonSRX talonB;
@@ -34,7 +35,7 @@ public class Elevator extends Subsystem {
 	 * Raises and lowers the claw to get the cube into the switch and scale
 	 */
 	public Elevator() {
-		brake = new DoubleSolenoid(RobotMap.ELEVATOR_BRAKE_CHANNEL_A, RobotMap.ELEVATOR_BRAKE_CHANNEL_B);
+		brake = new Solenoid(RobotMap.ELEVATOR_BRAKE_CHANNEL);
 		tilt = new DoubleSolenoid(RobotMap.ELEVATOR_TILT_CHANNEL_A, RobotMap.ELEVATOR_TILT_CHANNEL_B);
 		
 		talonA = new WPI_TalonSRX(RobotMap.ELEVATOR_TALONSRX_A_ID);
@@ -115,7 +116,7 @@ public class Elevator extends Subsystem {
      * @return the brake value
      */
     public boolean getBrake() {
-    	return brake.get() == Value.kForward;
+    	return brake.get();
     }
     
     /**
@@ -136,14 +137,14 @@ public class Elevator extends Subsystem {
      * Engage the elevator brake
      */
     public void setBrakeEngaged() {
-    	brake.set(Value.kForward);
+    	brake.set(false);
     }
     
     /**
      * Disengage the elevator brake
      */
     public void setBrakeDisengaged() {
-    	brake.set(Value.kReverse);
+    	brake.set(true);
     }
     public void setSpeedScaled(double speed){
     	if (speed < 0) {
