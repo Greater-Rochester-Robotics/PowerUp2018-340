@@ -21,6 +21,8 @@ public class ClawAcquireCube extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	System.out.println("CLAW ACQUIRE CUBE STARTING");
+    	Robot.claw.setRedLEDs(true);
+    	Robot.claw.setGreenLEDs(false);
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
     	Robot.claw.neutral();
     	goodSamples = 0;
@@ -31,6 +33,8 @@ public class ClawAcquireCube extends Command {
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
     	Robot.claw.neutral();
     	if(Robot.claw.isCubePresent()) {
+    		Robot.claw.setRedLEDs(false);
+        	Robot.claw.setGreenLEDs(true);
     		Robot.claw.close();
     		goodSamples++;
     	} else {
@@ -48,6 +52,8 @@ public class ClawAcquireCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.claw.setRedLEDs(false);
+    	Robot.claw.setGreenLEDs(false);
     	Robot.claw.close();
     	Robot.claw.stopWheels();
     }

@@ -20,6 +20,9 @@ public class ManualClawWheelsStop extends Command {
     	System.out.println("[" + getClass().getName() + "] -Initializing-");
     	Robot.claw.stopWheels();
     	System.out.println("[" + getClass().getName() + "] Claw wheels stopped");
+    	Robot.claw.setRedLEDs(false);
+    	Robot.claw.setGreenLEDs(false);
+    	System.out.println("[" + getClass().getName() + "] LEDs turned off");
     }
 
     // Called repeatedly when this Command is scheduled to run

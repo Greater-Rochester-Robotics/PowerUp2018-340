@@ -21,6 +21,9 @@ public class ManualClawWheelsIn extends Command {
     	System.out.println("[" + getClass().getName() + "] -Intiailizing-");
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_FULLSPEED_VBUS);
     	System.out.println("[" + getClass().getName() + "] Claw wheels spun in");
+    	Robot.claw.setRedLEDs(true);
+    	Robot.claw.setGreenLEDs(false);
+    	System.out.println("[" + getClass().getName() + "] LEDs set to red");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,6 +33,12 @@ public class ManualClawWheelsIn extends Command {
     	System.out.println("[" + getClass().getName() + "] Claw right wheels @ " + Robot.claw.getRightSRX().get());
     	System.out.println("[" + getClass().getName() + "] Claw status: " + Robot.claw.getClawStatus());
     	System.out.println("[" + getClass().getName() + "] Claw cube status: " + Robot.claw.isCubePresent());
+    	
+    	if(Robot.claw.isCubePresent()) {
+    		Robot.claw.setRedLEDs(false);
+        	Robot.claw.setGreenLEDs(true);
+        	System.out.println("[" + getClass().getName() + "] LEDs set to green");
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

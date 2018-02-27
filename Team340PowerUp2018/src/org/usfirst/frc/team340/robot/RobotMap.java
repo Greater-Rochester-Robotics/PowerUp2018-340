@@ -47,6 +47,8 @@ public class RobotMap {
 	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 6;
 	public static final int CLAW_SOLENOID_OPEN_CHANNEL = 5;
 	public static final int CLIMBER_DEPLOY_CHANNEL= 7;
+	public static final int LED_RED_CHANNEL = 0;
+	public static final int LED_GREEN_CHANNEL = 4;
 	
 	
 	
