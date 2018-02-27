@@ -31,6 +31,7 @@ public class ClawAcquireCube extends Command {
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
     	Robot.claw.neutral();
     	if(Robot.claw.isCubePresent()) {
+    		Robot.claw.close();
     		goodSamples++;
     	} else {
     		goodSamples = 0;

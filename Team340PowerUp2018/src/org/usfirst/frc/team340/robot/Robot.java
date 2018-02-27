@@ -19,6 +19,7 @@ import org.usfirst.frc.team340.robot.subsystems.Climber;
 import org.usfirst.frc.team340.robot.subsystems.Drive;
 import org.usfirst.frc.team340.robot.subsystems.Elevator;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -57,6 +58,10 @@ public class Robot extends TimedRobot {
 		elevator = new Elevator();
 		//SUBSYSTEMS BEFORE THIS LINE, OI AFTER
 		oi = new OI();
+		
+		// put USB camera on SmartDashboard
+		CameraServer.getInstance().startAutomaticCapture();
+		
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 //		SmartDashboard.putNumber("PracticeToCompMultiplier", 1.7657);

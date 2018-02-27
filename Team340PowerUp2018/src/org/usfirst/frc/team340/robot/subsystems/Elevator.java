@@ -172,6 +172,18 @@ public class Elevator extends Subsystem {
 		}
     }
     
+    public void setSpeedUnscaled(double speed) {
+    	// Tayno and James told me to do this  (-Justin)
+    	if (speed < 0 ){
+    		goDown(speed);
+    	} else if (speed > 0) {
+    		goUp(speed);
+    	} else {
+    		stop();
+    	}
+    	
+    }
+    
     /**
      * Raise the elevator at a constant speed
      * @param speed the speed to raise at as [0 ~ 1]
