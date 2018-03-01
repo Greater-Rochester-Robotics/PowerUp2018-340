@@ -20,6 +20,8 @@ import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStop;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltBackward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeDisengage;
+import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeEngage;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
@@ -99,6 +101,9 @@ public class OI {
 		coDriverB.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MID_HEIGHT));
 		coDriverY.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MAX_HEIGHT));
 		coDriverRT.whenPressed(new ElevatorGoToBottom());
+		
+		coDriverBack.whenPressed(new ManualElevatorBrakeDisengage());
+		coDriverStart.whenPressed(new ManualElevatorBrakeEngage());
 	}
 	
 	/**

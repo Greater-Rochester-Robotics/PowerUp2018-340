@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	public static final boolean isCompBot = true;
+	public static final boolean isCompBot = false;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -117,7 +117,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 	}
 
-	private static final String start = "L"; // L[eft] C[enter] or R[ight]
+	private static final String start = "C"; // L[eft] C[enter] or R[ight]
 	private static final int cubes = 1; // 1/2/3 cubes etc
 	
 	/**
@@ -228,6 +228,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 		SmartDashboard.putNumber("Elevator encoder", Robot.elevator.getPosition());
+		SmartDashboard.putBoolean("Brake", Robot.elevator.getBrake());
 		
 //		System.out.println("\t\t\t\t\t\telev enc = "+elevator.getPosition());
 //		System.out.println("\t\t\t\t\t\tis at bottom? "+elevator.isAtBottom());

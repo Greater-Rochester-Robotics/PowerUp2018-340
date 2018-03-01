@@ -19,11 +19,14 @@ public class ElevatorGoToPosition extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.elevator.setBrakeDisengaged();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.setPosition(pos);
+    	if(timeSinceInitialized() > 0.5) {
+    		Robot.elevator.setPosition(pos);
+    	}
     	System.out.println("pos = " + Robot.elevator.getPosition() + ", state = " + Robot.elevator.isAtBottom() + ", speed = " + Robot.elevator.getSpeed());
     }
 

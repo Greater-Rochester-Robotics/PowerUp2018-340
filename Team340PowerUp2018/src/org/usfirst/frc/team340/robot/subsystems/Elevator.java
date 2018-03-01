@@ -147,7 +147,7 @@ public class Elevator extends Subsystem {
     	brake.set(true);
     }
     public void setSpeedScaled(double speed){
-    	if (speed < 0) {
+    	if (speed < -0.05) {
 			speed *= 1.0;
 			if(isAtBottom()) {
 				speed = 0;
@@ -158,7 +158,7 @@ public class Elevator extends Subsystem {
 			}
 			
 			goDown(speed);
-		} else if (speed > 0) {
+		} else if (speed > 0.05) {
 			speed *= 1.00;
 			if(getPosition() > TOP_UPPER_SLOW) {
 				speed = 0.05;
