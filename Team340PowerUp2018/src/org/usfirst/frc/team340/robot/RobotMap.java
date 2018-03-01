@@ -59,7 +59,7 @@ public class RobotMap {
 	public static final double CLAW_WHEEL_SHOOTSPEED_VBUS = 0.5;
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
-	public static final double CLAW_WHEEL_ACQUIRE_SPEED_VBUS = 0.5;
+	public static final double CLAW_WHEEL_ACQUIRE_SPEED_VBUS = 1.0;
 	
 	//Drive Devices
 	//Elevator Devices

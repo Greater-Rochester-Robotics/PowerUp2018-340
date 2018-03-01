@@ -37,6 +37,11 @@ public class SingleCube extends CommandGroup {
 	};
 	
     public SingleCube(Path travelPath, Path finishPath, int elevatePosition, double shootSpeed) {
+    	// todo:
+    	// trim waitcommand(0.35)
+    	// increase position from 300 to ??
+    	// change speedFast function
+    	// 
     	addSequential(new ManualClawClose(), 0.1);
     	addSequential(new ManualElevatorTiltForward(), 0.5);
     	addSequential(new WaitCommand(0.35));

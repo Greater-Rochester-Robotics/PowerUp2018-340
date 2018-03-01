@@ -35,7 +35,7 @@ public class ElevatorStickControl2 extends Command {
     protected void execute() {
 		double speed = -Robot.oi.getCoDriverAxis(Axis.LEFT_Y);
 		
-    	Robot.elevator.setSpeedUnscaled(speed);
+    	Robot.elevator.setSpeedScaled(speed);
 		
     	//Accounted for
 //		if(speed == 0) {
