@@ -7,7 +7,9 @@
 
 package org.usfirst.frc.team340.robot;
 
+import org.usfirst.frc.team340.robot.commands.auto.testautomovement;
 import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
+import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCubeOpenClaw;
 import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.claw.ClawStopWheels;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberClimb;
@@ -80,8 +82,11 @@ public class OI {
 		driverA.whenPressed(new ClawAcquireCube());
 		driverA.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverX.whenPressed(new ClawShootScore());
-//		driverB.whenPressed(new ManualClawOpen());
-//		driverB.whenReleased(new DriveStop());
+		driverB.whenPressed(new ClawAcquireCubeOpenClaw());
+		driverB.whenReleased(new ClawStopWheels());
+		
+//		driverLB.whenPressed(new testautomovement());
+//		driverLB.whenReleased(new DriveStop());
 		
 		driverX.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverY.whenPressed(new ManualClawOpen());

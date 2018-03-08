@@ -81,16 +81,16 @@ public class Claw extends Subsystem {
      * Open the claw
      */
     public void open() {
-    	closeSolenoid.set(false); //false on prac
-    	openSolenoid.set(true); //true on prac
+    	closeSolenoid.set(true); //false on prac
+    	openSolenoid.set(false); //true on prac
     }
     
     /**
      * Close the claw
      */
     public void close() {
-    	closeSolenoid.set(true); //true on prac
-    	openSolenoid.set(false); //false on prac
+    	closeSolenoid.set(false); //true on prac
+    	openSolenoid.set(true); //false on prac
     }
     
     /**
@@ -134,6 +134,16 @@ public class Claw extends Subsystem {
 //    	System.out.println("SENSOR 1: " + cubeSensor1.get() + " SENSOR 2: " + cubeSensor2.get());
 //    	System.out.println("Boolean condition: " + (!cubeSensor1.get() || !cubeSensor2.get()));
     	return !cubeSensor1.get() || !cubeSensor2.get();
+    }
+    public int getNumCubeSensors() {
+    	int num = 0;
+    	if(cubeSensor1.get()) {
+    		num++;
+    	}
+    	if(cubeSensor2.get()) {
+    		num++;
+    	}
+    	return num;
     }
     
     public void setRedLEDs(boolean on) {

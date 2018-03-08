@@ -76,9 +76,9 @@ public class Paths {
 		public static final Path SCALE_RIGHT_TRAVEL = straightLength(224);
 		public static final Path SCALE_RIGHT_FINISH = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":98},"mid2":{"x":15,"y":97},"end":{"x":30,"y":83}} */
-				(-6 + 6 * t + -42 * Math.pow(t, 2))/ (30 + -30 * t + 45 * Math.pow(t, 2)) 
-				, 36)
+				/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":98},"mid2":{"x":14,"y":98},"end":{"x":28,"y":85}} */
+				(-6 + 12 * t + -45 * Math.pow(t, 2))/ (30 + -36 * t + 48 * Math.pow(t, 2)) 
+				, 31) // 33
 				);
 		public static final Path SCALE_LEFT_TRAVEL = new Path(
 				straightLength(156).getPathAtDistance(10),
@@ -91,7 +91,7 @@ public class Paths {
 				new PathSegment(t -> 
 				/* {"start":{"x":0,"y":100},"mid1":{"x":30,"y":96},"mid2":{"x":55,"y":102},"end":{"x":47,"y":130}} */
 				(-12 + 60 * t + 36 * Math.pow(t, 2))/ (90 + -30 * t + -84 * Math.pow(t, 2)) 
-				, 70)
+				, 67) // 70
 				);
 		public static final Path SECOND_CUBE = new Path(
 				new PathSegment(t -> 
@@ -112,9 +112,9 @@ public class Paths {
 		public static final Path SCALE_LEFT_TRAVEL = straightLength(226);
 		public static final Path SCALE_LEFT_FINISH = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":102},"mid2":{"x":15,"y":104},"end":{"x":30,"y":117}} */
-				(6 + 0 * t + 33 * Math.pow(t, 2))/ (30 + -30 * t + 45 * Math.pow(t, 2)) 
-				, 36)
+				/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":102},"mid2":{"x":13,"y":102},"end":{"x":28,"y":115}} */
+				(6 + -12 * t + 45 * Math.pow(t, 2))/ (30 + -42 * t + 57 * Math.pow(t, 2)) 
+				, 31) // 33
 				);
 		public static final Path SCALE_RIGHT_TRAVEL = new Path(
 				straightLength(156).getPathAtDistance(10),
@@ -127,7 +127,7 @@ public class Paths {
 				new PathSegment(t -> 
 				/* {"start":{"x":0,"y":100},"mid1":{"x":30,"y":106},"mid2":{"x":70,"y":95},"end":{"x":36,"y":60}} */
 				(18 + -102 * t + -21 * Math.pow(t, 2))/ (90 + 60 * t + -252 * Math.pow(t, 2)) 
-				, 86)
+				, 83) //86
 				);
 		public static final Path SECOND_CUBE = new Path(
 				new PathSegment(t -> 

@@ -39,6 +39,8 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 2; //TODO: assume right, but find if left or right
 	public static final int CLAW_CUBE_SENSOR_CHANNEL_A = 4;
 	public static final int CLAW_CUBE_SENSOR_CHANNEL_B = 5;
+	public static final int AUTO_SWITCH_A = 6;
+	public static final int AUTO_SWITCH_B = 7;
 	
 	//Solenoid Channels
 	public static final int ELEVATOR_BRAKE_CHANNEL = 1;
@@ -47,8 +49,8 @@ public class RobotMap {
 	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 6;
 	public static final int CLAW_SOLENOID_OPEN_CHANNEL = 5;
 	public static final int CLIMBER_DEPLOY_CHANNEL= 7;
-	public static final int LED_RED_CHANNEL = 0;
-	public static final int LED_GREEN_CHANNEL = 4;
+	public static final int LED_RED_CHANNEL = 4;
+	public static final int LED_GREEN_CHANNEL = 0;
 	
 	
 	
@@ -56,10 +58,10 @@ public class RobotMap {
 	
 	//Claw Wheel Speeds
 	public static final double CLAW_WHEEL_FULLSPEED_VBUS = 1.0;
-	public static final double CLAW_WHEEL_SHOOTSPEED_VBUS = 0.5;
+	public static final double CLAW_WHEEL_SHOOTSPEED_VBUS = 0.369;
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
-	public static final double CLAW_WHEEL_ACQUIRE_SPEED_VBUS = 1.0;
+	public static final double CLAW_WHEEL_ACQUIRE_SPEED_VBUS = 0.69;
 	
 	//Drive Devices
 	//Elevator Devices

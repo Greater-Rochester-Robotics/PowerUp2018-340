@@ -31,23 +31,27 @@ public class ClawAcquireCube extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
-    	Robot.claw.neutral();
+//    	Robot.claw.neutral();
     	if(Robot.claw.isCubePresent()) {
-    		Robot.claw.setRedLEDs(false);
+//    		Robot.claw.setRedLEDs(false);
         	Robot.claw.setGreenLEDs(true);
-    		Robot.claw.close();
-    		goodSamples++;
+//    		Robot.claw.close();
+    		
+    		goodSamples += Robot.claw.getNumCubeSensors();
     	} else {
     		goodSamples = 0;
     	}
-//    	if(goodSamples > 15) {
-//    		Robot.claw.close();
-//    	}
+    	if(goodSamples > 3) {
+    		Robot.claw.close();
+    	}
+    	if(goodSamples > 20) {
+    		Robot.claw.setRedLEDs(false);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return goodSamples >= 15;
+        return goodSamples >= 30;
     }
 
     // Called once after isFinished returns true

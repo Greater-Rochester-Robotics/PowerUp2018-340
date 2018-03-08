@@ -41,8 +41,8 @@ public class TwoCubeEasy extends CommandGroup {
 	};
     public TwoCubeEasy(Path travelPath, Path finishPath, Path secondCube, double turnAngle, double scaleSpeed, double switchSpeed) {
     	addSequential(new SingleCube(travelPath, finishPath, 3000, scaleSpeed), 11);
-    	addSequential(new ElevatorGoToBottom(), 2);
-    	addSequential(new RunPath(Paths.straightLength(20), -0.5), 1.5);
+//    	addSequential(new ElevatorGoToBottom(), 2);
+//    	addSequential(new RunPath(Paths.straightLength(18), -0.5), 1.5);
 //    	addSequential(new TurnToAngle(turnAngle, 0.5), 1.5);
 //    	addSequential(new WaitCommand(0.25));
     	addSequential(new ManualClawOpen(), 0.5);

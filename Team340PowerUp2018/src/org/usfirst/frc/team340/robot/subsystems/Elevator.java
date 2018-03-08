@@ -78,8 +78,8 @@ public class Elevator extends Subsystem {
 	 * @param position the unit count to position the elevator
 	 */
     public void setPosition(int position) {
-    	talonA.set(ControlMode.Position, position);
     	setBrakeDisengaged();
+    	talonA.set(ControlMode.Position, position);
     }
     
     /**

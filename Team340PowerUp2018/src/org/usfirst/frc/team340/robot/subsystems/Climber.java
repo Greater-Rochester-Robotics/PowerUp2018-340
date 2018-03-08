@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,6 +23,11 @@ public class Climber extends Subsystem {
 		deploy = new Solenoid(RobotMap.CLIMBER_DEPLOY_CHANNEL);
 		
 		winchB.set(ControlMode.Follower, RobotMap.CLIMBER_TALONSRX_A_ID);
+		winchA.configNominalOutputReverse(-1, 0);
+		winchB.configNominalOutputReverse(-1, 0);
+		
+		winchA.configPeakOutputReverse(-1, 0);
+		winchB.configPeakOutputReverse(-1, 0);
 	}
 	
     public void initDefaultCommand() {}
@@ -36,6 +42,7 @@ public class Climber extends Subsystem {
     
     public void setWinch(double speed) {
     	winchA.set(speed);
+    	SmartDashboard.putNumber("climb speed", speed);
     }
     
     public void stopWinch() {

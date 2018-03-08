@@ -19,6 +19,7 @@ import org.usfirst.frc.team340.robot.subsystems.Drive;
 import org.usfirst.frc.team340.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -43,7 +44,10 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	public static final boolean isCompBot = false;
+	public static final boolean isCompBot = true;
+	
+	public static DigitalInput autoSwitchA = new DigitalInput(RobotMap.AUTO_SWITCH_A);
+	public static DigitalInput autoSwitchB = new DigitalInput(RobotMap.AUTO_SWITCH_B);
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -88,6 +92,21 @@ public class Robot extends TimedRobot {
 		return DriverStation.getInstance().getGameSpecificMessage();
 	}
 	
+	public static boolean getAutoSwitchA() {
+		return !autoSwitchA.get();
+	}
+	public static boolean getAutoSwitchB() {
+		return !autoSwitchB.get();
+	}
+	public static String getStart() {
+		if(getAutoSwitchA()) {
+			return "L";
+		} else if (getAutoSwitchB()) {
+			return "R";
+		}
+		return "C";
+	}
+	
 	public static Object choose(String fms, int pos, Object left, Object right) {
 		SmartDashboard.putString("FMS", fms);
 		if(fms.substring(pos, pos + 1).toLowerCase().equals("l")) {
@@ -115,9 +134,12 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
+		SmartDashboard.putBoolean("Auto Switch A", getAutoSwitchA());
+		SmartDashboard.putBoolean("Auto Switch B", getAutoSwitchB());
+		SmartDashboard.putString("Auto Start Position", getStart());
 	}
 
-	private static final String start = "C"; // L[eft] C[enter] or R[ight]
+	private static String start = "C"; // L[eft] C[enter] or R[ight]
 	private static final int cubes = 1; // 1/2/3 cubes etc
 	
 	/**
@@ -135,14 +157,15 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 //		m_autonomousCommand = m_chooser.getSelected();
 		String fms = FMSData();
+		start = getStart();
 		switch(fms) {
 			case "RRR":
 				if(start.equals("R") && cubes == 1) {
-				m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90, 0.6069, 0.3069);
-//					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 1.0);
+//				m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90, 0.369, 0.3069);
+					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
 				} else if (start.equals("L") &&  cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 1.0);
+					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 				} else if (start.equals("C")) {
 					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_RIGHT);
 				}
@@ -152,31 +175,34 @@ public class Robot extends TimedRobot {
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT, FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
 					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.3069);
 				} else if (start.equals("L") &&  cubes == 1) {
-					m_autonomousCommand = new TwoCubeEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE, 90, 0.6069, 0.3069);
-//					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.6969);
+//					m_autonomousCommand = new TwoCubeEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE, 90, 0.369, 0.3069);
+					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.369);
 				} else if (start.equals("C")) {
 					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
 				}
 				break;
 			case "RLR":
 				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SWITCH_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SWITCH_RIGHT_FINISH, 969, 0.3069);
+					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.3069);
+//					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SWITCH_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SWITCH_RIGHT_FINISH, 969, 0.3069);
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT, FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
 			} else if (start.equals("L")) {
-					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.6969);
+					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.369);
 				}else if (start.equals("C")) {
 					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_RIGHT);
 				}
 				break;
 			case "LRL":
 				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 1.0);
+					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.39);
 				} else if (start.equals("L") &&  cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL, FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
+//					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL, FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
+					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 				} else if (start.equals("C")) {
 					m_autonomousCommand = new CenterSwitchAuto(FROM_CENTER.SWITCH_LEFT);
 				}
 				break;
+				
 		}
 			
 

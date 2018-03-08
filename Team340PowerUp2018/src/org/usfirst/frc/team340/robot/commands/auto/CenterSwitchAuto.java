@@ -46,18 +46,18 @@ public class CenterSwitchAuto extends CommandGroup {
     			return 0.5069;
     		} else {
     			return 0.25;
-    		}
+    		
     	}), 4.5);*/
     	addSequential(new RunPath(path, x -> {
     		if(x < 0.3) {
     			return 0.3;
     		} else if (x < 0.75) {
-    			return 0.5069;
+    			return 0.7569;
     		} else {
     			return 0.25;
     		}
     	}), 4.5);
-    	addSequential(new WaitCommand(0.5));
+    	addSequential(new WaitCommand(0.1));
     	addSequential(new ClawShootScore(0.4069), 1);
     }
 }
