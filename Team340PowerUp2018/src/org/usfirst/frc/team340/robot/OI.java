@@ -25,8 +25,6 @@ import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeDisengage;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeEngage;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
-import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
-import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;

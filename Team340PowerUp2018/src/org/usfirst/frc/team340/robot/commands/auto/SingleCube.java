@@ -6,6 +6,7 @@ import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths;
@@ -20,9 +21,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class SingleCube extends CommandGroup {
 	private final Function<Double, Double> speedFast = x -> {
 		if(x < 0.1) {
-			return 0.5;
+			return 0.7;
 		} else if (x < 0.85) {
-			return 0.8069;
+			return 0.85;
 		} else {
 			return 0.30;
 		}
@@ -38,19 +39,14 @@ public class SingleCube extends CommandGroup {
 	};
 	
     public SingleCube(Path travelPath, Path finishPath, int elevatePosition, double shootSpeed) {
-    	// todo:
-    	// trim waitcommand(0.35)
-    	// increase position from 300 to ??
-    	// change speedFast function
-    	// 
     	addSequential(new ManualClawClose(), 0.1);
     	addSequential(new ManualElevatorTiltForward(), 0.5);
-    	addSequential(new WaitCommand(0.35));
+    	addSequential(new WaitCommand(0.08));
     	addSequential(new ElevatorGoToBottom(), 1.5);
 //    	addSequential(new WaitCommand(0.5));
-    	addParallel(new ElevatorGoToPosition(300), 1);
+    	addParallel(new ElevatorGoToPosition(1300), 1);
     	addSequential(new RunPath(travelPath, speedFast), 9.5);
-    	addSequential(new WaitCommand(0.25));
+    	addSequential(new WaitCommand(0.15));
     	addParallel(new ElevatorGoToPosition(elevatePosition));
     	addSequential(new RunPath(finishPath, speedSlow), 3.5);
     	addSequential(new WaitCommand(1));
@@ -58,7 +54,7 @@ public class SingleCube extends CommandGroup {
     	
     	addSequential(new RunPath(Paths.straightLength(20), -0.3), 2.5);
     	addParallel(new ElevatorGoToBottom(), 2);
-    	addSequential(new RunPath(Paths.straightLength(10), -0.3), 2.5);
-    	addSequential(new RunPath(Paths.straightLength(18), -0.7), 2.5);
+//    	addSequential(new RunPath(Paths.straightLength(10), -0.3), 2.5);
+//    	addSequential(new RunPath(Paths.straightLength(18), -0.7), 2.5);
     }
 }

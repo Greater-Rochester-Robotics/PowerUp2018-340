@@ -39,6 +39,7 @@ public class TwoCubeEasy extends CommandGroup {
 			return 0.25;
 		}
 	};
+	
     public TwoCubeEasy(Path travelPath, Path finishPath, Path secondCube, double turnAngle, double scaleSpeed, double switchSpeed) {
     	addSequential(new SingleCube(travelPath, finishPath, 3000, scaleSpeed), 11);
 //    	addSequential(new ElevatorGoToBottom(), 2);
