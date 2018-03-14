@@ -11,11 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ClawAcquireCube extends Command {
 
 	private int goodSamples = 0;
+	private double speed = RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS;
     public ClawAcquireCube() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	this(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
+    }
+    public ClawAcquireCube(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
     	goodSamples = 0;
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -23,14 +30,14 @@ public class ClawAcquireCube extends Command {
     	System.out.println("CLAW ACQUIRE CUBE STARTING");
     	Robot.claw.setRedLEDs(true);
     	Robot.claw.setGreenLEDs(false);
-    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
+    	Robot.claw.spinWheelsIn(speed);
     	Robot.claw.neutral();
     	goodSamples = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.claw.spinWheelsIn(RobotMap.CLAW_WHEEL_ACQUIRE_SPEED_VBUS);
+    	Robot.claw.spinWheelsIn(speed);
 //    	Robot.claw.neutral();
     	if(Robot.claw.isCubePresent()) {
 //    		Robot.claw.setRedLEDs(false);

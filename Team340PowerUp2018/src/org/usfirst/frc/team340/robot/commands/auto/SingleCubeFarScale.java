@@ -52,7 +52,7 @@ public class SingleCubeFarScale extends CommandGroup {
     	addSequential(new WaitCommand(1));
     	addSequential(new ClawShootScore(shootSpeed), 1);
     	
-//    	addSequential(new RunPath(Paths.straightLength(20), -0.3), 2.5);
+    	addSequential(new RunPath(Paths.straightLength(20), -0.3), 2.5);
     	addParallel(new ElevatorGoToBottom(), 2);
 //    	addSequential(new RunPath(Paths.straightLength(10), -0.3), 2.5);
 //    	addSequential(new RunPath(Paths.straightLength(18), -0.7), 2.5);

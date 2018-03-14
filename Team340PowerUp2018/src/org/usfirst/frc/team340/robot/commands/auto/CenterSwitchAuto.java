@@ -4,8 +4,10 @@ import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -43,5 +45,11 @@ public class CenterSwitchAuto extends CommandGroup {
     	}), 4.5);
     	addSequential(new WaitCommand(0.1));
     	addSequential(new ClawShootScore(0.60), 1);
+    	addSequential(new WaitCommand(0.5));
+    	addSequential(new ManualClawOpen());
+    	addSequential(new WaitCommand(0.2));
+    	addSequential(new RunPath(Paths.straightLength(85), -0.4), 2.5);
+    	addSequential(new ManualClawClose());
+    	addSequential(new ElevatorGoToBottom(), 1.5);
     }
 }

@@ -22,21 +22,32 @@ public class CenterSwitchAutoFast extends CommandGroup {
     	addSequential(new ManualClawClose(), 0.1);
     	addSequential(new ManualElevatorTiltForward(), 0.5);
     	addSequential(new WaitCommand(0.5));
+//    	addSequential(new RunPath(path, x -> {
+//    		if(x < 0.15) {
+//    			return 0.6;
+//    		} else if (x < 0.85) {
+//    			return 0.75;
+//    		} else {
+//    			return 0.15;
+//    		}
+//    	}), 4.5);
     	addSequential(new RunPath(path, x -> {
-    		if(x < 0.15) {
-    			return 0.7;
-    		} else if (x < 0.85) {
-    			return 0.80;
+    		if (x < 0.15) {
+    			return 0.6;
+    		} else if (x < 0.8) {
+    			return 0.69;
     		} else {
     			return 0.15;
     		}
     	}), 4.5);
     	addSequential(new WaitCommand(0.1));
-    	addSequential(new ClawShootScore(0.4), 1);
-    	addSequential(new WaitCommand(1.0));
+    	addSequential(new ClawShootScore(0.5069), 0.5);
+    	addSequential(new WaitCommand(0.45));
     	addSequential(new ManualClawOpen());
-    	addSequential(new RunPath(Paths.straightLength(40), -0.3), 2.5);
-    	addSequential(new ManualClawClose());
-    	addSequential(new ElevatorGoToBottom(), 1.5);
+    	addSequential(new WaitCommand(0.1));
+    	addSequential(new RunPath(Paths.straightLength(10), -0.9), 0.5);
+    	addParallel(new ElevatorGoToBottom(), 1.5);
+    	addSequential(new RunPath(Paths.straightLength(80), -0.4), 2.5);
+//    	addSequential(new ManualClawClose());
     }
 }

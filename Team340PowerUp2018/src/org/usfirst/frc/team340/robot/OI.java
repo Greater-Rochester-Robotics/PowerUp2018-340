@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team340.robot;
 
+import org.usfirst.frc.team340.robot.commands.GoToStartingConfig;
 import org.usfirst.frc.team340.robot.commands.auto.testautomovement;
 import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
 import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCubeOpenClaw;
@@ -105,8 +106,10 @@ public class OI {
 		coDriverY.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MAX_HEIGHT));
 		coDriverRT.whenPressed(new ElevatorGoToBottom());
 		
-		coDriverBack.whenPressed(new ManualElevatorBrakeDisengage());
-		coDriverStart.whenPressed(new ManualElevatorBrakeEngage());
+//		coDriverBack.whenPressed(new ManualElevatorBrakeDisengage());
+//		coDriverStart.whenPressed(new ManualElevatorBrakeEngage());
+		coDriverStart.whenPressed(new GoToStartingConfig());
+		coDriverStart.whenReleased(new ElevatorStop());
 	}
 	
 	/**
