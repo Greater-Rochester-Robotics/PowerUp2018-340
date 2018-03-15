@@ -8,13 +8,18 @@
 package org.usfirst.frc.team340.robot;
 
 import org.usfirst.frc.team340.robot.commands.GoToStartingConfig;
+import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoTwoCube;
+import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScale;
+import org.usfirst.frc.team340.robot.commands.auto.TwoCubeEasy;
 import org.usfirst.frc.team340.robot.commands.auto.testautomovement;
 import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCube;
 import org.usfirst.frc.team340.robot.commands.claw.ClawAcquireCubeOpenClaw;
 import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.claw.ClawStopWheels;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberClimb;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployForks;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployHook;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberLockForks;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberRetract;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberStop;
 import org.usfirst.frc.team340.robot.commands.drive.DriveStop;
@@ -26,6 +31,8 @@ import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeDisengage;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeEngage;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_LEFT_PORTAL;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -99,17 +106,26 @@ public class OI {
 		coDriverDPadDown.whenReleased(new ClimberStop());
 		coDriverDPadUp.whenPressed(new ClimberClimb(-1.0));
 		coDriverDPadUp.whenReleased(new ClimberStop());
+		coDriverStart.whenPressed(new ClimberDeployForks());
+		coDriverBack.whenPressed(new ClimberLockForks());
 		
 		coDriverA.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_TRAVEL_POSITION_HEIGHT));
 		coDriverY.whenReleased(new ElevatorStop());
 		coDriverB.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MID_HEIGHT));
 		coDriverY.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_SCALE_MAX_HEIGHT));
+//		coDriverA.whenPressed(new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS));
+//		coDriverA.whenReleased(new DriveStop());
+//		coDriverB.whenPressed(new TwoCubeEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE, 90, 0.369, 0.3069));
+//		coDriverB.whenReleased(new DriveStop());
+//		coDriverY.whenPressed(new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369));
+//		coDriverY.whenPressed(new DriveStop());
+		
 		coDriverRT.whenPressed(new ElevatorGoToBottom());
 		
 //		coDriverBack.whenPressed(new ManualElevatorBrakeDisengage());
 //		coDriverStart.whenPressed(new ManualElevatorBrakeEngage());
-		coDriverStart.whenPressed(new GoToStartingConfig());
-		coDriverStart.whenReleased(new ElevatorStop());
+		driverStart.whenPressed(new GoToStartingConfig());
+		driverStart.whenReleased(new ElevatorStop());
 	}
 	
 	/**

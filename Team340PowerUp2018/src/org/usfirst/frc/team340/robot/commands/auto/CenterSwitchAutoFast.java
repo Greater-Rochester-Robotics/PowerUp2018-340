@@ -39,9 +39,9 @@ public class CenterSwitchAutoFast extends CommandGroup {
     		} else {
     			return 0.15;
     		}
-    	}), 4.5);
+    	}), 2.75);
     	addSequential(new WaitCommand(0.1));
-    	addSequential(new ClawShootScore(0.5069), 0.5);
+    	addSequential(new ClawShootScore(0.3069), 0.5);
     	addSequential(new WaitCommand(0.45));
     	addSequential(new ManualClawOpen());
     	addSequential(new WaitCommand(0.1));

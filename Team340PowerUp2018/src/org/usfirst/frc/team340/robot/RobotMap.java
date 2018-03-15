@@ -37,7 +37,7 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_B = 0; //TODO: assume left, but find if left or right
 	public static final int DRIVE_LEFT_ENCODER_CHANNEL_A = 3; //TODO: assume right, but find if left or right
 	public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 2; //TODO: assume right, but find if left or right
-	public static final int CLAW_CUBE_SENSOR_CHANNEL_A = 4;
+	public static final int CLAW_CUBE_SENSOR_CHANNEL_A = 8;
 	public static final int CLAW_CUBE_SENSOR_CHANNEL_B = 5;
 	public static final int AUTO_SWITCH_A = 6;
 	public static final int AUTO_SWITCH_B = 7;
@@ -51,6 +51,7 @@ public class RobotMap {
 	public static final int CLIMBER_DEPLOY_CHANNEL= 7;
 	public static final int LED_RED_CHANNEL = 4;
 	public static final int LED_GREEN_CHANNEL = 0;
+	public static final int FORKS_CHANNEL = 0; // same as leds since we are removing them
 	
 	
 	

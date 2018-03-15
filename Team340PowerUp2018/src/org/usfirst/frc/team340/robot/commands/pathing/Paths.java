@@ -31,32 +31,40 @@ public class Paths {
 //				/* {"start":{"x":0,"y":100},"mid1":{"x":27,"y":96},"mid2":{"x":-14,"y":28},"end":{"x":55,"y":45}} */
 //				(-12 + -384 * t + 447 * Math.pow(t, 2))/ (81 + -408 * t + 534 * Math.pow(t, 2)) 
 //				, 97)
+//				new PathSegment(t -> 
+//				/* {"start":{"x":0,"y":100},"mid1":{"x":27,"y":96},"mid2":{"x":-14,"y":28},"end":{"x":55,"y":36}} */
+//				(-12 + -384 * t + 420 * Math.pow(t, 2))/ (81 + -408 * t + 534 * Math.pow(t, 2)) 
+//				, 101)
 				new PathSegment(t -> 
-				/* {"start":{"x":0,"y":100},"mid1":{"x":27,"y":96},"mid2":{"x":-14,"y":28},"end":{"x":55,"y":36}} */
-				(-12 + -384 * t + 420 * Math.pow(t, 2))/ (81 + -408 * t + 534 * Math.pow(t, 2)) 
-				, 101)
+				/* {"start":{"x":0,"y":100},"mid1":{"x":27,"y":96},"mid2":{"x":-14,"y":26},"end":{"x":60,"y":35}} */
+				(-12 + -396 * t + 435 * Math.pow(t, 2))/ (81 + -408 * t + 549 * Math.pow(t, 2)) 
+				, 106)
 				);
 		public static final Path RIGHT_SECOND_CUBE_BACKWARDS = new Path(
 //				new PathSegment(t -> 
 //				/* {"start":{"x":55,"y":45},"mid1":{"x":19,"y":46},"mid2":{"x":27,"y":87},"end":{"x":0,"y":88}} */
 //				(3 + 240 * t + -240 * Math.pow(t, 2))/ (-108 + 264 * t + -237 * Math.pow(t, 2)) 
 //				, 75)
+//				new PathSegment(t -> 
+//				/* {"start":{"x":55,"y":45},"mid1":{"x":19,"y":46},"mid2":{"x":39,"y":73},"end":{"x":13,"y":88}} */
+//				(3 + 156 * t + -114 * Math.pow(t, 2))/ (-108 + 336 * t + -306 * Math.pow(t, 2)) 
+//				, 66)
 				new PathSegment(t -> 
-				/* {"start":{"x":55,"y":45},"mid1":{"x":19,"y":46},"mid2":{"x":39,"y":73},"end":{"x":13,"y":88}} */
-				(3 + 156 * t + -114 * Math.pow(t, 2))/ (-108 + 336 * t + -306 * Math.pow(t, 2)) 
-				, 66)
+				/* {"start":{"x":55,"y":45},"mid1":{"x":19,"y":46},"mid2":{"x":38,"y":89},"end":{"x":13,"y":100}} */
+				(3 + 252 * t + -222 * Math.pow(t, 2))/ (-108 + 330 * t + -297 * Math.pow(t, 2)) 
+				, 76)
 				);
 		public static final Path LEFT_SECOND_CUBE_FORWARD = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":0,"y":100},"mid1":{"x":27,"y":104},"mid2":{"x":-14,"y":172},"end":{"x":55,"y":164}} */
-				(12 + 384 * t + -420 * Math.pow(t, 2))/ (81 + -408 * t + 534 * Math.pow(t, 2)) 
-				, 101)
+				/* {"start":{"x":0,"y":100},"mid1":{"x":27,"y":104},"mid2":{"x":-14,"y":175},"end":{"x":60,"y":165}} */
+				(12 + 402 * t + -444 * Math.pow(t, 2))/ (81 + -408 * t + 549 * Math.pow(t, 2)) 
+				, 107)
 				);
 		public static final Path LEFT_SECOND_CUBE_BACKWARDS = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":55,"y":131},"mid1":{"x":19,"y":130},"mid2":{"x":39,"y":104},"end":{"x":13,"y":88}} */
-				(-3 + -150 * t + 105 * Math.pow(t, 2))/ (-108 + 336 * t + -306 * Math.pow(t, 2)) 
-				, 66)
+				/* {"start":{"x":55,"y":155},"mid1":{"x":19,"y":154},"mid2":{"x":38,"y":106},"end":{"x":13,"y":100}} */
+				(-3 + -282 * t + 267 * Math.pow(t, 2))/ (-108 + 330 * t + -297 * Math.pow(t, 2)) 
+				, 76)
 				);
 	}
 	
