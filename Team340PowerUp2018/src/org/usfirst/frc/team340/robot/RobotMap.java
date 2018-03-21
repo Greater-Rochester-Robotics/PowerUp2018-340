@@ -39,8 +39,8 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 2; //TODO: assume right, but find if left or right
 	public static final int CLAW_CUBE_SENSOR_CHANNEL_A = 8;
 	public static final int CLAW_CUBE_SENSOR_CHANNEL_B = 5;
-	public static final int AUTO_SWITCH_A = 6;
-	public static final int AUTO_SWITCH_B = 7;
+	public static final int AUTO_SWITCH_A = 7;
+	public static final int AUTO_SWITCH_B = 6;
 	
 	//Solenoid Channels
 	public static final int ELEVATOR_BRAKE_CHANNEL = 1;

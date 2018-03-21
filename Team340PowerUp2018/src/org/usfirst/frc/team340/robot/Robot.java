@@ -162,6 +162,7 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 //		m_autonomousCommand = m_chooser.getSelected();
 		String fms = FMSData();
+		SmartDashboard.putString("FMS", fms);
 		start = getStart();
 		switch(fms) {
 			case "RRR":
@@ -205,8 +206,9 @@ public class Robot extends TimedRobot {
 				if(start.equals("R") && cubes == 1) {
 					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.39);
 				} else if (start.equals("L") &&  cubes == 1) {
+					m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 //					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL, FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
-					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
+//					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 				} else if (start.equals("C")) {
 					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
 				}

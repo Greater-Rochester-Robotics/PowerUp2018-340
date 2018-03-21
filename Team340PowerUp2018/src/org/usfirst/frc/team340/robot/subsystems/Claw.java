@@ -19,8 +19,8 @@ public class Claw extends Subsystem {
 	private static DigitalInput cubeSensor2;
 	private static Solenoid closeSolenoid;
 	private static Solenoid openSolenoid;
-//	private static Solenoid LEDRed;
-//	private static Solenoid LEDGreen;
+	private static Solenoid LEDRed;
+	private static Solenoid LEDGreen;
 	private static WPI_TalonSRX leftWheels;
 	private static WPI_TalonSRX rightWheels;
 	
@@ -34,8 +34,8 @@ public class Claw extends Subsystem {
 		closeSolenoid = new Solenoid(RobotMap.CLAW_SOLENOID_CLOSE_CHANNEL);
 		openSolenoid = new Solenoid(RobotMap.CLAW_SOLENOID_OPEN_CHANNEL);
 		
-//		LEDRed = new Solenoid(RobotMap.LED_RED_CHANNEL);
-//		LEDGreen = new Solenoid(RobotMap.LED_GREEN_CHANNEL);
+		LEDRed = new Solenoid(RobotMap.LED_RED_CHANNEL);
+		LEDGreen = new Solenoid(RobotMap.LED_GREEN_CHANNEL);
 		
 		leftWheels = new WPI_TalonSRX(RobotMap.CLAW_WHEEL_LEFT_CHANNEL);
 		leftWheels.setInverted(true); //This will probably not be inverted later :P
@@ -131,8 +131,8 @@ public class Claw extends Subsystem {
      * @return <code>true</code> if a cube is currently in the claw
      */
     public boolean isCubePresent() {
-    	System.out.println("SENSOR 1: " + cubeSensor1.get() + " SENSOR 2: " + cubeSensor2.get());
-    	System.out.println("Boolean condition: " + (!cubeSensor1.get() || !cubeSensor2.get()));
+//    	System.out.println("SENSOR 1: " + cubeSensor1.get() + " SENSOR 2: " + cubeSensor2.get());
+//    	System.out.println("Boolean condition: " + (!cubeSensor1.get() || !cubeSensor2.get()));
     	return !cubeSensor1.get() || !cubeSensor2.get();
 //    	return false;
     }
@@ -149,10 +149,10 @@ public class Claw extends Subsystem {
     }
     
     public void setRedLEDs(boolean on) {
-//    	LEDRed.set(on);
+    	LEDRed.set(on);
     }
     
     public void setGreenLEDs(boolean on) {
-//    	LEDGreen.set(on);
+    	LEDGreen.set(on);
     }
 }

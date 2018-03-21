@@ -47,7 +47,7 @@ public class CenterSwitchAutoFast extends CommandGroup {
     	addSequential(new WaitCommand(0.1));
     	addSequential(new RunPath(Paths.straightLength(10), -0.9), 0.5);
     	addParallel(new ElevatorGoToBottom(), 1.5);
-    	addSequential(new RunPath(Paths.straightLength(80), -0.4), 2.5);
+    	addSequential(new RunPath(Paths.straightLength(73), -0.4), 2.5);
 //    	addSequential(new ManualClawClose());
     }
 }

@@ -16,13 +16,13 @@ public class Climber extends Subsystem {
 	private static WPI_TalonSRX winchA;
 	private static WPI_TalonSRX winchB;
 	private static Solenoid deploy;
-	private static Solenoid forks;
+//	private static Solenoid forks;
 	
 	public Climber() {
 		winchA = new WPI_TalonSRX(RobotMap.CLIMBER_TALONSRX_A_ID);
 		winchB = new WPI_TalonSRX(RobotMap.CLIMBER_TALONSRX_B_ID);
 		deploy = new Solenoid(RobotMap.CLIMBER_DEPLOY_CHANNEL);
-		forks = new Solenoid(RobotMap.FORKS_CHANNEL);
+//		forks = new Solenoid(RobotMap.FORKS_CHANNEL);
 		
 		winchB.set(ControlMode.Follower, RobotMap.CLIMBER_TALONSRX_A_ID);
 		winchA.configNominalOutputReverse(-1, 0);
@@ -43,10 +43,10 @@ public class Climber extends Subsystem {
     }
     
     public void deployForks() {
-    	forks.set(false);
+//    	forks.set(false);
     }
     public void lockForks() {
-    	forks.set(true);
+//    	forks.set(true);
     }
     
     public void setWinch(double speed) {

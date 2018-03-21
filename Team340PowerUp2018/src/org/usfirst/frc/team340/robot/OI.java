@@ -106,8 +106,8 @@ public class OI {
 		coDriverDPadDown.whenReleased(new ClimberStop());
 		coDriverDPadUp.whenPressed(new ClimberClimb(-1.0));
 		coDriverDPadUp.whenReleased(new ClimberStop());
-		coDriverStart.whenPressed(new ClimberDeployForks());
-		coDriverBack.whenPressed(new ClimberLockForks());
+//		coDriverStart.whenPressed(new ClimberDeployForks());
+//		coDriverBack.whenPressed(new ClimberLockForks());
 		
 		coDriverA.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_TRAVEL_POSITION_HEIGHT));
 		coDriverY.whenReleased(new ElevatorStop());

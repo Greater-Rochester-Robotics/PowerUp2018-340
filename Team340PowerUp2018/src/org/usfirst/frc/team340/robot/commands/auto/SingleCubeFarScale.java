@@ -23,7 +23,7 @@ public class SingleCubeFarScale extends CommandGroup {
 		if(x < 0.1) {
 			return 0.5;
 		} else if (x < 0.85) {
-			return 0.65;
+			return 0.8069;
 		} else {
 			return 0.30;
 		}
