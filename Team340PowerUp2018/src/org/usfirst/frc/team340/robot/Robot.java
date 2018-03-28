@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	public static final boolean isCompBot = true;
+	public static final boolean isCompBot = false;
 	
 	public static DigitalInput autoSwitchA = new DigitalInput(RobotMap.AUTO_SWITCH_A);
 	public static DigitalInput autoSwitchB = new DigitalInput(RobotMap.AUTO_SWITCH_B);
