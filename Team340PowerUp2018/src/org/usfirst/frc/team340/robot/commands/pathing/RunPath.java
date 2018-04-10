@@ -23,6 +23,8 @@ public class RunPath extends Command {
 	
 	private Function<Double, Double> speed;
 	
+	private Animation animation;
+	
     public RunPath(Path path, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -31,11 +33,6 @@ public class RunPath extends Command {
     	this.leftSpeed = -speed;
     	this.rightSpeed = -speed;
     	this.speed = x -> speed;
-    }
-    
-    public RunPath(Path path, double speed, boolean reset) {
-    	this(path, speed);
-    	this.reset = reset;
     }
     
     public RunPath(Path path, Function<Double, Double> speed) {
@@ -48,9 +45,15 @@ public class RunPath extends Command {
     	this.rightSpeed = speed.apply(0.0);
     }
     
-    public RunPath(Path path, Function<Double, Double> speed, boolean reset) {
-    	this(path, speed);
-    	this.reset = reset;
+    public RunPath(Path path, Function<Double, Double> speed, Animation animation) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.drive);
+    	this.path = path;
+    	this.speed = speed;
+    	this.leftSpeed = speed.apply(0.0);
+    	this.rightSpeed = speed.apply(0.0);
+    	this.animation = animation;
     }
     
 	public double dydx(double s) {
@@ -101,6 +104,11 @@ public class RunPath extends Command {
         			(rightSpeed-(((error)/(arcDivisor/Math.abs(speed))))));
     	} else {
         	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
+    	}
+    	
+    	// animate based off of distance, from 0.0 to 1.0
+    	if(animation != null) {
+    		animation.animate(getDistance() / path.getTotalLength());
     	}
     }
 

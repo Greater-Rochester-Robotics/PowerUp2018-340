@@ -10,6 +10,7 @@ import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsIn;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawWheelsStop;
+import org.usfirst.frc.team340.robot.commands.pathing.Animation;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
