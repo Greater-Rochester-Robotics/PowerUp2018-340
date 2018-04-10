@@ -1,5 +1,6 @@
 package org.usfirst.frc.team340.robot.commands;
 
+import org.usfirst.frc.team340.robot.RobotMap;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltBackward;
@@ -37,6 +38,6 @@ public class GoToStartingConfig extends CommandGroup {
     	addSequential(new WaitCommand(0.5));
     	addSequential(new ElevatorTiltBackward(), 1);
     	addSequential(new WaitCommand(1));
-    	addSequential(new ElevatorGoToPosition(1414), 1);
+    	addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_STARTING_POSITION_HEIGHT), 1);
     }
 }

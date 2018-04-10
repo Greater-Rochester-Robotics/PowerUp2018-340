@@ -106,6 +106,14 @@ public class Elevator extends Subsystem {
     }
     
     /**
+     * Sets the sensor position of the elevator, hopefully without physically moving it
+     * @param position
+     */
+    public void setEncoderPosition(int position) {
+    	talonA.setSelectedSensorPosition(position, 0, 0); // from ctre docs: int sensorPos, int pidIdx, int timeoutMs
+    }
+    
+    /**
      * @return <code>true</code> if the bottom DIO is pressed
      */
     public boolean isAtBottom() {
