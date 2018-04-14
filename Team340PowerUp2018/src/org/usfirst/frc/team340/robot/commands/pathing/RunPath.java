@@ -5,11 +5,13 @@ import java.util.function.Function;
 import org.usfirst.frc.team340.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class RunPath extends Command {
+public class RunPath extends CommandGroup {
 	private final double arcDivisor = 15;
 
 	private double leftSpeed = 0;
@@ -33,6 +35,7 @@ public class RunPath extends Command {
     	this.leftSpeed = -speed;
     	this.rightSpeed = -speed;
     	this.speed = x -> speed;
+    	this.setInterruptible(false);
     }
     
     public RunPath(Path path, Function<Double, Double> speed) {
@@ -43,6 +46,7 @@ public class RunPath extends Command {
     	this.speed = speed;
     	this.leftSpeed = speed.apply(0.0);
     	this.rightSpeed = speed.apply(0.0);
+//    	this.setInterruptible(false);
     }
     
     public RunPath(Path path, Function<Double, Double> speed, Animation animation) {
@@ -54,6 +58,10 @@ public class RunPath extends Command {
     	this.leftSpeed = speed.apply(0.0);
     	this.rightSpeed = speed.apply(0.0);
     	this.animation = animation;
+
+    	
+ 
+    	this.setInterruptible(false);
     }
     
 	public double dydx(double s) {
@@ -79,8 +87,8 @@ public class RunPath extends Command {
     	
     	double angle = Math.atan((nextSlope - currentSlope)/(1 + currentSlope * nextSlope))*180/Math.PI;
     	
-    	System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
-    	System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
+//    	System.out.println("m1: " + currentSlope + " m2: " + nextSlope + " dTheta: " + angle);
+//    	System.out.println("Encoder: " + getDistance() + " dydx: " + dydx(getDistance()));
     	return angle;
     }
     
@@ -96,19 +104,24 @@ public class RunPath extends Command {
     	leftSpeed = speed();
     	rightSpeed = speed();
     	
-    	System.out.println("error: " + error);
+//    	System.out.println("error: " + error);
     	if(Math.abs(getDistance()) > 3) {
     		double speed = leftSpeed;
         	Robot.drive.setBothDrive(
         			(leftSpeed+((error)/(arcDivisor/Math.abs(speed)))), 
         			(rightSpeed-(((error)/(arcDivisor/Math.abs(speed))))));
+        	
+        	// animate based off of distance, from 0.0 to 1.0
+        	if(animation != null) {
+        		animation.animate(getDistance() / path.getTotalLength());
+        		
+        		for(Keyframe kf : animation) {
+//            		addSequential(kf.getCommandConsumer().getCommand());
+            	}
+        	}
+        	
     	} else {
         	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
-    	}
-    	
-    	// animate based off of distance, from 0.0 to 1.0
-    	if(animation != null) {
-    		animation.animate(getDistance() / path.getTotalLength());
     	}
     }
 
@@ -118,6 +131,7 @@ public class RunPath extends Command {
 //        	System.out.println(path.getPathAtDistance(Robot.drive.getRightDistance()).getLength());
             return Math.abs(getDistance()) > (path.getTotalLength());
     	} catch (Exception e) {
+    		System.err.println("Unexpected error in RunPath.isFinished()");
     		System.err.println(e);
     		return true;
     	}
@@ -126,11 +140,14 @@ public class RunPath extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drive.setBothDrive(0, 0);
+    	if(animation != null)
+    		animation.reset();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	System.out.println("RUNPATH INTERRUPTED");
     	end();
     }
 }

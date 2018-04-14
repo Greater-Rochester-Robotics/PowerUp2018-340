@@ -62,7 +62,8 @@ public class Drive extends Subsystem {
 		if(Robot.isCompBot) {
 			return (int) (encoderRight.get() / 13);
 		}
-    	return encoderRight.get() / 3;
+//		return encoderRight.get();
+    	return (int) (encoderRight.get() / 16.78);
 	}
 	
 	/**
@@ -72,7 +73,8 @@ public class Drive extends Subsystem {
 		if(Robot.isCompBot) {
 			return (int) (encoderLeft.get() / 13 * 1.01695);
 		}
-		return encoderLeft.get() / 3;
+//		return encoderLeft.get();
+		return (int) (encoderLeft.get() / 13.3);
 	}
 	
 	/**
@@ -149,8 +151,9 @@ public class Drive extends Subsystem {
      * @param rSpeed right speed
      */
     public void setBothDrive(double lSpeed, double rSpeed) {
-    	System.out.println(lSpeed);
-    	System.out.println(rSpeed);
+//    	System.out.println(lSpeed);
+//    	System.out.println(rSpeed);
+    	
     	setDriveLeft(lSpeed);
     	setDriveRight(rSpeed);
     }

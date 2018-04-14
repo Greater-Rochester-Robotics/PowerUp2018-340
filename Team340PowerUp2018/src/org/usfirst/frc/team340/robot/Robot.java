@@ -13,6 +13,10 @@ import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoTwoCube;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScale;
 import org.usfirst.frc.team340.robot.commands.auto.TwoCubeEasy;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltForward;
+import org.usfirst.frc.team340.robot.commands.pathing.Animation;
+import org.usfirst.frc.team340.robot.commands.pathing.Keyframe;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorResetEncoderToStarting;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_LEFT_PORTAL;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_RIGHT_PORTAL;
@@ -66,7 +70,7 @@ public class Robot extends TimedRobot {
 		oi = new OI();
 		
 		// put USB camera on SmartDashboard
-		CameraServer.getInstance().startAutomaticCapture();
+//		CameraServer.getInstance().startAutomaticCapture();
 		
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -91,6 +95,7 @@ public class Robot extends TimedRobot {
 //		return SmartDashboard.getNumber("CompToPracticeMultiplier", 1.0);
 	}*/
 	
+	
 	public static String FMSData() {
 		return DriverStation.getInstance().getGameSpecificMessage();
 	}
@@ -102,6 +107,9 @@ public class Robot extends TimedRobot {
 		return !autoSwitchB.get();
 	}
 	public static String getStart() {
+		if(!isCompBot) {
+			return start;
+		}
 		if(getAutoSwitchA()) {
 			return "L";
 		} else if (getAutoSwitchB()) {
@@ -164,14 +172,21 @@ public class Robot extends TimedRobot {
 		String fms = FMSData();
 		SmartDashboard.putString("FMS", fms);
 		start = getStart();
+		System.out.println("START: " + start);
+		
+		Animation unStart = new Animation(
+				new Keyframe(new ElevatorResetEncoderToStarting(), 0.0),
+				new Keyframe(new ElevatorTiltForward(), 0.1)
+				);
+		
 		switch(fms) {
 			case "RRR":
 				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90, 0.50, 0.50);
+					m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90, 0.369, 0.50);
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
 				} else if (start.equals("L") &&  cubes == 1) {
-					m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
+					m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, unStart, 3000, 0.369);
 				} else if (start.equals("C")) {
 //					m_autonomousCommand = new CenterSwitchAutoFast(FROM_CENTER.SWITCH_RIGHT);
 //					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
@@ -181,7 +196,7 @@ public class Robot extends TimedRobot {
 			case "LLL":
 				if(start.equals("R") && cubes == 1) {
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT, FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
-					m_autonomousCommand = new SingleCubeFarScale(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.3069);
+					m_autonomousCommand = new SingleCubeFarScale(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, unStart, 3000, 0.3069);
 				} else if (start.equals("L") &&  cubes == 1) {
 					m_autonomousCommand = new TwoCubeEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE, 90, 0.369, 0.3069);
 //					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.369);
@@ -192,11 +207,11 @@ public class Robot extends TimedRobot {
 				break;
 			case "RLR":
 				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.3069);
+					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.3069);
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SWITCH_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SWITCH_RIGHT_FINISH, 969, 0.3069);
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT, FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
 			} else if (start.equals("L")) {
-					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.369);
+					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.369);
 				}else if (start.equals("C")) {
 //					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
 					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT, FROM_CENTER.RIGHT_SECOND_CUBE_FORWARD, FROM_CENTER.RIGHT_SECOND_CUBE_BACKWARDS);
@@ -204,9 +219,9 @@ public class Robot extends TimedRobot {
 				break;
 			case "LRL":
 				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.39);
+					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 2600, 3000, 0.39);
 				} else if (start.equals("L") &&  cubes == 1) {
-					m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
+					m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, unStart, 3000, 0.369);
 //					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL, FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
 //					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 				} else if (start.equals("C")) {

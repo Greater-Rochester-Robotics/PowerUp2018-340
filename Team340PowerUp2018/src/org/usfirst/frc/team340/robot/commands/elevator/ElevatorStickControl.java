@@ -72,7 +72,7 @@ public class ElevatorStickControl extends Command {
 		
 //		System.out.println("\n\nTalon: " + Robot.elevator.talonA.get());
 //		System.out.println("Joystick: " + Robot.oi.getCoDriverAxis(Axis.LEFT_Y));
-		System.out.println("Encoder: " + Robot.elevator.getPosition() + " Switch: " + Robot.elevator.isAtBottom());
+//		System.out.println("Encoder: " + Robot.elevator.getPosition() + " Switch: " + Robot.elevator.isAtBottom());
 //		System.out.println("speed: " + speed);
     }
 

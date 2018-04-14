@@ -25,14 +25,21 @@ import org.usfirst.frc.team340.robot.commands.climber.ClimberStop;
 import org.usfirst.frc.team340.robot.commands.drive.DriveStop;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorRaiseCube;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorResetEncoderToStarting;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStop;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltBackward;
+import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeDisengage;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeEngage;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_LEFT_PORTAL;
+import org.usfirst.frc.team340.robot.commands.pathing.Animation;
+import org.usfirst.frc.team340.robot.commands.pathing.Keyframe;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths;
+import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -91,7 +98,20 @@ public class OI {
 		driverB.whenPressed(new ClawAcquireCubeOpenClaw());
 		driverB.whenReleased(new ClawStopWheels());
 		
-//		driverLB.whenPressed(new testautomovement());
+//		driverLB.whenPressed(new RunPath(Paths.straightLength(13*12), x -> {
+//			if(x < 0.3) {
+//				return 0.5;
+//			} else if (x < 0.6){
+//				return 0.9;
+//			} else {
+//				return 0.4;
+//			}
+//		}, new Animation(
+//				new Keyframe(new ElevatorResetEncoderToStarting(), 0.0),
+//				new Keyframe(new ElevatorTiltForward(), 0.1),
+//				new Keyframe(new ElevatorGoToPosition(2600), 0.5)
+//				)));
+//		driverLB.whenPressed(new ElevatorResetEncoderToStarting());
 //		driverLB.whenReleased(new DriveStop());
 		
 		driverX.whenReleased(new ClawStopWheels()); //Also closes!!!

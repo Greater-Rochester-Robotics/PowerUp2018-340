@@ -8,6 +8,7 @@ import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
+import org.usfirst.frc.team340.robot.commands.pathing.Animation;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
@@ -38,14 +39,14 @@ public class SingleCubeFarScale extends CommandGroup {
 		}
 	};
 	
-    public SingleCubeFarScale(Path travelPath, Path finishPath, int elevatePosition, double shootSpeed) {
-    	addSequential(new ManualClawClose(), 0.1);
-    	addSequential(new ManualElevatorTiltForward(), 0.5);
-    	addSequential(new WaitCommand(0.08));
-    	addSequential(new ElevatorGoToBottom(), 1.5);
+    public SingleCubeFarScale(Path travelPath, Path finishPath, Animation unStart, int elevatePosition, double shootSpeed) {
+//    	addSequential(new ManualClawClose(), 0.1);
+//    	addSequential(new ManualElevatorTiltForward(), 0.5);
+//    	addSequential(new WaitCommand(0.08));
+//    	addSequential(new ElevatorGoToBottom(), 1.5);
 //    	addSequential(new WaitCommand(0.5));
-    	addParallel(new ElevatorGoToPosition(300), 1);
-    	addSequential(new RunPath(travelPath, speedFast), 9.5);
+//    	addParallel(new ElevatorGoToPosition(300), 1);
+    	addSequential(new RunPath(travelPath, speedFast, unStart), 9.5);
     	addSequential(new WaitCommand(0.15));
     	addParallel(new ElevatorGoToPosition(elevatePosition));
     	addSequential(new RunPath(finishPath, speedSlow), 3.5);

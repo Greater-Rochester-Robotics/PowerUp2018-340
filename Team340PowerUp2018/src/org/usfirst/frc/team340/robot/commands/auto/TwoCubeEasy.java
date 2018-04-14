@@ -42,12 +42,13 @@ public class TwoCubeEasy extends CommandGroup {
 	};
 	
     public TwoCubeEasy(Path travelPath, Path finishPath, Path secondCube, double turnAngle, double scaleSpeed, double switchSpeed) {
-    	addSequential(new SingleCube(travelPath, finishPath, 3000, scaleSpeed), 11);
+    	this.setInterruptible(false);
+    	addSequential(new SingleCube(travelPath, finishPath, 2600, 3000, scaleSpeed), 11);
 //    	addSequential(new ElevatorGoToBottom(), 2);
 //    	addSequential(new RunPath(Paths.straightLength(18), -0.5), 1.5);
 //    	addSequential(new TurnToAngle(turnAngle, 0.5), 1.5);
 //    	addSequential(new WaitCommand(0.25));
-    	addSequential(new ManualClawOpen(), 0.5);
+    	/*addSequential(new ManualClawOpen(), 0.5);
     	addParallel(new ManualClawWheelsIn());
     	addSequential(new RunPath(secondCube, 0.4), 3);
     	addSequential(new ManualClawClose(), 0.5);
@@ -57,6 +58,6 @@ public class TwoCubeEasy extends CommandGroup {
     	addSequential(new RunPath(Paths.straightLength(3), -0.3), 0.2);
     	addSequential(new ElevatorGoToPosition(969), 1.0);
     	addSequential(new RunPath(Paths.straightLength(13), 0.4));
-    	addSequential(new ClawShootScore(switchSpeed), 1);
+    	addSequential(new ClawShootScore(switchSpeed), 1);*/
     }
 }

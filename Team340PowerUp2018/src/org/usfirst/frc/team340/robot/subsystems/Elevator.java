@@ -29,7 +29,7 @@ public class Elevator extends Subsystem {
 	private static final double BOTTOM_LOWER_SLOW = 400;
 	private static final double BOTTOM_UPPER_SLOW = 800;
 	private static final double TOP_LOWER_SLOW = 2500;
-	private static final double TOP_UPPER_SLOW = 2960;
+	private static final double TOP_UPPER_SLOW = 3015;
 	
 	/**
 	 * Raises and lowers the claw to get the cube into the switch and scale
@@ -42,18 +42,18 @@ public class Elevator extends Subsystem {
 		talonB = new WPI_TalonSRX(RobotMap.ELEVATOR_TALONSRX_B_ID);
 		talonC = new WPI_TalonSRX(RobotMap.ELEVATOR_TALONSRX_C_ID);
 		
-		talonA.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 10);
-		talonA.configSetParameter(ParamEnum.eClearPositionOnLimitR, 1, 0, 0, 10);
-		talonA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		talonA.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 50);
+		talonA.configSetParameter(ParamEnum.eClearPositionOnLimitR, 1, 0, 0, 50);
+		talonA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 50);
 		
 		// broke
-		talonA.configForwardSoftLimitThreshold((int) (RobotMap.ELEVATOR_MAX_TICS), 1);
-		talonA.configForwardSoftLimitEnable(true, 1);
+		talonA.configForwardSoftLimitThreshold((int) (RobotMap.ELEVATOR_MAX_TICS), 50);
+		talonA.configForwardSoftLimitEnable(true, 50);
 		
-		talonA.configOpenloopRamp(RobotMap.ELEVATOR_RAMP_TIME_S, 0);
-		talonA.configAllowableClosedloopError(0, RobotMap.ELEVATOR_TOLERANCE_TICS, 0);
-		talonA.config_kP(0, RobotMap.ELEVATOR_KP, 10);
-		talonA.configNominalOutputForward(RobotMap.ELEVATOR_MIN_SPEED_UP_VBUS, 0);
+		talonA.configOpenloopRamp(RobotMap.ELEVATOR_RAMP_TIME_S, 50);
+		talonA.configAllowableClosedloopError(0, RobotMap.ELEVATOR_TOLERANCE_TICS, 50);
+		talonA.config_kP(0, RobotMap.ELEVATOR_KP, 50);
+		talonA.configNominalOutputForward(RobotMap.ELEVATOR_MIN_SPEED_UP_VBUS, 50);
 //		talonA.configPeakOutputForward(RobotMap.ELEVATOR_MAX_SPEED_UP_VBUS, 0);
 //		talonA.configNominalOutputReverse(-RobotMap.ELEVATOR_MIN_SPEED_DOWN_VBUS, 0);
 //		talonA.configPeakOutputReverse(-RobotMap.ELEVATOR_MAX_SPEED_DOWN_VBUS, 0);
@@ -62,10 +62,10 @@ public class Elevator extends Subsystem {
 		talonA.setInverted(false);
 		
 		talonB.set(ControlMode.Follower, RobotMap.ELEVATOR_TALONSRX_A_ID);
-		talonB.configOpenloopRamp(0,0);
+		talonB.configOpenloopRamp(0, 50);
 		
 		talonC.set(ControlMode.Follower, RobotMap.ELEVATOR_TALONSRX_A_ID);
-		talonC.configOpenloopRamp(0,0);
+		talonC.configOpenloopRamp(0, 50);
 		
 	}
 	

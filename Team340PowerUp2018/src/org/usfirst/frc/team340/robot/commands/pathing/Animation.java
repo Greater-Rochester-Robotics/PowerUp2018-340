@@ -17,9 +17,16 @@ public class Animation extends ArrayList<Keyframe>{
 	public Animation(Keyframe... keyframes) {
 		super(Arrays.asList(keyframes));
 	}
+	
 	public void animate(double position) {
 		for(Keyframe kf : this) {
 			kf.animate(position);
+		}
+	}
+	
+	public void reset() {
+		for(Keyframe kf : this) {
+			kf.reset();
 		}
 	}
 }

@@ -3,6 +3,7 @@ package org.usfirst.frc.team340.robot.commands.pathing;
 import org.usfirst.frc.team340.robot.commands.CommandConsumer;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * Keyframes are robot motions which occur at certain points
@@ -49,5 +50,18 @@ public class Keyframe {
 		if(position >= point && queued()) {
 			play();
 		}
+	}
+	
+	public void reset() {
+		consumer.reset();
+		done = false;
+	}
+	
+	public void setParents(CommandGroup parent) {
+		
+	}
+	
+	public CommandConsumer getCommandConsumer() {
+		return consumer;
 	}
 }
