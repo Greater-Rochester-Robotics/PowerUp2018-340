@@ -1,7 +1,5 @@
 package org.usfirst.frc.team340.robot.commands.auto;
 
-import org.usfirst.frc.team340.robot.Robot;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class WaitSwitch extends Command {
 	private char robotSide;
 	private char switchSide;
+	private static int checks = 0;
 	
     public WaitSwitch(char side) {
     	robotSide = side;
@@ -23,11 +22,12 @@ public class WaitSwitch extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	switchSide = DriverStation.getInstance().getGameSpecificMessage().toCharArray()[0];
+    	checks++;
     	
     	if(robotSide == switchSide) {
-    		System.out.println("Stuff good");
+    		System.out.println("Stuff good. Checks: " + checks);
     	} else {
-    		System.out.println("Problems");
+    		System.out.println("Problems - robot @ " + robotSide + ", switch @ " + switchSide + "on check #" + checks);
     	}
     }
 

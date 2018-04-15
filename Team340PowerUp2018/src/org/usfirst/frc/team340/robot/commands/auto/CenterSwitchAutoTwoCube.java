@@ -6,7 +6,6 @@ import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
-import org.usfirst.frc.team340.robot.commands.pathing.Animation;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
