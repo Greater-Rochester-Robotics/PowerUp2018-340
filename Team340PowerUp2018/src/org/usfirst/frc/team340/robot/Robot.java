@@ -10,16 +10,19 @@ package org.usfirst.frc.team340.robot;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoFast;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoTwoCube;
+import org.usfirst.frc.team340.robot.commands.auto.PortalSwitch;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScale;
 import org.usfirst.frc.team340.robot.commands.auto.TwoCubeEasy;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Animation;
 import org.usfirst.frc.team340.robot.commands.pathing.Keyframe;
+import org.usfirst.frc.team340.robot.commands.pathing.Paths;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorResetEncoderToStarting;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_LEFT_PORTAL;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_RIGHT_PORTAL;
+import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 import org.usfirst.frc.team340.robot.subsystems.Claw;
 import org.usfirst.frc.team340.robot.subsystems.Climber;
 import org.usfirst.frc.team340.robot.subsystems.Drive;
@@ -152,7 +155,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("Auto Start Position", getStart());
 	}
 
-	private static String start = "R"; // L[eft] C[enter] or R[ight]
+	private static String start = "C"; // L[eft] C[enter] or R[ight]
 	private static final int cubes = 1; // 1/2/3 cubes etc
 	
 	/**
@@ -190,7 +193,7 @@ public class Robot extends TimedRobot {
 				} else if (start.equals("C")) {
 //					m_autonomousCommand = new CenterSwitchAutoFast(FROM_CENTER.SWITCH_RIGHT);
 //					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
-					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT, FROM_CENTER.RIGHT_SECOND_CUBE_FORWARD, FROM_CENTER.RIGHT_SECOND_CUBE_BACKWARDS);
+					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT, FROM_CENTER.SWITCH_RIGHT_BACK);
 				}
 				break;
 			case "LLL":
@@ -202,7 +205,7 @@ public class Robot extends TimedRobot {
 //					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.369);
 				} else if (start.equals("C")) {
 //					m_autonomousCommand = new CenterSwitchAutoFast(FROM_CENTER.SWITCH_LEFT);
-					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
+					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.SWITCH_LEFT_BACK);
 				}
 				break;
 			case "RLR":
@@ -214,7 +217,7 @@ public class Robot extends TimedRobot {
 					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.369);
 				}else if (start.equals("C")) {
 //					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
-					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT, FROM_CENTER.RIGHT_SECOND_CUBE_FORWARD, FROM_CENTER.RIGHT_SECOND_CUBE_BACKWARDS);
+					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT, FROM_CENTER.SWITCH_RIGHT_BACK);
 				}
 				break;
 			case "LRL":
@@ -225,13 +228,16 @@ public class Robot extends TimedRobot {
 //					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL, FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
 //					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 				} else if (start.equals("C")) {
-					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
+					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.SWITCH_LEFT_BACK);
 				}
 				break;
 				
 		}
-			
-
+		
+//		m_autonomousCommand = new PortalSwitch(FROM_CENTER.SWITCH_LEFT);
+//		m_autonomousCommand = new PortalSwitch(FROM_LEFT_PORTAL.LEFT_PORTAL_TO_RIGHT_SWITCH, FROM_CENTER.SWITCH_RIGHT_BACK, FROM_CENTER.SWITCH_RIGHT);
+		m_autonomousCommand = new PortalSwitch(FROM_RIGHT_PORTAL.RIGHT_PORTAL_TO_LEFT_SWITCH, FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

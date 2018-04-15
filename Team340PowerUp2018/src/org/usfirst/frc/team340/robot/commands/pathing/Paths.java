@@ -10,11 +10,32 @@ public class Paths {
 			(-6 + 378 * t + -375 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
 			, 131));
 		
+		public static final Path SWITCH_RIGHT_BACK = new Path(
+//				new PathSegment(t -> 
+//				/* {"start":{"x":112,"y":108},"mid1":{"x":51,"y":109},"mid2":{"x":46,"y":48},"end":{"x":0,"y":50}} */
+//				(3 + -372 * t + 375 * Math.pow(t, 2))/ (-183 + 336 * t + -291 * Math.pow(t, 2)) 
+//				, 131)
+				new PathSegment(t -> 
+				/* {"start":{"x":112,"y":108},"mid1":{"x":51,"y":109},"mid2":{"x":56,"y":48},"end":{"x":0,"y":50}} */
+				(3 + -372 * t + 375 * Math.pow(t, 2))/ (-183 + 396 * t + -381 * Math.pow(t, 2)) 
+				, 132)
+				);
+		
 		public static final Path SWITCH_LEFT = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":0,"y":100},"mid1":{"x":46,"y":99},"mid2":{"x":51,"y":30},"end":{"x":112,"y":32}} */
-				(-3 + -408 * t + 417 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
-				, 137));
+				/* {"start":{"x":0,"y":100},"mid1":{"x":46,"y":99},"mid2":{"x":51,"y":39},"end":{"x":112,"y":39}} */
+				(-3 + -354 * t + 357 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
+				, 132));
+		
+		public static final Path SWITCH_LEFT_BACK = new Path(
+//				new PathSegment(t -> 
+//				/* {"start":{"x":112,"y":39},"mid1":{"x":51,"y":39},"mid2":{"x":46,"y":99},"end":{"x":0,"y":100}} */
+//				(0 + 360 * t + -357 * Math.pow(t, 2))/ (-183 + 336 * t + -291 * Math.pow(t, 2)) 
+//				, 132)
+				new PathSegment(t -> 
+				/* {"start":{"x":112,"y":39},"mid1":{"x":51,"y":39},"mid2":{"x":46,"y":105},"end":{"x":0,"y":100}} */
+				(0 + 396 * t + -411 * Math.pow(t, 2))/ (-183 + 336 * t + -291 * Math.pow(t, 2)) 
+				, 133));
 		public static final Path RIGHT_SECOND_CUBE_FORWARD = new Path(
 //				new PathSegment(t -> 
 //				/* {"start":{"x":0,"y":100},"mid1":{"x":27,"y":100},"mid2":{"x":19,"y":47},"end":{"x":55,"y":45}} */
@@ -152,6 +173,22 @@ public class Paths {
 				(30 + -342 * t + 228 * Math.pow(t, 2))/ (78 + -276 * t + 84 * Math.pow(t, 2)) 
 				, 92)
 				);
+		
+		public static final Path RIGHT_PORTAL_TO_RIGHT_SWITCH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":30},"mid1":{"x":60,"y":30},"mid2":{"x":28,"y":-12},"end":{"x":112,"y":-17}} */
+				(0 + -252 * t + 237 * Math.pow(t, 2))/ (180 + -552 * t + 624 * Math.pow(t, 2)) 
+				, 127));
+		
+		public static final Path RIGHT_PORTAL_TO_LEFT_SWITCH = new Path(
+//				new PathSegment(t -> 
+//				/* {"start":{"x":0,"y":280},"mid1":{"x":55,"y":280},"mid2":{"x":0,"y":89},"end":{"x":135,"y":104}} */
+//				(0 + -1146 * t + 1191 * Math.pow(t, 2))/ (165 + -660 * t + 900 * Math.pow(t, 2)) 
+//				, 252)
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":280},"mid1":{"x":50,"y":280},"mid2":{"x":-10,"y":95},"end":{"x":135,"y":104}} */
+				(0 + -1110 * t + 1137 * Math.pow(t, 2))/ (150 + -660 * t + 945 * Math.pow(t, 2)) 
+				, 253));
 	}
 	
 	public static class FROM_LEFT_PORTAL {
@@ -188,6 +225,18 @@ public class Paths {
 				(-30 + 288 * t + -117 * Math.pow(t, 2))/ (78 + -276 * t + 102 * Math.pow(t, 2)) 
 				, 97)
 				);
+		
+		public static final Path LEFT_PORTAL_TO_LEFT_SWITCH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":30},"mid1":{"x":60,"y":30},"mid2":{"x":28,"y":72},"end":{"x":112,"y":77}} */
+				(0 + 252 * t + -237 * Math.pow(t, 2))/ (180 + -552 * t + 624 * Math.pow(t, 2)) 
+				, 127));
+		
+		public static final Path LEFT_PORTAL_TO_RIGHT_SWITCH = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":30},"mid1":{"x":55,"y":30},"mid2":{"x":0,"y":221},"end":{"x":117,"y":206}} */
+				(0 + 1146 * t + -1191 * Math.pow(t, 2))/ (165 + -660 * t + 846 * Math.pow(t, 2)) 
+				, 240));
 	}
 	
 	public static final Path STRAIGHT = new Path(new PathSegment(t -> 0.0, 9999999.999999));
