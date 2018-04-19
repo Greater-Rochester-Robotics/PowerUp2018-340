@@ -24,7 +24,7 @@ public class ElevatorGoToPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timeSinceInitialized() > 0.15) {
+    	if(timeSinceInitialized() > 0.3) {
     		Robot.elevator.setPosition(pos);
     	}
 //    	System.out.println("pos = " + Robot.elevator.getPosition() + ", state = " + Robot.elevator.isAtBottom() + ", speed = " + Robot.elevator.getSpeed());

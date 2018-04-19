@@ -43,12 +43,12 @@ public class RobotMap {
 	public static final int AUTO_SWITCH_B = 6;
 	
 	//Solenoid Channels
-	public static final int ELEVATOR_BRAKE_CHANNEL = 1;
+	public static final int ELEVATOR_BRAKE_CHANNEL = 7; // switched with climber
 	public static final int ELEVATOR_TILT_CHANNEL_A = 3;
 	public static final int ELEVATOR_TILT_CHANNEL_B = 2;
 	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 6;
 	public static final int CLAW_SOLENOID_OPEN_CHANNEL = 5;
-	public static final int CLIMBER_DEPLOY_CHANNEL= 7;
+	public static final int CLIMBER_DEPLOY_CHANNEL= 1; // switched with elevator
 	public static final int LED_RED_CHANNEL = 4;
 	public static final int LED_GREEN_CHANNEL = 0;
 	public static final int FORKS_CHANNEL = 0; // same as leds since we are removing them

@@ -14,6 +14,7 @@ import org.usfirst.frc.team340.robot.commands.auto.PortalSwitch;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScale;
 import org.usfirst.frc.team340.robot.commands.auto.TwoCubeEasy;
+import org.usfirst.frc.team340.robot.commands.auto.TwoCubeScaleEasy;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Animation;
 import org.usfirst.frc.team340.robot.commands.pathing.Keyframe;
@@ -155,7 +156,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("Auto Start Position", getStart());
 	}
 
-	private static String start = "C"; // L[eft] C[enter] or R[ight]
+	private static String start = "R"; // L[eft] C[enter] or R[ight]
 	private static final int cubes = 1; // 1/2/3 cubes etc
 	
 	/**
@@ -185,7 +186,8 @@ public class Robot extends TimedRobot {
 		switch(fms) {
 			case "RRR":
 				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90, 0.369, 0.50);
+					m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90, 0.369, 0.50);
+//					m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90, 0.369, 0.50);
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 //					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
 				} else if (start.equals("L") &&  cubes == 1) {
@@ -236,7 +238,7 @@ public class Robot extends TimedRobot {
 		
 //		m_autonomousCommand = new PortalSwitch(FROM_CENTER.SWITCH_LEFT);
 //		m_autonomousCommand = new PortalSwitch(FROM_LEFT_PORTAL.LEFT_PORTAL_TO_RIGHT_SWITCH, FROM_CENTER.SWITCH_RIGHT_BACK, FROM_CENTER.SWITCH_RIGHT);
-		m_autonomousCommand = new PortalSwitch(FROM_RIGHT_PORTAL.RIGHT_PORTAL_TO_LEFT_SWITCH, FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
+//		m_autonomousCommand = new PortalSwitch(FROM_RIGHT_PORTAL.RIGHT_PORTAL_TO_LEFT_SWITCH, FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
 		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

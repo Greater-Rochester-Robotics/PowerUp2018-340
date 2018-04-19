@@ -6,6 +6,7 @@ import org.usfirst.frc.team340.robot.commands.claw.ClawShootScore;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToBottom;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorGoToPosition;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths;
@@ -52,10 +53,10 @@ public class SingleCube extends CommandGroup {
     	addParallel(new ElevatorGoToPosition(elevatePosition));
     	addSequential(new RunPath(finishPath, speedSlow), 3.5);
     	addSequential(new WaitCommand(0.1));
-    	addSequential(new ClawShootScore(shootSpeed), 0.33);
-    	
-    	addSequential(new RunPath(Paths.straightLength(20), -0.65), 2.5);
+    	addSequential(new ClawShootScore(shootSpeed), 0.69);
+    	addSequential(new ManualClawOpen(), 0.15);
     	addParallel(new ElevatorGoToBottom(), 2);
+    	addSequential(new RunPath(Paths.straightLength(15), -0.75), 2.5);
 //    	addSequential(new RunPath(Paths.straightLength(10), -0.3), 2.5);
 //    	addSequential(new RunPath(Paths.straightLength(18), -0.7), 2.5);
     }

@@ -169,9 +169,15 @@ public class Paths {
 				);
 		public static final Path SECOND_CUBE = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":100,"y":100},"mid1":{"x":126,"y":110},"mid2":{"x":106,"y":63},"end":{"x":68,"y":35}} */
-				(30 + -342 * t + 228 * Math.pow(t, 2))/ (78 + -276 * t + 84 * Math.pow(t, 2)) 
-				, 92)
+				/* {"start":{"x":100,"y":200},"mid1":{"x":125,"y":200},"mid2":{"x":133,"y":155},"end":{"x":124,"y":104}} */
+				(0 + -270 * t + 117 * Math.pow(t, 2))/ (75 + -102 * t + 0 * Math.pow(t, 2)) 
+				, 109)
+				);
+		public static final Path SECOND_CUBE_REVERSE = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":204,"y":234},"mid1":{"x":235,"y":234},"mid2":{"x":267,"y":239},"end":{"x":250,"y":268}} */
+				(0 + 30 * t + 57 * Math.pow(t, 2))/ (93 + 6 * t + -150 * Math.pow(t, 2)) 
+				, 75)
 				);
 		
 		public static final Path RIGHT_PORTAL_TO_RIGHT_SWITCH = new Path(
