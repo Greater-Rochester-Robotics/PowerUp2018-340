@@ -41,9 +41,9 @@ public class TwoCubeScaleEasy extends CommandGroup {
 		}
 	};
 	
-    public TwoCubeScaleEasy(Path travelPath, Path finishPath, Path secondCube, double turnAngle, double scaleSpeed, double switchSpeed) {
+    public TwoCubeScaleEasy(Path travelPath, Path finishPath, Path secondCube, Path secondCubeReverse, double firstScaleSpeed, double secondScaleSpeed) {
 //    	this.setInterruptible(false);
-    	addSequential(new SingleCube(travelPath, finishPath, 2600, 3000, scaleSpeed), 11);
+    	addSequential(new SingleCube(travelPath, finishPath, 2600, 3000, firstScaleSpeed), 11);
 //    	addSequential(new ElevatorGoToBottom(), 2);
 //    	addSequential(new RunPath(Paths.straightLength(18), -0.5), 1.5);
 //    	addSequential(new TurnToAngle(turnAngle, 0.5), 1.5);
@@ -63,17 +63,19 @@ public class TwoCubeScaleEasy extends CommandGroup {
     	addSequential(new WaitCommand(0.15));
     	addSequential(new ClawAcquireCube(), 1.25);
     	addSequential(new WaitCommand(0.15));
-    	addSequential(new ElevatorGoToPosition(169), 0.8);
+    	addSequential(new ElevatorGoToPosition(169)	, 0.8);
     	addParallel(new ElevatorGoToPosition(2000));
-    	addSequential(new RunPath(Paths.FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, x -> {
+    	addSequential(new RunPath(secondCubeReverse, x -> {
     		if(x < 0.4) {
     			return -0.8;
     		}
     		return -0.4;
     	}));
     	addSequential(new ElevatorGoToPosition(3000));
-    	addSequential(new RunPath(Paths.straightLength(12), 0.4), 2.5);
-    	addSequential(new ClawShootScore(scaleSpeed));
+    	addSequential(new RunPath(Paths.straightLength(15), 0.4), 2.5);
+    	addSequential(new ClawShootScore(secondScaleSpeed), 1.0);
+    	addSequential(new ManualClawOpen(), 0.5);
+    	addSequential(new ManualClawWheelsStop(), 0.5);
 //    	addSequential(new RunPath(Paths.straightLength(3), -0.3), 0.2);
 //    	addSequential(new ElevatorGoToPosition(969), 1.0);
 //    	addSequential(new RunPath(Paths.straightLength(13), 0.4));

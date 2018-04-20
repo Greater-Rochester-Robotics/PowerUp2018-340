@@ -205,7 +205,7 @@ public class Paths {
 				(-9 + 84 * t + -9 * Math.pow(t, 2))/ (36 + 42 * t + -81 * Math.pow(t, 2)) 
 				, 49)
 				);
-		public static final Path SCALE_LEFT_TRAVEL = straightLength(226);
+		public static final Path SCALE_LEFT_TRAVEL = straightLength(224);
 		public static final Path SCALE_LEFT_FINISH = new Path(
 				new PathSegment(t -> 
 				/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":102},"mid2":{"x":13,"y":102},"end":{"x":28,"y":115}} */
@@ -219,17 +219,44 @@ public class Paths {
 				(-39 + 1302 * t + -1146 * Math.pow(t, 2))/ (327 + -1104 * t + 882 * Math.pow(t, 2)) 
 				, 271)
 				);
+		public static final Path SCALE_RIGHT_TRAVEL_SHORT = new Path(
+				straightLength(156).getPathAtDistance(10),
+				new PathSegment(t -> 
+				/* {"start":{"x":161,"y":45},"mid1":{"x":270,"y":32},"mid2":{"x":186,"y":161},"end":{"x":238,"y":166}} */
+				(-39 + 852 * t + -798 * Math.pow(t, 2))/ (327 + -1158 * t + 987 * Math.pow(t, 2)) 
+				, 175)
+				);
 		public static final Path SCALE_RIGHT_FINISH = new Path(
 				new PathSegment(t -> 
 				/* {"start":{"x":0,"y":100},"mid1":{"x":30,"y":106},"mid2":{"x":70,"y":95},"end":{"x":36,"y":60}} */
 				(18 + -102 * t + -21 * Math.pow(t, 2))/ (90 + 60 * t + -252 * Math.pow(t, 2)) 
 				, 83) //86
 				);
+		
+		public static final Path SCALE_RIGHT_FINISH_SHORT = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":238,"y":166},"mid1":{"x":276,"y":163},"mid2":{"x":279,"y":160},"end":{"x":283,"y":186}} */
+				(-9 + 0 * t + 87 * Math.pow(t, 2))/ (114 + -210 * t + 108 * Math.pow(t, 2)) 
+				, 60)
+				);
+		public static final Path SCALE_RIGHT_SHALLOW_SCORE = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":0,"y":200},"mid1":{"x":11,"y":200},"mid2":{"x":11,"y":201},"end":{"x":28,"y":192}} */
+				(0 + 6 * t + -33 * Math.pow(t, 2))/ (33 + -66 * t + 84 * Math.pow(t, 2)) 
+				, 30)
+				);
+		
 		public static final Path SECOND_CUBE = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":100,"y":100},"mid1":{"x":126,"y":90},"mid2":{"x":106,"y":128},"end":{"x":74,"y":175}} */
-				(-30 + 288 * t + -117 * Math.pow(t, 2))/ (78 + -276 * t + 102 * Math.pow(t, 2)) 
-				, 97)
+				/* {"start":{"x":100,"y":200},"mid1":{"x":120,"y":200},"mid2":{"x":109,"y":245},"end":{"x":110,"y":284}} */
+				(0 + 270 * t + -153 * Math.pow(t, 2))/ (60 + -186 * t + 129 * Math.pow(t, 2)) 
+				, 91)
+				);
+		public static final Path SECOND_CUBE_REVERSE = new Path(
+				new PathSegment(t -> 
+				/* {"start":{"x":204,"y":234},"mid1":{"x":235,"y":234},"mid2":{"x":262,"y":229},"end":{"x":253,"y":205}} */
+				(0 + -30 * t + -42 * Math.pow(t, 2))/ (93 + -24 * t + -96 * Math.pow(t, 2)) 
+				, 69)
 				);
 		
 		public static final Path LEFT_PORTAL_TO_LEFT_SWITCH = new Path(
