@@ -222,9 +222,9 @@ public class Paths {
 		public static final Path SCALE_RIGHT_TRAVEL_SHORT = new Path(
 				straightLength(156).getPathAtDistance(10),
 				new PathSegment(t -> 
-				/* {"start":{"x":161,"y":45},"mid1":{"x":270,"y":32},"mid2":{"x":186,"y":161},"end":{"x":238,"y":166}} */
-				(-39 + 852 * t + -798 * Math.pow(t, 2))/ (327 + -1158 * t + 987 * Math.pow(t, 2)) 
-				, 175)
+				/* {"start":{"x":161,"y":45},"mid1":{"x":270,"y":32},"mid2":{"x":186,"y":160},"end":{"x":238,"y":161}} */
+				(-39 + 846 * t + -804 * Math.pow(t, 2))/ (327 + -1158 * t + 987 * Math.pow(t, 2)) 
+				, 171)
 				);
 		public static final Path SCALE_RIGHT_FINISH = new Path(
 				new PathSegment(t -> 
@@ -235,15 +235,15 @@ public class Paths {
 		
 		public static final Path SCALE_RIGHT_FINISH_SHORT = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":238,"y":166},"mid1":{"x":276,"y":163},"mid2":{"x":279,"y":160},"end":{"x":283,"y":186}} */
-				(-9 + 0 * t + 87 * Math.pow(t, 2))/ (114 + -210 * t + 108 * Math.pow(t, 2)) 
-				, 60)
+				/* {"start":{"x":238,"y":166},"mid1":{"x":295,"y":163},"mid2":{"x":286,"y":157},"end":{"x":290,"y":180}} */
+				(-9 + -18 * t + 96 * Math.pow(t, 2))/ (171 + -396 * t + 237 * Math.pow(t, 2)) 
+				, 66)
 				);
 		public static final Path SCALE_RIGHT_SHALLOW_SCORE = new Path(
 				new PathSegment(t -> 
-				/* {"start":{"x":0,"y":200},"mid1":{"x":11,"y":200},"mid2":{"x":11,"y":201},"end":{"x":28,"y":192}} */
-				(0 + 6 * t + -33 * Math.pow(t, 2))/ (33 + -66 * t + 84 * Math.pow(t, 2)) 
-				, 30)
+				/* {"start":{"x":0,"y":200},"mid1":{"x":5,"y":200},"mid2":{"x":8,"y":195},"end":{"x":12,"y":192}} */
+				(0 + -30 * t + 21 * Math.pow(t, 2))/ (15 + -12 * t + 9 * Math.pow(t, 2)) 
+				, 15)
 				);
 		
 		public static final Path SECOND_CUBE = new Path(

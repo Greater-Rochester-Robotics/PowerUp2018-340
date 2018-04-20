@@ -240,7 +240,7 @@ public class Robot extends TimedRobot {
 		}
 		
 //		m_autonomousCommand = new PortalSwitch(FROM_CENTER.SWITCH_LEFT);
-//		m_autonomousCommand = new PortalSwitch(FROM_LEFT_PORTAL.LEFT_PORTAL_TO_RIGHT_SWITCH, FROM_CENTER.SWITCH_RIGHT_BACK, FROM_CENTER.SWITCH_RIGHT);
+		m_autonomousCommand = new PortalSwitch(FROM_LEFT_PORTAL.LEFT_PORTAL_TO_LEFT_SWITCH, FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
 //		m_autonomousCommand = new PortalSwitch(FROM_RIGHT_PORTAL.RIGHT_PORTAL_TO_LEFT_SWITCH, FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
 		
 		/*

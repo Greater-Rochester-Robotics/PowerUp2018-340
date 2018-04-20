@@ -23,8 +23,8 @@ public class SingleCubeFarScaleShallow extends CommandGroup {
 	private final Function<Double, Double> speedFast = x -> {
 		if(x < 0.1) {
 			return 0.5;
-		} else if (x < 0.85) {
-			return 0.8069;
+		} else if (x < 0.8) {
+			return 0.6069069;
 		} else {
 			return 0.30;
 		}
@@ -47,15 +47,15 @@ public class SingleCubeFarScaleShallow extends CommandGroup {
 //    	addSequential(new WaitCommand(0.5));
 //    	addParallel(new ElevatorGoToPosition(300), 1);
     	addSequential(new RunPath(travelPath, speedFast), 9.5);
-    	addSequential(new WaitCommand(0.25));
-//    	addParallel(new ElevatorGoToPosition(elevatePosition));
-    	addSequential(new RunPath(finishPath, 0.55), 3.5);
     	addSequential(new WaitCommand(0.5));
-    	addSequential(new RunPath(Paths.straightLength(18), -0.35), 2);
+//    	addParallel(new ElevatorGoToPosition(elevatePosition));
+    	addSequential(new RunPath(finishPath, 0.569), 3.5);
+    	addSequential(new WaitCommand(0.5));
+    	addSequential(new RunPath(Paths.straightLength(17), -0.3069), 2);
     	addSequential(new WaitCommand(0.2));
     	addSequential(new AutoUnStart(2750), 4);
     	addSequential(new WaitCommand(0.2));
-    	addSequential(new RunPath(scorePath, 0.4), 2);
+    	addSequential(new RunPath(scorePath, 0.3), 2);
     	addSequential(new ManualClawOpen());
 //    	addSequential(new WaitCommand(1));
 //    	addSequential(new ClawShootScore(shootSpeed), 1);
