@@ -103,10 +103,18 @@ public class Robot extends TimedRobot {
 		String fmsdata = DriverStation.getInstance().getGameSpecificMessage();
 		System.out.println("FMS Data: " + fmsdata);
 		
+		// check for null data (bad)
+		if(fmsdata == null) {
+			return "bad";
+		}
+		
+		// check for valid format: length 3, only L or R (good)
 		if(fmsdata.length() == 3 && fmsdata.matches("(?i)(L|R)(L|R)(L|R)")) {
 			goodData = true;
     		return fmsdata;
     	}
+		
+		// otherwise bad
 		return "bad";
 	}
 
@@ -184,7 +192,7 @@ public class Robot extends TimedRobot {
 //		m_autonomousCommand = m_chooser.getSelected();
 		String fms = FMSData();
 		SmartDashboard.putString("FMS", fms);
-		if(!fms.equals("bad")) {
+		if(fms != null && !fms.equals("bad")) {
 			goodData = true;
 			runAuto(fms);
 		} else {
