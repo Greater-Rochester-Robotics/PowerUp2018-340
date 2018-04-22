@@ -10,12 +10,14 @@ package org.usfirst.frc.team340.robot;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoFast;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoTwoCube;
+import org.usfirst.frc.team340.robot.commands.auto.CrossLineAuto;
 import org.usfirst.frc.team340.robot.commands.auto.PortalSwitch;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScale;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScaleShallow;
 import org.usfirst.frc.team340.robot.commands.auto.TwoCubeEasy;
 import org.usfirst.frc.team340.robot.commands.auto.TwoCubeScaleEasy;
+import org.usfirst.frc.team340.robot.commands.auto.WaitForGameData;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltForward;
 import org.usfirst.frc.team340.robot.commands.pathing.Animation;
 import org.usfirst.frc.team340.robot.commands.pathing.Keyframe;
@@ -34,6 +36,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -57,13 +60,13 @@ public class Robot extends TimedRobot {
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	public static final boolean isCompBot = false;
-	
+
 	public static DigitalInput autoSwitchA = new DigitalInput(RobotMap.AUTO_SWITCH_A);
 	public static DigitalInput autoSwitchB = new DigitalInput(RobotMap.AUTO_SWITCH_B);
-	
+
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
@@ -71,63 +74,67 @@ public class Robot extends TimedRobot {
 		claw = new Claw();
 		climber = new Climber();
 		elevator = new Elevator();
-		//SUBSYSTEMS BEFORE THIS LINE, OI AFTER
+		// SUBSYSTEMS BEFORE THIS LINE, OI AFTER
 		oi = new OI();
-		
+
 		// put USB camera on SmartDashboard
-//		CameraServer.getInstance().startAutomaticCapture();
-		
+		// CameraServer.getInstance().startAutomaticCapture();
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-//		SmartDashboard.putNumber("PracticeToCompMultiplier", 1.7657);
-//		SmartDashboard.putNumber("CompToPracticeMultiplier", 0.5663);
-//		SmartDashboard.setPersistent("PracticeToCompMultiplier");
-//		SmartDashboard.setPersistent("CompToPracticeMultiplier");
+		// SmartDashboard.putNumber("PracticeToCompMultiplier", 1.7657);
+		// SmartDashboard.putNumber("CompToPracticeMultiplier", 0.5663);
+		// SmartDashboard.setPersistent("PracticeToCompMultiplier");
+		// SmartDashboard.setPersistent("CompToPracticeMultiplier");
 	}
+
+	/*
+	 * public static double getPracticeToCompMultiplier() { if(!isCompBot) { return
+	 * 1.8678; } return 1; // return
+	 * SmartDashboard.getNumber("PracticeToCompMultiplier", 1.0); } public static
+	 * double getCompToPracticeMultiplier() { if(!isCompBot) { return 0.535; }
+	 * return 1; // return SmartDashboard.getNumber("CompToPracticeMultiplier",
+	 * 1.0); }
+	 */
 	
-	/*public static double getPracticeToCompMultiplier() {
-		if(!isCompBot) {
-			return 1.8678;
-		}
-		return 1;
-//		return SmartDashboard.getNumber("PracticeToCompMultiplier", 1.0);
-	}
-	public static double getCompToPracticeMultiplier() {
-		if(!isCompBot) {
-			return 0.535;
-		}
-		return 1;
-//		return SmartDashboard.getNumber("CompToPracticeMultiplier", 1.0);
-	}*/
-	
-	
+	private static boolean goodData = false;
+
 	public static String FMSData() {
-		return DriverStation.getInstance().getGameSpecificMessage();
+		String fmsdata = DriverStation.getInstance().getGameSpecificMessage();
+		System.out.println("FMS Data: " + fmsdata);
+		
+		if(fmsdata.length() == 3 && fmsdata.matches("(?i)(L|R)(L|R)(L|R)")) {
+			goodData = true;
+    		return fmsdata;
+    	}
+		return "bad";
 	}
-	
+
 	public static boolean getAutoSwitchA() {
 		return !autoSwitchA.get();
 	}
+
 	public static boolean getAutoSwitchB() {
 		return !autoSwitchB.get();
 	}
+
 	public static String getStart() {
-		if(!isCompBot) {
+		if (!isCompBot) {
 			return start;
 		}
-		if(getAutoSwitchA()) {
+		if (getAutoSwitchA()) {
 			return "L";
 		} else if (getAutoSwitchB()) {
 			return "R";
 		}
 		return "C";
-		
-//		return "C";
+
+		// return "C";
 	}
-	
+
 	public static Object choose(String fms, int pos, Object left, Object right) {
 		SmartDashboard.putString("FMS", fms);
-		if(fms.substring(pos, pos + 1).toLowerCase().equals("l")) {
+		if (fms.substring(pos, pos + 1).toLowerCase().equals("l")) {
 			return left;
 		} else {
 			return right;
@@ -135,9 +142,9 @@ public class Robot extends TimedRobot {
 	}
 
 	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
+	 * This function is called once each time the robot enters Disabled mode. You
+	 * can use it to reset any subsystem information you want to clear when the
+	 * robot is disabled.
 	 */
 	@Override
 	public void disabledInit() {
@@ -159,7 +166,8 @@ public class Robot extends TimedRobot {
 
 	private static String start = "L"; // L[eft] C[enter] or R[ight]
 	private static final int cubes = 1; // 1/2/3 cubes etc
-	
+	private static Timer autoTimer = new Timer();
+
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -176,78 +184,127 @@ public class Robot extends TimedRobot {
 //		m_autonomousCommand = m_chooser.getSelected();
 		String fms = FMSData();
 		SmartDashboard.putString("FMS", fms);
+		if(!fms.equals("bad")) {
+			goodData = true;
+			runAuto(fms);
+		} else {
+			autoTimer.reset();
+			autoTimer.start();
+		}
+	}
+
+	public void runAuto(String fms) {
+		
+		Animation unStart = new Animation(
+		new Keyframe(new ElevatorResetEncoderToStarting(), 0.0),
+		new Keyframe(new ElevatorTiltForward(), 0.1)
+		);
+
 		start = getStart();
 		System.out.println("START: " + start);
 		
-		Animation unStart = new Animation(
-				new Keyframe(new ElevatorResetEncoderToStarting(), 0.0),
-				new Keyframe(new ElevatorTiltForward(), 0.1)
-				);
+		System.out.println("Choosing auto mode based off of: " + fms);
+		SmartDashboard.putString("FMS", fms);
 		
-		switch(fms) {
-			case "RRR":
-				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
-//					m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90, 0.369, 0.50);
-//					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
-//					m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT, FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
-				} else if (start.equals("L") &&  cubes == 1) {
-//					m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, unStart, 3000, 0.369);
-					m_autonomousCommand = new SingleCubeFarScaleShallow(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH_SHORT, FROM_LEFT_PORTAL.SCALE_RIGHT_SHALLOW_SCORE);
-				} else if (start.equals("C")) {
-//					m_autonomousCommand = new CenterSwitchAutoFast(FROM_CENTER.SWITCH_RIGHT);
-//					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
-					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT, FROM_CENTER.SWITCH_RIGHT_BACK);
-				}
-				break;
-			case "LLL":
-				if(start.equals("R") && cubes == 1) {
-//					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT, FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
-					m_autonomousCommand = new SingleCubeFarScale(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, unStart, 3000, 0.3069);
-				} else if (start.equals("L") &&  cubes == 1) {
-					m_autonomousCommand = new TwoCubeScaleEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE, FROM_LEFT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
-//					m_autonomousCommand = new TwoCubeEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE, 90, 0.369, 0.3069);
-//					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.369);
-				} else if (start.equals("C")) {
-//					m_autonomousCommand = new CenterSwitchAutoFast(FROM_CENTER.SWITCH_LEFT);
-					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.SWITCH_LEFT_BACK);
-				}
-				break;
-			case "RLR":
-				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.3069);
-//					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SWITCH_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SWITCH_RIGHT_FINISH, 969, 0.3069);
-//					m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT, FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
+		switch (fms) {
+		case "RRR":
+			if (start.equals("R") && cubes == 1) {
+				m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE,
+						FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+				// m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+				// FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90,
+				// 0.369, 0.50);
+				// m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+				// FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
+				// m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT,
+				// FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
+			} else if (start.equals("L") && cubes == 1) {
+				// m_autonomousCommand = new
+				// SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
+				// FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, unStart, 3000, 0.369);
+				m_autonomousCommand = new SingleCubeFarScaleShallow(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT,
+						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH_SHORT, FROM_LEFT_PORTAL.SCALE_RIGHT_SHALLOW_SCORE);
+			} else if (start.equals("C")) {
+				// m_autonomousCommand = new CenterSwitchAutoFast(FROM_CENTER.SWITCH_RIGHT);
+				// m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT,
+				// FROM_CENTER.LEFT_SECOND_CUBE_FORWARD,
+				// FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
+				m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT,
+						FROM_CENTER.SWITCH_RIGHT_BACK);
+			}
+			break;
+		case "LLL":
+			if (start.equals("R") && cubes == 1) {
+				// m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT,
+				// FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
+				m_autonomousCommand = new SingleCubeFarScale(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL,
+						FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, unStart, 3000, 0.3069);
+			} else if (start.equals("L") && cubes == 1) {
+				m_autonomousCommand = new TwoCubeScaleEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
+						FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE,
+						FROM_LEFT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+				// m_autonomousCommand = new TwoCubeEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
+				// FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE, 90, 0.369,
+				// 0.3069);
+				// m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
+				// FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.369);
+			} else if (start.equals("C")) {
+				// m_autonomousCommand = new CenterSwitchAutoFast(FROM_CENTER.SWITCH_LEFT);
+				m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT,
+						FROM_CENTER.SWITCH_LEFT_BACK);
+			}
+			break;
+		case "RLR":
+			if (start.equals("R") && cubes == 1) {
+				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL,
+						FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.3069);
+				// m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SWITCH_RIGHT_TRAVEL,
+				// FROM_RIGHT_PORTAL.SWITCH_RIGHT_FINISH, 969, 0.3069);
+				// m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT,
+				// FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
 			} else if (start.equals("L")) {
-					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.369);
-				}else if (start.equals("C")) {
-//					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.LEFT_SECOND_CUBE_FORWARD, FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
-					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT, FROM_CENTER.SWITCH_RIGHT_BACK);
-				}
-				break;
-			case "LRL":
-				if(start.equals("R") && cubes == 1) {
-					m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 2600, 3000, 0.39);
-				} else if (start.equals("L") &&  cubes == 1) {
-					m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, unStart, 3000, 0.369);
-//					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL, FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
-//					m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL, FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
-				} else if (start.equals("C")) {
-					m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT, FROM_CENTER.SWITCH_LEFT_BACK);
-				}
-				break;
-				
+				m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
+						FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.369);
+			} else if (start.equals("C")) {
+				// m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT,
+				// FROM_CENTER.LEFT_SECOND_CUBE_FORWARD,
+				// FROM_CENTER.LEFT_SECOND_CUBE_BACKWARDS);
+				m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_RIGHT,
+						FROM_CENTER.SWITCH_RIGHT_BACK);
+			}
+			break;
+		case "LRL":
+			if (start.equals("R") && cubes == 1) {
+				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 2600, 3000, 0.39);
+			} else if (start.equals("L") && cubes == 1) {
+				m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
+						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, unStart, 3000, 0.369);
+				// m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL,
+				// FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
+				// m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
+				// FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
+			} else if (start.equals("C")) {
+				m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT,
+						FROM_CENTER.SWITCH_LEFT_BACK);
+			}
+			break;
+
 		}
-		
-//		m_autonomousCommand = new PortalSwitch(FROM_CENTER.SWITCH_LEFT);
-		m_autonomousCommand = new PortalSwitch(FROM_LEFT_PORTAL.LEFT_PORTAL_TO_LEFT_SWITCH, FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
-//		m_autonomousCommand = new PortalSwitch(FROM_RIGHT_PORTAL.RIGHT_PORTAL_TO_LEFT_SWITCH, FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
-		
+
+		// m_autonomousCommand = new PortalSwitch(FROM_CENTER.SWITCH_LEFT);
+		m_autonomousCommand = new PortalSwitch(FROM_LEFT_PORTAL.LEFT_PORTAL_TO_LEFT_SWITCH,
+				FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
+		// m_autonomousCommand = new
+		// PortalSwitch(FROM_RIGHT_PORTAL.RIGHT_PORTAL_TO_LEFT_SWITCH,
+		// FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
+
 		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
+		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
+		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
+		 * ExampleCommand(); break; }
 		 */
 
 		// schedule the autonomous command (example)
@@ -262,12 +319,27 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		
+
 		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 		SmartDashboard.putNumber("Elevator encoder", Robot.elevator.getPosition());
+		
+		if(!goodData && autoTimer.get() < 5) {
+			String fms = FMSData();
+			SmartDashboard.putString("FMS", fms);
+			if(!fms.equals("bad")) {
+				goodData = true;
+				runAuto(fms);
+			}
+		} else if (autoTimer.get() >= 5 && !goodData) {
+			autoTimer.reset();
+			autoTimer.stop();
+			goodData = true;
+			m_autonomousCommand = new CrossLineAuto();
+			m_autonomousCommand.start();
+		}
 	}
 
 	@Override
@@ -292,15 +364,15 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 		SmartDashboard.putNumber("Elevator encoder", Robot.elevator.getPosition());
 		SmartDashboard.putBoolean("Brake", Robot.elevator.getBrake());
-		
-//		System.out.println("\t\t\t\t\t\telev enc = "+elevator.getPosition());
-//		System.out.println("\t\t\t\t\t\tis at bottom? "+elevator.isAtBottom());
-		
-//		System.out.println("DT Left= " + Robot.drive.getLeftEncoder());
-//		System.out.println("DT Right= " + Robot.drive.getRightEncoder());
-//		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
-//		System.out.println("IMU= " + Robot.drive.getYaw());
-		
+
+		// System.out.println("\t\t\t\t\t\telev enc = "+elevator.getPosition());
+		// System.out.println("\t\t\t\t\t\tis at bottom? "+elevator.isAtBottom());
+
+		// System.out.println("DT Left= " + Robot.drive.getLeftEncoder());
+		// System.out.println("DT Right= " + Robot.drive.getRightEncoder());
+		// SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
+		// System.out.println("IMU= " + Robot.drive.getYaw());
+
 	}
 
 	/**
