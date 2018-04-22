@@ -96,24 +96,28 @@ public class Robot extends TimedRobot {
 	 * return 1; // return SmartDashboard.getNumber("CompToPracticeMultiplier",
 	 * 1.0); }
 	 */
-	
+
 	private static boolean goodData = false;
 
+	/**
+	 * Gets the FMS Data with built in validity checks.
+	 * @return FMS Data, or "bad" if the data is bad
+	 */
 	public static String FMSData() {
 		String fmsdata = DriverStation.getInstance().getGameSpecificMessage();
 		System.out.println("FMS Data: " + fmsdata);
-		
+
 		// check for null data (bad)
-		if(fmsdata == null) {
+		if (fmsdata == null) {
 			return "bad";
 		}
-		
+
 		// check for valid format: length 3, only L or R (good)
-		if(fmsdata.length() == 3 && fmsdata.matches("(?i)(L|R)(L|R)(L|R)")) {
+		if (fmsdata.length() == 3 && fmsdata.matches("(?i)(L|R)(L|R)(L|R)")) {
 			goodData = true;
-    		return fmsdata;
-    	}
-		
+			return fmsdata;
+		}
+
 		// otherwise bad
 		return "bad";
 	}
@@ -178,21 +182,22 @@ public class Robot extends TimedRobot {
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
+	 * between different autonomous modes using the dashboard. The sendable chooser
+	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+	 * remove all of the chooser code and uncomment the getString code to get the
+	 * auto name from the text box below the Gyro
 	 *
-	 * <p>You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
+	 * <p>
+	 * You can add additional auto modes by adding additional commands to the
+	 * chooser code above (like the commented example) or additional comparisons to
+	 * the switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
-//		m_autonomousCommand = m_chooser.getSelected();
+		// m_autonomousCommand = m_chooser.getSelected();
 		String fms = FMSData();
 		SmartDashboard.putString("FMS", fms);
-		if(fms != null && !fms.equals("bad")) {
+		if (fms != null && !fms.equals("bad")) {
 			goodData = true;
 			runAuto(fms);
 		} else {
@@ -202,18 +207,16 @@ public class Robot extends TimedRobot {
 	}
 
 	public void runAuto(String fms) {
-		
-		Animation unStart = new Animation(
-		new Keyframe(new ElevatorResetEncoderToStarting(), 0.0),
-		new Keyframe(new ElevatorTiltForward(), 0.1)
-		);
+
+		Animation unStart = new Animation(new Keyframe(new ElevatorResetEncoderToStarting(), 0.0),
+				new Keyframe(new ElevatorTiltForward(), 0.1));
 
 		start = getStart();
 		System.out.println("START: " + start);
-		
+
 		System.out.println("Choosing auto mode based off of: " + fms);
 		SmartDashboard.putString("FMS", fms);
-		
+
 		switch (fms) {
 		case "RRR":
 			if (start.equals("R") && cubes == 1) {
@@ -333,11 +336,11 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
 		SmartDashboard.putNumber("Yaw", Robot.drive.getYaw());
 		SmartDashboard.putNumber("Elevator encoder", Robot.elevator.getPosition());
-		
-		if(!goodData && autoTimer.get() < 5) {
+
+		if (!goodData && autoTimer.get() < 5) {
 			String fms = FMSData();
 			SmartDashboard.putString("FMS", fms);
-			if(!fms.equals("bad")) {
+			if (!fms.equals("bad")) {
 				goodData = true;
 				runAuto(fms);
 			}
