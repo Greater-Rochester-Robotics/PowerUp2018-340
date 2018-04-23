@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	public static final boolean isCompBot = false;
+	public static final boolean isCompBot = true;
 
 	public static DigitalInput autoSwitchA = new DigitalInput(RobotMap.AUTO_SWITCH_A);
 	public static DigitalInput autoSwitchB = new DigitalInput(RobotMap.AUTO_SWITCH_B);
@@ -103,10 +103,11 @@ public class Robot extends TimedRobot {
 	 * Gets the FMS Data with built in validity checks.
 	 * @return FMS Data, or "bad" if the data is bad
 	 */
-	public static String FMSData() {
+	public static String FMSData(boolean print) {
 		String fmsdata = DriverStation.getInstance().getGameSpecificMessage();
-		System.out.println("FMS Data: " + fmsdata);
-
+		if(print) {
+			System.out.println("FMS Data: " + fmsdata);
+		}
 		// check for null data (bad)
 		if (fmsdata == null) {
 			return "bad";
@@ -120,6 +121,10 @@ public class Robot extends TimedRobot {
 
 		// otherwise bad
 		return "bad";
+	}
+	
+	public static String FMSData() {
+		return FMSData(true);
 	}
 
 	public static boolean getAutoSwitchA() {
@@ -174,6 +179,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("Auto Switch A", getAutoSwitchA());
 		SmartDashboard.putBoolean("Auto Switch B", getAutoSwitchB());
 		SmartDashboard.putString("Auto Start Position", getStart());
+		SmartDashboard.putString("FMS", FMSData(false));
 	}
 
 	private static String start = "L"; // L[eft] C[enter] or R[ight]
@@ -195,10 +201,12 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		// m_autonomousCommand = m_chooser.getSelected();
+		goodData = false;
 		String fms = FMSData();
 		SmartDashboard.putString("FMS", fms);
 		if (fms != null && !fms.equals("bad")) {
 			goodData = true;
+			System.out.println("Good data on start");
 			runAuto(fms);
 		} else {
 			autoTimer.reset();
@@ -207,7 +215,8 @@ public class Robot extends TimedRobot {
 	}
 
 	public void runAuto(String fms) {
-
+		System.out.println("runAuto called with fms data: " + fms);
+		
 		Animation unStart = new Animation(new Keyframe(new ElevatorResetEncoderToStarting(), 0.0),
 				new Keyframe(new ElevatorTiltForward(), 0.1));
 
@@ -305,8 +314,8 @@ public class Robot extends TimedRobot {
 		}
 
 		// m_autonomousCommand = new PortalSwitch(FROM_CENTER.SWITCH_LEFT);
-		m_autonomousCommand = new PortalSwitch(FROM_LEFT_PORTAL.LEFT_PORTAL_TO_LEFT_SWITCH,
-				FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
+//		m_autonomousCommand = new PortalSwitch(FROM_LEFT_PORTAL.LEFT_PORTAL_TO_LEFT_SWITCH,
+//				FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
 		// m_autonomousCommand = new
 		// PortalSwitch(FROM_RIGHT_PORTAL.RIGHT_PORTAL_TO_LEFT_SWITCH,
 		// FROM_CENTER.SWITCH_LEFT_BACK, FROM_CENTER.SWITCH_LEFT);
@@ -342,12 +351,14 @@ public class Robot extends TimedRobot {
 			SmartDashboard.putString("FMS", fms);
 			if (!fms.equals("bad")) {
 				goodData = true;
+				System.out.println("Received good data, just not on start. Calling runAuto");
 				runAuto(fms);
 			}
 		} else if (autoTimer.get() >= 5 && !goodData) {
 			autoTimer.reset();
 			autoTimer.stop();
 			goodData = true;
+			System.out.println("Timeout waiting for good gamedata, running cross line");
 			m_autonomousCommand = new CrossLineAuto();
 			m_autonomousCommand.start();
 		}

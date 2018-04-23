@@ -6,12 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class WaitSwitch extends Command {
+public class WaitForGameData extends Command {
 	private char robotSide;
 	private char switchSide;
 	private static int checks = 0;
 	
-    public WaitSwitch(char side) {
+    public WaitForGameData(char side) {
     	robotSide = side;
     }
 
