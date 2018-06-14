@@ -23,6 +23,10 @@ public class PathSegment {
     public PathSegment(Function<Double, Double> derivative, double length) {
         this.derivative = derivative;
         this.length = length;
+        this.curvature = t -> {
+        	System.err.println("Using curvature from a segment constructed in the old style");
+        	return 0.0001;
+        };
     }
     
     private Function<Double, Double> dx; //  first derivative for x
