@@ -116,6 +116,9 @@ public class OI {
 		
 		driverX.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverY.whenPressed(new ManualClawOpen());
+		
+		driverBack.whenPressed(new RunPath(Paths.FROM_CENTER.POINT_CONSTRUCTED, Paths.GENERATORS.GENERATOR));
+		driverBack.whenReleased(new DriveStop());
 
 		coDriverRB.whenPressed(new ManualElevatorTiltForward());
 		coDriverLB.whenPressed(new ElevatorTiltBackward());

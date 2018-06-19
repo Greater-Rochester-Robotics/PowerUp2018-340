@@ -1,14 +1,23 @@
 package org.usfirst.frc.team340.robot.commands.pathing;
 
 import org.usfirst.frc.team340.robot.Robot;
+import org.usfirst.frc.team340.robot.commands.pathing.PathSegment.Vec2;
 
 public class Paths {
+	public static class GENERATORS {
+		public static SpeedGenerator GENERATOR = new SpeedGenerator(0.3, 0.8, 0.03, 0.0075, 160, 22, 24);
+	}
 	public static class FROM_CENTER {
 		public static final Path SWITCH_RIGHT = new Path(
 			new PathSegment(t -> 
 			/* {"start":{"x":0,"y":50},"mid1":{"x":46,"y":48},"mid2":{"x":51,"y":109},"end":{"x":112,"y":108}} */
 			(-6 + 378 * t + -375 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
 			, 131));
+		
+		public static final Path POINT_CONSTRUCTED = new Path(new PathSegment( 
+				/* {"start":{"x":0,"y":50},"mid1":{"x":195,"y":43},"mid2":{"x":66,"y":120},"end":{"x":52,"y":72}} */
+				new Vec2(0, 50), new Vec2(195, 43), new Vec2(66, 120), new Vec2(52, 72) 
+				, 183));
 		
 		public static final Path SWITCH_RIGHT_BACK = new Path(
 //				new PathSegment(t -> 

@@ -3,7 +3,7 @@ package org.usfirst.frc.team340.robot.commands.pathing;
 import java.util.function.Function;
 
 public class SpeedGenerator {
-	private double minSpeed, maxSpeed, accel, radius1, radius2, lookahead;
+	private double minSpeed, maxSpeed, startAccel, stopAccel, radius1, radius2, lookahead;
 	
 	/**
 	 * Automatically generate a speed function
@@ -14,10 +14,11 @@ public class SpeedGenerator {
 	 * @param radius2 turn radius to run at minimum speed, in inches
 	 * @param lookahead look ahead for curves, in inches
 	 */
-	public SpeedGenerator(double minSpeed, double maxSpeed, double accel, double radius1, double radius2, double lookahead) {
+	public SpeedGenerator(double minSpeed, double maxSpeed, double startAccel, double stopAccel, double radius1, double radius2, double lookahead) {
 		this.minSpeed = minSpeed;
 		this.maxSpeed = maxSpeed;
-		this.accel = accel;
+		this.startAccel = startAccel;
+		this.stopAccel = stopAccel;
 		this.radius1 = radius1;
 		this.radius2 = radius2;
 		this.lookahead = lookahead;
@@ -29,8 +30,8 @@ public class SpeedGenerator {
 			final double inchesTraveled = t * length;
 			final double inchesToGo = (1 - t) * length;
 			
-			final double speedUpSpeed = minSpeed + inchesTraveled * accel;
-			final double slowDownSpeed = minSpeed + inchesToGo * accel;
+			final double speedUpSpeed = minSpeed + inchesTraveled * startAccel;
+			final double slowDownSpeed = minSpeed + inchesToGo * stopAccel;
 			
 			double turnSpeed = maxSpeed;
 			double lookaheadt = t + lookahead/length;
@@ -61,8 +62,11 @@ public class SpeedGenerator {
 	public double getMaxSpeed() {
 		return maxSpeed;
 	}
-	public double getAccel() {
-		return accel;
+	public double getStartAccel() {
+		return startAccel;
+	}
+	public double getStopAccel() {
+		return stopAccel;
 	}
 	public double getRadius1() {
 		return radius1;

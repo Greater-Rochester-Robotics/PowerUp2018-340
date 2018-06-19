@@ -49,6 +49,10 @@ public class RunPath extends CommandGroup {
 //    	this.setInterruptible(false);
     }
     
+    public RunPath(Path path, SpeedGenerator speedGenerator) {
+    	this(path, speedGenerator.getSpeedFunction(path));
+    }
+    
     public RunPath(Path path, Function<Double, Double> speed, Animation animation) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
