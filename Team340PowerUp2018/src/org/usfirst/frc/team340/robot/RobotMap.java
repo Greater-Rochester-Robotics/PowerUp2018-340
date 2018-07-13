@@ -50,7 +50,7 @@ public class RobotMap {
 	public static final int ELEVATOR_TILT_CHANNEL_B = 2;
 	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 6;
 	public static final int CLAW_SOLENOID_OPEN_CHANNEL = 5;
-	public static final int CLIMBER_DEPLOY_CHANNEL= 7; // switched with elevator
+	public static final int CLIMBER_DEPLOY_CHANNEL= 7; // switched with elevator on practice
 	public static final int LED_RED_CHANNEL = 4;
 	public static final int LED_GREEN_CHANNEL = 0;
 	public static final int FORKS_CHANNEL = 0; // same as leds since we are removing them
@@ -59,12 +59,12 @@ public class RobotMap {
 	
 	//Claw Wheel Speeds
 	public static final double CLAW_WHEEL_FULLSPEED_VBUS = 1.0;
-	public static final double CLAW_WHEEL_SHOOTSPEED_VBUS = 0.5;
+	public static final double CLAW_WHEEL_SHOOTSPEED_VBUS = 0.5; // 0.5
 	public static final double CLAW_WHEEL_HOLDSPEED_VBUS = 0.5;
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
 	public static final double CLAW_WHEEL_ACQUIRE_SPEED_VBUS = 0.69;
 	
-	//Drive Devices
+	//Drive Deviceshttps://github.com/Greater-Rochester-Robotics/PowerUp2018-340/pull/3/conflict?name=Team340PowerUp2018%252Fsrc%252Forg%252Fusfirst%252Ffrc%252Fteam340%252Frobot%252FRobot.java&ancestor_oid=2c7989ea654531f39920c9a6eb9f47216ed5b60b&base_oid=9ecb5ba05aa08eb99b1a0da2218a49da04a05033&head_oid=6ba5c8f7cf684de51a04da79700566a3f7ea5564
 	//Elevator Devices
 	
 	//Elevator Positions
@@ -78,7 +78,7 @@ public class RobotMap {
 	public static final double ELEVATOR_FULLSPEED_VBUS = 1.0;
 	public static final double ELEVATOR_DELTA_TICS_TO_SLOW_DOWN = 300;
 	public static final double ELEVATOR_KP = (1023)/ELEVATOR_DELTA_TICS_TO_SLOW_DOWN;
-	public static final int ELEVATOR_MAX_TICS = 3100;
+	public static final int ELEVATOR_MAX_TICS = 3180;
 	public static final double ELEVATOR_RAMP_TIME_S = 0.5;
 	public static final int ELEVATOR_TICS_PER_INCH = 10;
 	public static final int ELEVATOR_TOLERANCE_TICS = 1 * ELEVATOR_TICS_PER_INCH;

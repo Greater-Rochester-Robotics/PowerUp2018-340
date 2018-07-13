@@ -11,6 +11,7 @@ import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoFast;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoTwoCube;
 import org.usfirst.frc.team340.robot.commands.auto.CrossLineAuto;
+import org.usfirst.frc.team340.robot.commands.auto.FarSideNoScore;
 import org.usfirst.frc.team340.robot.commands.auto.PortalSwitch;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScale;
@@ -183,7 +184,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("FMS", FMSData(false));
 	}
 
-	private static String start = "L"; // L[eft] C[enter] or R[ight]
+	private static String start = "R"; // L[eft] C[enter] or R[ight]
 	private static final int cubes = 1; // 1/2/3 cubes etc
 	private static Timer autoTimer = new Timer();
 
@@ -217,9 +218,6 @@ public class Robot extends TimedRobot {
 
 	public void runAuto(String fms) {
 		System.out.println("runAuto called with fms data: " + fms);
-		
-		Animation unStart = new Animation(new Keyframe(new ElevatorResetEncoderToStarting(), 0.0),
-				new Keyframe(new ElevatorTiltForward(), 0.1));
 
 		start = getStart();
 		System.out.println("START: " + start);
@@ -230,9 +228,13 @@ public class Robot extends TimedRobot {
 		switch (fms) {
 		case "RRR":
 			if (start.equals("R") && cubes == 1) {
-				m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
-						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE,
-						FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+//				m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+//						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE,
+//						FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+				
+				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL_DEEP, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH_DEEP, 
+						2000, 3000, 0.369);
+				
 				// m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
 				// FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90,
 				// 0.369, 0.50);
@@ -241,11 +243,14 @@ public class Robot extends TimedRobot {
 //				 m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT,
 //				 FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
 			} else if (start.equals("L") && cubes == 1) {
-				// m_autonomousCommand = new
-				// SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
-				// FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, unStart, 3000, 0.369);
-				m_autonomousCommand = new SingleCubeFarScaleShallow(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT,
-						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH_SHORT, FROM_LEFT_PORTAL.SCALE_RIGHT_SHALLOW_SCORE);
+				m_autonomousCommand = new
+				 SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
+						 FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.4);
+				
+//				m_autonomousCommand = new FarSideNoScore(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT);
+				
+//				m_autonomousCommand = new SingleCubeFarScaleShallow(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT,
+//						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH_SHORT, FROM_LEFT_PORTAL.SCALE_RIGHT_SHALLOW_SCORE);
 			} else if (start.equals("C")) {
 				// m_autonomousCommand = new CenterSwitchAutoFast(FROM_CENTER.SWITCH_RIGHT);
 				// m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT,
@@ -259,12 +264,19 @@ public class Robot extends TimedRobot {
 			if (start.equals("R") && cubes == 1) {
 				// m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_LEFT,
 				// FROM_RIGHT.SWITCH_LEFT_FINISH, 969, 0.3069);
-				m_autonomousCommand = new SingleCubeFarScale(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL,
-						FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, unStart, 3000, 0.3069);
+				
+//				m_autonomousCommand = new SingleCubeFarScale(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL,
+//						FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.4);
+				
+				m_autonomousCommand = new FarSideNoScore(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL_SHORT);
 			} else if (start.equals("L") && cubes == 1) {
 				m_autonomousCommand = new TwoCubeScaleEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
 						FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE,
 						FROM_LEFT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+				
+//				m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL_DEEP, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH_DEEP, 
+//						2000, 3000, 0.369);
+				
 				// m_autonomousCommand = new TwoCubeEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
 				// FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE, 90, 0.369,
 				// 0.3069);
@@ -278,15 +290,27 @@ public class Robot extends TimedRobot {
 			break;
 		case "RLR":
 			if (start.equals("R") && cubes == 1) {
-				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL,
-						FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.3069);
+//				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL,
+//						FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.3069);
 				// m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SWITCH_RIGHT_TRAVEL,
 				// FROM_RIGHT_PORTAL.SWITCH_RIGHT_FINISH, 969, 0.3069);
 				// m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT,
 				// FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
+				
+//				m_autonomousCommand = new SingleCubeFarScale(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL,
+//						FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 3000, 0.4);
+				
+				m_autonomousCommand = new FarSideNoScore(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL_SHORT);
 			} else if (start.equals("L")) {
-				m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
-						FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.369);
+				m_autonomousCommand = new TwoCubeScaleEasy(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
+						FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, FROM_LEFT_PORTAL.SECOND_CUBE,
+						FROM_LEFT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+				
+//				m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL_DEEP, FROM_LEFT_PORTAL.SCALE_LEFT_FINISH_DEEP, 
+//						2000, 3000, 0.369);
+				
+//				m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_LEFT_TRAVEL,
+//						FROM_LEFT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.369);
 			} else if (start.equals("C")) {
 				// m_autonomousCommand = new CenterSwitchAutoTwoCube(FROM_CENTER.SWITCH_LEFT,
 				// FROM_CENTER.LEFT_SECOND_CUBE_FORWARD,
@@ -297,11 +321,18 @@ public class Robot extends TimedRobot {
 			break;
 		case "LRL":
 			if (start.equals("R") && cubes == 1) {
-				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
-						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 2600, 3000, 0.39);
+//				m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+//						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE,
+//						FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+				
+				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL_DEEP, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH_DEEP, 
+						2000, 3000, 0.369);
 			} else if (start.equals("L") && cubes == 1) {
 				m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
-						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, unStart, 3000, 0.369);
+						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.4);
+				
+//				m_autonomousCommand = new FarSideNoScore(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT);
+				
 				// m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL,
 				// FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
 				// m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
@@ -385,6 +416,10 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("isCubePresent", Robot.claw.isCubePresent());
 		SmartDashboard.putNumber("Drive Left Encoder", Robot.drive.getLeftEncoder());
 		SmartDashboard.putNumber("Drive right encoder", Robot.drive.getRightEncoder());
+		
+		SmartDashboard.putNumber("Drive Left speed", Robot.drive.getLeftSpeed());
+		SmartDashboard.putNumber("Drive right speed", Robot.drive.getRightSpeed());
+		
 		SmartDashboard.putNumber("Elevator encoder", Robot.elevator.getPosition());
 		SmartDashboard.putBoolean("Brake", Robot.elevator.getBrake());
 

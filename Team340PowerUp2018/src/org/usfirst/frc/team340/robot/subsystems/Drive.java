@@ -59,22 +59,31 @@ public class Drive extends Subsystem {
 	 * @return right encoder's count
 	 */
 	public int getRightEncoder() {
-		if(Robot.isCompBot) {
+//		if(Robot.isCompBot) {
 			return (int) (encoderRight.get() / 13);
-		}
+//		}
 //		return encoderRight.get();
-    	return (int) (encoderRight.get() / 16.78);
+//    	return (int) (encoderRight.get() / 16.78);
+//		return encoderRight.get() / 12.92;
 	}
 	
 	/**
 	 * @return left encoder's count
 	 */
 	public int getLeftEncoder() {
-		if(Robot.isCompBot) {
+//		if(Robot.isCompBot) {
 			return (int) (encoderLeft.get() / 13 * 1.01695);
-		}
+//		}
 //		return encoderLeft.get();
-		return (int) (encoderLeft.get() / 13.3);
+//		return (int) (encoderLeft.get() / 13.3);
+	}
+	
+	public double getRightSpeed() {
+		return encoderRight.getRate();
+	}
+	
+	public double getLeftSpeed() {
+		return encoderLeft.getRate();
 	}
 	
 	/**

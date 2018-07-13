@@ -29,7 +29,7 @@ public class Elevator extends Subsystem {
 	private static final double BOTTOM_LOWER_SLOW = 400;
 	private static final double BOTTOM_UPPER_SLOW = 800;
 	private static final double TOP_LOWER_SLOW = 2500;
-	private static final double TOP_UPPER_SLOW = 3015;
+	private static final double TOP_UPPER_SLOW = 3115;
 	
 	/**
 	 * Raises and lowers the claw to get the cube into the switch and scale
