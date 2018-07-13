@@ -18,11 +18,11 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class CenterSwitchAutoFast extends CommandGroup {
 	public static Function<Double, Double> defaultSpeed = x -> {
 		if (x < 0.15) {
-			return 0.4;
+			return 0.6;
 		} else if (x < 0.75) {
 			return 0.8;
 		} else {
-			return 0.15;
+			return 0.25;
 		}
 	};
 	public CenterSwitchAutoFast(Path path) {

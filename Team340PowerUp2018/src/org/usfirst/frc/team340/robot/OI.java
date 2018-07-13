@@ -30,6 +30,7 @@ import org.usfirst.frc.team340.robot.commands.elevator.ElevatorResetEncoderToSta
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorStop;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltBackward;
 import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltForward;
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawNeutral;
 import org.usfirst.frc.team340.robot.commands.manual.ManualClawOpen;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeDisengage;
 import org.usfirst.frc.team340.robot.commands.manual.ManualElevatorBrakeEngage;
@@ -95,6 +96,9 @@ public class OI {
 		driverA.whenPressed(new ClawAcquireCube());
 		driverA.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverX.whenPressed(new ClawShootScore());
+		
+		driverBack.whenPressed(new ManualClawNeutral());
+		
 		driverB.whenPressed(new ClawAcquireCubeOpenClaw());
 		driverB.whenReleased(new ClawStopWheels());
 		

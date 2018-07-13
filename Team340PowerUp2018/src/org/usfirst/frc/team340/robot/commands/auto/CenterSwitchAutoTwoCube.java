@@ -46,18 +46,19 @@ public class CenterSwitchAutoTwoCube extends CommandGroup {
     	addSequential(new RunPath(backwardsPath, x -> {
     		return -CenterSwitchAutoFast.defaultSpeed.apply(x);
     	}), 3.2);
-    	addParallel(new ManualClawOpen(), 0.5);
-    	addSequential(new ElevatorGoToBottom());
+//    	addSequential(new RunPath(Paths.straightLength(8), -0.5), 0.5);
+    	addSequential(new ManualClawOpen(), 0.5);
+    	addParallel(new ElevatorGoToBottom());
     	addParallel(new ManualClawWheelsIn());
-    	addSequential(new RunPath(Paths.straightLength(50), 0.5));
+    	addSequential(new RunPath(Paths.straightLength(55), 0.5));
     	addSequential(new ManualClawClose(), 0.5);
     	addSequential(new ManualClawWheelsStop(), 0.5);
     	addSequential(new WaitCommand(0.15));
     	addSequential(new ClawAcquireCube(), 1.25);
     	addSequential(new WaitCommand(0.15));
     	addSequential(new ElevatorGoToPosition(169)	, 0.8);
+    	addParallel(new ElevatorGoToPosition(1400));
     	addSequential(new RunPath(Paths.straightLength(50), -0.6), 2);
-    	addSequential(new ElevatorGoToPosition(1400));
     	addSequential(new CenterSwitchAutoFast(thirdPath));
     }
 }
