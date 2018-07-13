@@ -22,6 +22,7 @@ public class RobotMap {
 	//PWM Channels
 	public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
 	public static final int DRIVE_TALONSR_RIGHT_CHANNEL = 1;
+	public static final int CLIMBER_HOCKEYSTICK = 2;
 	
 	//CAN IDs
 	public static final int CLAW_WHEEL_LEFT_CHANNEL = 1; //E on prac, A on comp
@@ -31,6 +32,7 @@ public class RobotMap {
 	public static final int ELEVATOR_TALONSRX_A_ID = 8; //H on prac, D on comp
 	public static final int ELEVATOR_TALONSRX_B_ID = 7; //G on prac, C on comp
 	public static final int ELEVATOR_TALONSRX_C_ID = 6; //F on prac, E on comp
+	
 	
 	//Digital Channels
 	public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 1; //TODO: assume left, but find if left or right
@@ -43,7 +45,7 @@ public class RobotMap {
 	public static final int AUTO_SWITCH_B = 6;
 	
 	//Solenoid Channels
-	public static final int ELEVATOR_BRAKE_CHANNEL = 1; // switched with climber on practice
+	public static final int ELEVATOR_BRAKE_CHANNEL = 1; // switched with climber
 	public static final int ELEVATOR_TILT_CHANNEL_A = 3;
 	public static final int ELEVATOR_TILT_CHANNEL_B = 2;
 	public static final int CLAW_SOLENOID_CLOSE_CHANNEL = 6;
@@ -52,8 +54,6 @@ public class RobotMap {
 	public static final int LED_RED_CHANNEL = 4;
 	public static final int LED_GREEN_CHANNEL = 0;
 	public static final int FORKS_CHANNEL = 0; // same as leds since we are removing them
-	
-	
 	
 	//Claw Devices
 	
@@ -64,7 +64,7 @@ public class RobotMap {
 	public static final double CLAW_ALIGNMENT_WAIT_S = 0.5;
 	public static final double CLAW_WHEEL_ACQUIRE_SPEED_VBUS = 0.69;
 	
-	//Drive Devices
+	//Drive Deviceshttps://github.com/Greater-Rochester-Robotics/PowerUp2018-340/pull/3/conflict?name=Team340PowerUp2018%252Fsrc%252Forg%252Fusfirst%252Ffrc%252Fteam340%252Frobot%252FRobot.java&ancestor_oid=2c7989ea654531f39920c9a6eb9f47216ed5b60b&base_oid=9ecb5ba05aa08eb99b1a0da2218a49da04a05033&head_oid=6ba5c8f7cf684de51a04da79700566a3f7ea5564
 	//Elevator Devices
 	
 	//Elevator Positions

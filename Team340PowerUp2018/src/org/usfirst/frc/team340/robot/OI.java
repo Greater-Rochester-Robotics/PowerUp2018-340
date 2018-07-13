@@ -19,6 +19,7 @@ import org.usfirst.frc.team340.robot.commands.claw.ClawStopWheels;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberClimb;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployForks;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberDeployHook;
+import org.usfirst.frc.team340.robot.commands.climber.ClimberHockeyStick;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberLockForks;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberRetract;
 import org.usfirst.frc.team340.robot.commands.climber.ClimberStop;
@@ -120,6 +121,9 @@ public class OI {
 		
 		driverX.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverY.whenPressed(new ManualClawOpen());
+		
+		driverBack.whenPressed(new RunPath(Paths.FROM_CENTER.POINT_CONSTRUCTED, Paths.GENERATORS.GENERATOR));
+		driverBack.whenReleased(new DriveStop());
 
 		coDriverRB.whenPressed(new ManualElevatorTiltForward());
 		coDriverLB.whenPressed(new ElevatorTiltBackward());
@@ -150,6 +154,11 @@ public class OI {
 //		coDriverStart.whenPressed(new ManualElevatorBrakeEngage());
 		driverStart.whenPressed(new GoToStartingConfig());
 		driverStart.whenReleased(new ElevatorStop());
+		
+		coDriverBack.whenPressed(new ClimberHockeyStick(-1.0));
+		coDriverBack.whenReleased(new ClimberHockeyStick(0.0));
+		coDriverStart.whenPressed(new ClimberHockeyStick(1.0));
+		coDriverStart.whenReleased(new ClimberHockeyStick(0.0));
 	}
 	
 	/**

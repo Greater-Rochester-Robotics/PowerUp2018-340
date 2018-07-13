@@ -1,8 +1,12 @@
 package org.usfirst.frc.team340.robot.commands.pathing;
 
 import org.usfirst.frc.team340.robot.Robot;
+import org.usfirst.frc.team340.robot.commands.pathing.PathSegment.Vec2;
 
 public class Paths {
+	public static class GENERATORS {
+		public static SpeedGenerator GENERATOR = new SpeedGenerator(0.3, 0.8, 0.03, 0.0075, 160, 22, 24);
+	}
 	public static class FROM_CENTER {
 		public static final Path SWITCH_RIGHT = new Path(
 //			new PathSegment(t -> 
