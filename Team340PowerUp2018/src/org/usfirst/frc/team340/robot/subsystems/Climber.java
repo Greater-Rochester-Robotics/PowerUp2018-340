@@ -5,7 +5,9 @@ import org.usfirst.frc.team340.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -17,6 +19,7 @@ public class Climber extends Subsystem {
 	private static WPI_TalonSRX winchB;
 	private static Solenoid deploy;
 //	private static Solenoid forks;
+	private static Talon hockeyStick;
 	
 	public Climber() {
 		winchA = new WPI_TalonSRX(RobotMap.CLIMBER_TALONSRX_A_ID);
@@ -30,7 +33,10 @@ public class Climber extends Subsystem {
 		
 		winchA.configPeakOutputReverse(-1, 0);
 		winchB.configPeakOutputReverse(-1, 0);
+		
+		hockeyStick = new Talon(RobotMap.CLIMBER_HOCKEYSTICK);
 	}
+	
 	
     public void initDefaultCommand() {}
     
@@ -56,5 +62,9 @@ public class Climber extends Subsystem {
     
     public void stopWinch() {
     	winchA.set(0);
+    }
+    
+    public void setHockeyStick(double speed) {
+    	hockeyStick.set(speed);
     }
 }

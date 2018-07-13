@@ -136,9 +136,10 @@ public class Robot extends TimedRobot {
 	}
 
 	public static String getStart() {
-		if (!isCompBot) {
-			return start;
-		}
+//		return "C";
+//		if (!isCompBot) {
+//			return start;
+//		}
 		if (getAutoSwitchA()) {
 			return "L";
 		} else if (getAutoSwitchB()) {
@@ -235,10 +236,10 @@ public class Robot extends TimedRobot {
 				// m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
 				// FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90,
 				// 0.369, 0.50);
-				// m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
-				// FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
-				// m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT,
-				// FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
+//				 m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+//				 FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
+//				 m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT,
+//				 FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
 			} else if (start.equals("L") && cubes == 1) {
 				// m_autonomousCommand = new
 				// SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,

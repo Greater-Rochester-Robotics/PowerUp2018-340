@@ -9,10 +9,10 @@ public class Paths {
 	}
 	public static class FROM_CENTER {
 		public static final Path SWITCH_RIGHT = new Path(
-			new PathSegment(t -> 
-			/* {"start":{"x":0,"y":50},"mid1":{"x":46,"y":48},"mid2":{"x":51,"y":109},"end":{"x":112,"y":108}} */
-			(-6 + 378 * t + -375 * Math.pow(t, 2))/ (138 + -246 * t + 291 * Math.pow(t, 2)) 
-			, 131));
+				new PathSegment( 
+						/* {"start":{"x":0,"y":50},"mid1":{"x":46,"y":48},"mid2":{"x":51,"y":109},"end":{"x":112,"y":106}} */
+						new Vec2(0, 50), new Vec2(46, 48), new Vec2(51, 109), new Vec2(112, 106) 
+						, 131));
 		
 		public static final Path POINT_CONSTRUCTED = new Path(new PathSegment( 
 				/* {"start":{"x":0,"y":50},"mid1":{"x":195,"y":43},"mid2":{"x":66,"y":120},"end":{"x":52,"y":72}} */
