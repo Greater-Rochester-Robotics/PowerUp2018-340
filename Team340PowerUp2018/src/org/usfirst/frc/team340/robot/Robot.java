@@ -7,33 +7,19 @@
 
 package org.usfirst.frc.team340.robot;
 
-import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAuto;
-import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoFast;
 import org.usfirst.frc.team340.robot.commands.auto.CenterSwitchAutoTwoCube;
 import org.usfirst.frc.team340.robot.commands.auto.CrossLineAuto;
 import org.usfirst.frc.team340.robot.commands.auto.FarSideNoScore;
-import org.usfirst.frc.team340.robot.commands.auto.PortalSwitch;
-import org.usfirst.frc.team340.robot.commands.auto.SingleCube;
 import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScale;
-import org.usfirst.frc.team340.robot.commands.auto.SingleCubeFarScaleShallow;
-import org.usfirst.frc.team340.robot.commands.auto.TwoCubeEasy;
 import org.usfirst.frc.team340.robot.commands.auto.TwoCubeScaleEasy;
-import org.usfirst.frc.team340.robot.commands.auto.WaitForGameData;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorTiltForward;
-import org.usfirst.frc.team340.robot.commands.pathing.Animation;
-import org.usfirst.frc.team340.robot.commands.pathing.Keyframe;
-import org.usfirst.frc.team340.robot.commands.pathing.Paths;
-import org.usfirst.frc.team340.robot.commands.elevator.ElevatorResetEncoderToStarting;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_CENTER;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_LEFT_PORTAL;
 import org.usfirst.frc.team340.robot.commands.pathing.Paths.FROM_RIGHT_PORTAL;
-import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 import org.usfirst.frc.team340.robot.subsystems.Claw;
 import org.usfirst.frc.team340.robot.subsystems.Climber;
 import org.usfirst.frc.team340.robot.subsystems.Drive;
 import org.usfirst.frc.team340.robot.subsystems.Elevator;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -228,12 +214,12 @@ public class Robot extends TimedRobot {
 		switch (fms) {
 		case "RRR":
 			if (start.equals("R") && cubes == 1) {
-//				m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
-//						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE,
-//						FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+				m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE,
+						FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
 				
-				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL_DEEP, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH_DEEP, 
-						2000, 3000, 0.369);
+//				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL_DEEP, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH_DEEP, 
+//						2000, 3100, 0.369);
 				
 				// m_autonomousCommand = new TwoCubeEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
 				// FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE, -90,
@@ -243,11 +229,11 @@ public class Robot extends TimedRobot {
 //				 m_autonomousCommand = new SingleCube(FROM_RIGHT.SCALE_RIGHT,
 //				 FROM_RIGHT.SCALE_RIGHT_FINISH, 3000, 1.0);
 			} else if (start.equals("L") && cubes == 1) {
-				m_autonomousCommand = new
-				 SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
-						 FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.4);
+//				m_autonomousCommand = new
+//				 SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
+//						 FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.4);
 				
-//				m_autonomousCommand = new FarSideNoScore(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT);
+				m_autonomousCommand = new FarSideNoScore(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT);
 				
 //				m_autonomousCommand = new SingleCubeFarScaleShallow(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT,
 //						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH_SHORT, FROM_LEFT_PORTAL.SCALE_RIGHT_SHALLOW_SCORE);
@@ -292,8 +278,8 @@ public class Robot extends TimedRobot {
 			if (start.equals("R") && cubes == 1) {
 //				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_LEFT_TRAVEL,
 //						FROM_RIGHT_PORTAL.SCALE_LEFT_FINISH, 2600, 3000, 0.3069);
-				// m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SWITCH_RIGHT_TRAVEL,
-				// FROM_RIGHT_PORTAL.SWITCH_RIGHT_FINISH, 969, 0.3069);
+//				 m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SWITCH_RIGHT_TRAVEL,
+//				 FROM_RIGHT_PORTAL.SWITCH_RIGHT_FINISH, 969, 969, 0.3069);
 				// m_autonomousCommand = new SingleCube(FROM_RIGHT.SWITCH_RIGHT,
 				// FROM_RIGHT.SWITCH_RIGHT_FINISH, 969, 0.3069);
 				
@@ -321,20 +307,23 @@ public class Robot extends TimedRobot {
 			break;
 		case "LRL":
 			if (start.equals("R") && cubes == 1) {
-//				m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
-//						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE,
-//						FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
+				m_autonomousCommand = new TwoCubeScaleEasy(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL,
+						FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH, FROM_RIGHT_PORTAL.SECOND_CUBE,
+						FROM_RIGHT_PORTAL.SECOND_CUBE_REVERSE, 0.3, 0.369);
 				
-				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL_DEEP, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH_DEEP, 
-						2000, 3000, 0.369);
+//				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL_DEEP, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH_DEEP, 
+//						2000, 3000, 0.369);
+				
+//				m_autonomousCommand = new SingleCube(FROM_RIGHT_PORTAL.SCALE_RIGHT_TRAVEL_DEEP, FROM_RIGHT_PORTAL.SCALE_RIGHT_FINISH_DEEP, 
+//						2000, 3000, 0.369);
 			} else if (start.equals("L") && cubes == 1) {
-				m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
-						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.4);
+//				m_autonomousCommand = new SingleCubeFarScale(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
+//						FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.4);
 				
-//				m_autonomousCommand = new FarSideNoScore(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT);
+				m_autonomousCommand = new FarSideNoScore(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL_SHORT);
 				
-				// m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL,
-				// FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 0.3069);
+//				 m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SWITCH_LEFT_TRAVEL,
+//				 FROM_LEFT_PORTAL.SWITCH_LEFT_FINISH, 969, 969, 0.3069);
 				// m_autonomousCommand = new SingleCube(FROM_LEFT_PORTAL.SCALE_RIGHT_TRAVEL,
 				// FROM_LEFT_PORTAL.SCALE_RIGHT_FINISH, 3000, 0.369);
 			} else if (start.equals("C")) {

@@ -122,18 +122,18 @@ public class OI {
 		driverX.whenReleased(new ClawStopWheels()); //Also closes!!!
 		driverY.whenPressed(new ManualClawOpen());
 		
-		driverBack.whenPressed(new RunPath(Paths.FROM_CENTER.POINT_CONSTRUCTED, Paths.GENERATORS.GENERATOR));
-		driverBack.whenReleased(new DriveStop());
+//		driverBack.whenPressed(new RunPath(Paths.FROM_CENTER.POINT_CONSTRUCTED, Paths.GENERATORS.GENERATOR));
+//		driverBack.whenReleased(new DriveStop());
 
 		coDriverRB.whenPressed(new ManualElevatorTiltForward());
 		coDriverLB.whenPressed(new ElevatorTiltBackward());
 		
-		coDriverDPadRight.whenPressed(new ClimberDeployHook());
-		coDriverDPadLeft.whenPressed(new ClimberRetract());
-		coDriverDPadDown.whenPressed(new ClimberClimb(1.0));
-		coDriverDPadDown.whenReleased(new ClimberStop());
-		coDriverDPadUp.whenPressed(new ClimberClimb(-1.0));
-		coDriverDPadUp.whenReleased(new ClimberStop());
+//		coDriverDPadRight.whenPressed(new ClimberDeployHook());
+//		coDriverDPadLeft.whenPressed(new ClimberRetract());
+//		coDriverDPadDown.whenPressed(new ClimberClimb(1.0));
+//		coDriverDPadDown.whenReleased(new ClimberStop());
+//		coDriverDPadUp.whenPressed(new ClimberClimb(-1.0));
+//		coDriverDPadUp.whenReleased(new ClimberStop());
 //		coDriverStart.whenPressed(new ClimberDeployForks());
 //		coDriverBack.whenPressed(new ClimberLockForks());
 		
@@ -155,10 +155,10 @@ public class OI {
 		driverStart.whenPressed(new GoToStartingConfig());
 		driverStart.whenReleased(new ElevatorStop());
 		
-		coDriverBack.whenPressed(new ClimberHockeyStick(-1.0));
-		coDriverBack.whenReleased(new ClimberHockeyStick(0.0));
-		coDriverStart.whenPressed(new ClimberHockeyStick(1.0));
-		coDriverStart.whenReleased(new ClimberHockeyStick(0.0));
+//		coDriverBack.whenPressed(new ClimberHockeyStick(-1.0));
+//		coDriverBack.whenReleased(new ClimberHockeyStick(0.0));
+//		coDriverStart.whenPressed(new ClimberHockeyStick(1.0));
+//		coDriverStart.whenReleased(new ClimberHockeyStick(0.0));
 	}
 	
 	/**

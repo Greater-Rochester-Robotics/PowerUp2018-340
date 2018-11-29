@@ -29,15 +29,16 @@ public class DriveController extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(Robot.oi.getDriverAxis(Axis.LEFT_X)) > 0.1 || //At least 10% away from center of left X
+    if(/*Math.abs(Robot.oi.getDriverAxis(Axis.LEFT_X)) > 0.1 || //At least 10% away from center of left X
     			Math.abs(Robot.oi.getDriverAxis(Axis.LEFT_Y)) > 0.1) { //At least 10% away from center of left Y
     			Robot.drive.arcadeDrive(Robot.oi.getDriverAxis(Axis.LEFT_Y), //Movement speed
     					Robot.oi.getDriverAxis(Axis.LEFT_X)); //Rotation speed
-    	} else if(Math.abs(Robot.oi.getDriverAxis(Axis.RIGHT_X)) > 0.1 || //At least 10% away from center of right X
+    	} else if(*/Math.abs(Robot.oi.getDriverAxis(Axis.RIGHT_X)) > 0.1 || //At least 10% away from center of right X
     			Math.abs(Robot.oi.getDriverAxis(Axis.RIGHT_Y)) > 0.1) { //At least 10% away from center of right Y
     			Robot.drive.arcadeDrive(Robot.oi.getDriverAxis(Axis.RIGHT_Y) * moveSlowScale,  //Move speed (slowed)
     					Robot.oi.getDriverAxis(Axis.RIGHT_X) * turnSlowScale); //Rotation speed (slowed) 
     	} else {
+    		
     		Robot.drive.arcadeDrive(0, 0);
     	}
     }

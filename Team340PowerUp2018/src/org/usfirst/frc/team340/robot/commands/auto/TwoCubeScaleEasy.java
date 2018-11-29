@@ -72,7 +72,7 @@ public class TwoCubeScaleEasy extends CommandGroup {
     		return -0.4;
     	}));
     	addSequential(new ElevatorGoToPosition(3000));
-    	addSequential(new RunPath(Paths.straightLength(15), 0.4), 2.5);
+    	addSequential(new RunPath(Paths.straightLength(10), 0.4), 2.5);
     	addSequential(new ClawShootScore(secondScaleSpeed), 1.0);
     	addSequential(new ManualClawOpen(), 0.5);
     	addSequential(new ManualClawWheelsStop(), 0.5);

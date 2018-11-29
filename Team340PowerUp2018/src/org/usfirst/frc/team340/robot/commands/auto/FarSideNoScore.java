@@ -1,5 +1,6 @@
 package org.usfirst.frc.team340.robot.commands.auto;
 
+import org.usfirst.frc.team340.robot.commands.manual.ManualClawClose;
 import org.usfirst.frc.team340.robot.commands.pathing.Path;
 import org.usfirst.frc.team340.robot.commands.pathing.RunPath;
 
@@ -28,6 +29,7 @@ public class FarSideNoScore extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	addSequential(new ManualClawClose());
     	addSequential(new RunPath(crossShortPath, x->{
     		if(x < 0.1) {
     			return 0.5;

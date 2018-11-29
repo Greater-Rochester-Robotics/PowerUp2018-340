@@ -28,8 +28,8 @@ public class Elevator extends Subsystem {
 	
 	private static final double BOTTOM_LOWER_SLOW = 400;
 	private static final double BOTTOM_UPPER_SLOW = 800;
-	private static final double TOP_LOWER_SLOW = 2500;
-	private static final double TOP_UPPER_SLOW = 3115;
+	private static final double TOP_LOWER_SLOW = 2725;
+	private static final double TOP_UPPER_SLOW = 2942;
 	
 	/**
 	 * Raises and lowers the claw to get the cube into the switch and scale
@@ -46,7 +46,7 @@ public class Elevator extends Subsystem {
 		talonA.configSetParameter(ParamEnum.eClearPositionOnLimitR, 1, 0, 0, 50);
 		talonA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 50);
 		
-		// broke
+		// broke (further testing shows maybe NOT broke
 		talonA.configForwardSoftLimitThreshold((int) (RobotMap.ELEVATOR_MAX_TICS), 50);
 		talonA.configForwardSoftLimitEnable(true, 50);
 		
